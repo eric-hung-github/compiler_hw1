@@ -10,7 +10,12 @@ int linenum = 1;
 char buf[MAX_LINE_LENG];
 %}
 
+identifier[a-z|A-Z][a-z|A-Z|0-9]*
+
 %%
+
+
+
 "("     {token('(');}
 ")"     {token(')');}
 class   {token(CLASS)}
