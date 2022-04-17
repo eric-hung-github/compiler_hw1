@@ -13,7 +13,7 @@ char buf[MAX_LINE_LENG];
 %%
 "("     {token('(');}
 ")"     {token(')');}
-class   {token('<Class')}
+class   {tokenString(identifier,"CLASS")}
 
 
 \n      {
