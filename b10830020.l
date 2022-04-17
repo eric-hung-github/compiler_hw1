@@ -22,8 +22,8 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 <C_COMMENT>.    { }
 
 "//"            { BEGIN(C_COMMENT); }
-<C_COMMENT>"\n" { BEGIN(INITIAL); }
-<C_COMMENT>.    { }
+<R_COMMENT>"\n" { BEGIN(INITIAL); }
+<R_COMMENT>.    { }
 
 "("     {token('(');}
 ")"     {token(')');}
