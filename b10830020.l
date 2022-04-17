@@ -11,18 +11,18 @@ char buf[MAX_LINE_LENG];
 %}
 
 identifier[a-z|A-Z][a-z|A-Z|0-9]*
-%x C_COMMENT
-%x R_COMMENT
+%Start  C_COMMENT
+%Start  R_COMMENT
 
 %%
 
-"/*"            { BEGIN(C_COMMENT); }
-<C_COMMENT>"*/" { BEGIN(INITIAL); }
+"/*"            { LIST; BEGIN C_COMMENT ; }
+<C_COMMENT>"*/" { LIST; BEGIN INITIAL ; }
 <C_COMMENT>\n   { }
 <C_COMMENT>.    { }
 
-"//"            { BEGIN(C_COMMENT); }
-<R_COMMENT>"\n" { BEGIN(INITIAL); }
+"//"            { LIST; BEGIN C_COMMENT; }
+<R_COMMENT>"\n" { LIST; BEGIN INITIAL; }
 <R_COMMENT>.    { }
 
 "("     {token('(');}
