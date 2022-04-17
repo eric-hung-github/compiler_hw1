@@ -31,16 +31,16 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 <STRING>{identifier}    {tokenString(string,yytext);}
 <STRING>.    { }
 
-<INITIAL>"("     {token('(');}
-<INITIAL>")"     {token(')');}
-<INITIAL>"{"     {token('{');}
-<INITIAL>"}"     {token('{');}
+"("     {token('(');}
+")"     {token(')');}
+"{"     {token('{');}
+"}"     {token('{');}
 
-<INITIAL>class   {token(CLASS)}
-<INITIAL>if      {token(IF)}
-<INITIAL>print     {token(PRINT)}
+class   {token(CLASS)}
+if      {token(IF)}
+print     {token(PRINT)}
 
-<INITIAL>{identifier}    {tokenString(id,yytext);}
+{identifier}    {tokenString(id,yytext);}
 
 
 \n      {
