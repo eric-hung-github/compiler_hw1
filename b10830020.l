@@ -1,29 +1,33 @@
 %{
-#include “stdio.h”
-int linenum;
-%}
-%%
-title                 showtitle();
-[/n]                  linenum ;
-[0-9]                 printf(“Int     : %s/n”,yytext);
-[0-9]*/.[0-9]         printf(“Float   : %s/n”,yytext);
-[a-zA-Z][a-zA-Z0-9]*  printf(“Var     : %s/n”,yytext);
-[/ /-/*///%]          printf(“Op      : %s/n”,yytext);
-.                     printf(“Unknown : %c/n”,yytext[0]);
-%%
-showtitle()
-{
-printf(“—– Lex Example —–/n”);
-}
+#define LIST     strcat(buf,yytext)
+#define token(t) {LIST; printf("<%s>\n","t");}
+#define tokenInteger(t,i) {LIST; printf("<%s:%d>\n","t",i);}
+#define tokenString(t,s) {LIST; printf("<%s:%s>\n","t",s);}
 
-int main()
-{
-  linenum=0;
-  yylex(); 
-  printf(“/nLine Count: %d/n”,linenum);
-  return 0;
-}
-int yywrap()
-{
-return 1;
-}
+#define MAX_LINE_LENG 256
+
+int linenum = 1;
+char buf[MAX_LINE_LENG];
+%}
+
+%%
+"("     {token('(');}
+")"     {token(')');}
+class   {token('<Class')}
+
+
+\n      {
+        LIST;
+        printf("%d: %s", linenum++, buf);
+        buf[0] = '\0';
+        }
+
+[ \t]*  {LIST;}
+
+.       {
+        LIST;
+        printf("%d:%s\n", linenum+1, buf);
+        printf("bad character:'%s'\n",yytext);
+        exit(-1);
+        }
+%%
