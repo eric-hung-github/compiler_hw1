@@ -20,7 +20,7 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 ")"     {token(')');}
 "{"     {token('{');}
 "}"     {token('{');}
-class   {token(yytext)}
+class   {token('CLASS')}
 if      {token('IF')}
 
 {identifier}    {tokenString('id',yytext);}
