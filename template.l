@@ -1,4 +1,3 @@
-%option noyywrap
 %{
 #define LIST     strcat(buf,yytext)
 #define token(t) {LIST; printf("<%s>\n","t");}
