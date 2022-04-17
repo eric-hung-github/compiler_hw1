@@ -11,10 +11,10 @@ char buf[MAX_LINE_LENG];
 %}
 
 identifier[a-z|A-Z][a-z|A-Z|0-9]*
+%x C_COMMENT
+
 
 %%
-
-%x C_COMMENT
 
 "/*"            { BEGIN(C_COMMENT); }
 <C_COMMENT>"*/" { BEGIN(INITIAL); }
