@@ -18,15 +18,12 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 
 "("     {token('(');}
 ")"     {token(')');}
-class   {token('CLASS')}
+"{"     {token('{');}
+"}"     {token('{');}
+class   {token(yytext)}
 if      {token('IF')}
 
 {identifier}    {tokenString('id',yytext);}
-
-
-
-
-
 
 
 \n      {
