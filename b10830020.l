@@ -12,13 +12,17 @@ char buf[MAX_LINE_LENG];
 
 identifier[a-z|A-Z][a-z|A-Z|0-9]*
 %x C_COMMENT
-
+%x R_COMMENT
 
 %%
 
 "/*"            { BEGIN(C_COMMENT); }
 <C_COMMENT>"*/" { BEGIN(INITIAL); }
 <C_COMMENT>\n   { }
+<C_COMMENT>.    { }
+
+"//"            { BEGIN(C_COMMENT); }
+<C_COMMENT>"\n" { BEGIN(INITIAL); }
 <C_COMMENT>.    { }
 
 "("     {token('(');}
