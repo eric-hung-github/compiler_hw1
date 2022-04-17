@@ -39,7 +39,7 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 <INITIAL>class   {token(CLASS)}
 <INITIAL>if      {token(IF)}
 <INITIAL>print     {token(PRINT)}
-<INITIAL>
+
 <INITIAL>{identifier}    {tokenString(id,yytext);}
 
 
