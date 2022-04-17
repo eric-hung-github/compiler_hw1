@@ -13,17 +13,23 @@ char buf[MAX_LINE_LENG];
 identifier[a-z|A-Z][a-z|A-Z|0-9]*
 %Start  C_COMMENT
 %Start  R_COMMENT
+%Start  STRING
 
 %%
 
-"/*"            { LIST; BEGIN C_COMMENT ; }
-<C_COMMENT>"*/" { LIST; BEGIN INITIAL ; }
+"/*"            { BEGIN C_COMMENT ; }
+<C_COMMENT>"*/" { BEGIN INITIAL ; }
 <C_COMMENT>\n   { }
 <C_COMMENT>.    { }
 
-"//"            { LIST; BEGIN C_COMMENT; }
-<R_COMMENT>"\n" { LIST; BEGIN INITIAL; }
+"//"            { BEGIN C_COMMENT; }
+<R_COMMENT>"\n" { BEGIN INITIAL; }
 <R_COMMENT>.    { }
+
+"\""           { BEGIN STRING; }
+<STRING>"\""    { BEGIN INITIAL; }
+<STRING>{identifier}    {tokenString(string,yytext);}
+<STRING>.    { }
 
 "("     {token('(');}
 ")"     {token(')');}
