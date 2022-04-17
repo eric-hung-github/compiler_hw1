@@ -1,8 +1,8 @@
 %{
 #define LIST     strcat(buf,yytext)
-#define token(t) {LIST; printf("<%s>\n",t);}
-#define tokenInteger(t,i) {LIST; printf("<%s:%d>\n",t,i);}
-#define tokenString(t,s) {LIST; printf("<%s:%s>\n",t,s);}
+#define token(t) {LIST; printf("<%s>\n","t");}
+#define tokenInteger(t,i) {LIST; printf("<%s:%d>\n","t",i);}
+#define tokenString(t,s) {LIST; printf("<%s:%s>\n","t",s);}
 
 #define MAX_LINE_LENG 256
 
@@ -21,7 +21,7 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 class   {token("CLASS")}
 if      {token('IF')}
 
-{identifier}    {tokenString(id,yytext);}
+{identifier}    {tokenString('id',yytext);}
 
 
 
