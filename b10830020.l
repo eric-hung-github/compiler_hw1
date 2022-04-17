@@ -28,7 +28,6 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 
 "\""           { BEGIN STRING; }
 <STRING>"\""    { BEGIN INITIAL; }
-<STRING>{identifier}    {tokenString(string,yytext);}
 <STRING>.    { }
 
 "("     {token('(');}
