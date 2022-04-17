@@ -322,9 +322,6 @@ void yyfree ( void *  );
 #define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_at_bol)
 
 /* Begin user sect3 */
-
-#define yywrap() (/*CONSTCOND*/1)
-#define YY_SKIP_YYWRAP
 typedef flex_uint8_t YY_CHAR;
 
 FILE *yyin = NULL, *yyout = NULL;
@@ -442,7 +439,7 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "template.l"
-#line 3 "template.l"
+#line 2 "template.l"
 #define LIST     strcat(buf,yytext)
 #define token(t) {LIST; printf("<%s>\n","t");}
 #define tokenInteger(t,i) {LIST; printf("<%s:%d>\n","t",i);}
@@ -452,8 +449,8 @@ char *yytext;
 
 int linenum = 1;
 char buf[MAX_LINE_LENG];
-#line 455 "lex.yy.c"
-#line 456 "lex.yy.c"
+#line 452 "lex.yy.c"
+#line 453 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -670,9 +667,9 @@ YY_DECL
 		}
 
 	{
-#line 14 "template.l"
+#line 13 "template.l"
 
-#line 675 "lex.yy.c"
+#line 672 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -731,13 +728,13 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 15 "template.l"
+#line 14 "template.l"
 {token('(');}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 17 "template.l"
+#line 16 "template.l"
 {
         LIST;
         printf("%d: %s", linenum++, buf);
@@ -746,12 +743,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 23 "template.l"
+#line 22 "template.l"
 {LIST;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 25 "template.l"
+#line 24 "template.l"
 {
         LIST;
         printf("%d:%s\n", linenum+1, buf);
@@ -761,10 +758,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 31 "template.l"
+#line 30 "template.l"
 ECHO;
 	YY_BREAK
-#line 767 "lex.yy.c"
+#line 764 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1769,5 +1766,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 31 "template.l"
+#line 30 "template.l"
 
