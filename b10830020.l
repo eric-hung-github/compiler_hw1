@@ -14,16 +14,23 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 
 %%
 
+%x C_COMMENT
 
+"/*"            { BEGIN(C_COMMENT); }
+<C_COMMENT>"*/" { BEGIN(INITIAL); }
+<C_COMMENT>\n   { }
+<C_COMMENT>.    { }
 
 "("     {token('(');}
 ")"     {token(')');}
 "{"     {token('{');}
 "}"     {token('{');}
+
 class   {token(CLASS)}
 if      {token(IF)}
+print     {token(PRINT)}
 
-{identifier}    {tokenString(identifier,yytext);}
+{identifier}    {tokenString(id,yytext);}
 
 
 \n      {
