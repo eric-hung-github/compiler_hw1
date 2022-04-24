@@ -47,17 +47,6 @@ int lookup ( char *sym_name ){
   return 0;
 }
 
-
-// symrec * lookup ( char *sym_name )
-// {
-//   symrec *ptr;
-//   for (ptr = sym_table; ptr != (symrec *) 0;
-//        ptr = (symrec *)ptr->next)
-//     if (strcmp (ptr->name,sym_name) == 0)
-//       return ptr;
-//   return NULL;
-// }
-
 %}
 
 %option noyywrap
