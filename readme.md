@@ -1,0 +1,2 @@
+$make
+$./executable helloword.kt
