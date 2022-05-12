@@ -2,6 +2,6 @@
 class HelloWorld {
   fun main () {
     // Print text to the console
-    print ("Hello""World")
+    print ("Hello World")
   }
 }

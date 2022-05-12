@@ -15,7 +15,7 @@ $(TARGET): lex.yy.c
 	$(CC) -c $>
 
 lex.yy.c: $(LEXYACC).l
-	flex $(LEXYACC).l
+	lex $(LEXYACC).l
 
 # y.tab.c: $(LEXYACC).y
 # 	yacc -d $(LEXYACC).y

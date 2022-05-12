@@ -74,7 +74,16 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 
 <INITIAL>"\""           {  LIST;BEGIN(STRING); }
 <STRING>"\""            {  LIST;BEGIN(INITIAL); }
-<STRING>([^"\n)])*      { tokenString(string,yytext);}
+<STRING>([^"\n)]|\"\")*      { 
+                              char* temp=malloc(sizeof(char)*strlen(yytext));
+                              strcpy(temp,yytext);
+                              char* ptr=strstr(temp,"\"\"");
+                              while(ptr!=NULL){
+                                memmove(ptr,ptr+1, strlen(temp) - strlen(ptr+1));
+                                ptr=strstr(temp,"\"\"");
+                              }
+                              tokenString(string,temp);
+                              }
 
 ","     {token(',');}
 ":"     {token(':');}
