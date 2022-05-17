@@ -107,23 +107,23 @@ program         : program_begin program_content program_end
 
 program_begin : CLASS ID LCB
 {
-    programIsDeclare = true;
-    symbolTableStack.push();
-    symbolTableSize++;
-    symbolTableStack.tableStack[symbolTableSize].name = *$2;
+//     programIsDeclare = true;
+//     symbolTableStack.push();
+//     symbolTableSize++;
+//     symbolTableStack.tableStack[symbolTableSize].name = *$2;
 
-    Symbol* symbol = new Symbol();
-    symbol->name = *$2;
-    symbol->type = ID_program;
-    symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+//     Symbol* symbol = new Symbol();
+//     symbol->name = *$2;
+//     symbol->type = ID_program;
+//     symbolTableStack.tableStack[symbolTableSize].insert(symbol);
 
 };
 
 program_end : RCB
 {
-    programIsDeclare = false;
-    symbolTableStack.pop();
-    symbolTableSize--;
+//     programIsDeclare = false;
+//     symbolTableStack.pop();
+//     symbolTableSize--;
 };
 
 program_content : declarations
@@ -175,8 +175,7 @@ int_expression          : expression
 bool_expression         : expression
                         ;
 
-expression      : expression expression
-                | SUB expression
+expression      : SUB expression
                 | expression math_operator expression
                 | expression logic_operator expression
                 | expression bit_operator expression
@@ -230,7 +229,7 @@ condition_statement     : IF LB bool_expression RB block_or_simple_statement
                         ;
 
 // Loop
-loop_statement  : WHILE LB  RB block_or_simple_statement
+loop_statement  : WHILE LB bool_expression RB block_or_simple_statement
                 | FOR LB ID num DOT DOT num  RB block_or_simple_statement
                 ;
 

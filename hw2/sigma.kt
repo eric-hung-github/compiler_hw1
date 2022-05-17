@@ -11,6 +11,14 @@ class Sigma
   var index: int
 
   fun main () {
-
+    sum = 0
+    index = 0
+    
+    while (index <= n) {
+      sum = sum + index
+      index = index + 1
+    }
+    print ("The sum is ")
+    println (sum)
   }
 }
