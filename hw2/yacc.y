@@ -15,6 +15,7 @@ int yylex();
 void yyerror(string s)
 {
     cout<<"Error : " << s <<endl;
+    exit(-1);
 }
 
 int symbolTableSize = -1;

@@ -14,10 +14,10 @@
         char buf[MAX_LINE_LENG];
 
         #define LIST     strcat(buf,yytext)
-        #define token(t) {LIST; return t;}
-        #define tokenInteger(t,i) {LIST;;return t;}
-        #define tokenString(t,s) {LIST;;return t;}
-        #define tokenFloat(t,f) {LIST;;return t;}
+        #define token(t) {LIST;printf("<%s>\n",#t); return t;}
+        #define tokenInteger(t,i) {LIST;printf("<%s:%s>\n",#t,i);;return t;}
+        #define tokenString(t,s) {LIST;printf("<%s:%s>\n",#t,s);;return t;}
+        #define tokenFloat(t,f) {LIST;printf("<%s:%s>\n",#t,f);;return t;}
 
 %}
 
@@ -134,12 +134,12 @@ while           {token(WHILE);}
 
 \n      {
         LIST;
-        // printf("%d: %s", linenum++, buf);
+        printf("%d: %s", linenum++, buf);
         buf[0] = '\0';
         }
 <<EOF>> {
         LIST;
-        // printf("%d: %s\n", linenum++, buf);
+        printf("%d: %s\n", linenum++, buf);
         buf[0] = '\0';
         return 0;
         }
