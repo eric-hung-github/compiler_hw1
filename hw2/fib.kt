@@ -13,7 +13,7 @@ class fib
 
   fun main () {
     // compute the nth Fibonacci number
-    while (n > 2) {
+    while () {
       temp = Fn
       Fn = Fn + FNminus1
       FNminus1 = temp

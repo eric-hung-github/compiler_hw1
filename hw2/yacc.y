@@ -90,12 +90,12 @@ declaration     : const_declaration
                 ;
 
 const_declaration       : VAL ID ASIGN const_expression
-                        | VAL ID type ASIGN const_expression
+                        | VAL ID MO type ASIGN const_expression
 
 var_declaration         : VAR ID
                         | VAR ID MO type
-                        | VAR ID MO type const_expression
-                        | VAR ID const_expression
+                        | VAR ID MO type ASIGN const_expression
+                        | VAR ID ASIGN const_expression
                         ;
 
 array_declaration       : VAR ID MO type LSB num RSB
@@ -230,9 +230,9 @@ condition_statement     : IF LB bool_expression RB block_or_simple_statement
                         ;
 
 // Loop
-loop_statement  : WHILE LB bool_expression RB block_or_simple_statement
+loop_statement  : WHILE LB  RB block_or_simple_statement
                 | FOR LB ID num DOT DOT num  RB block_or_simple_statement
-
+                ;
 
 block_or_simple_statement       : block
                                 | statements
@@ -246,7 +246,7 @@ proc_invoc      : ID LB comma_separated_expressions RB
                 ;
 
 comma_separated_expressions     : comma_separated_expressions COMMA comma_separated_expressions
-                                : expression
+                                | expression
                                 ;
 
 // Num
