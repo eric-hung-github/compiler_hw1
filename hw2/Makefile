@@ -1,19 +1,13 @@
-CC      = gcc
-LEX     = lex
-YACC    = Yacc
+all: clean scanner
 
-SCANNER = scanner
-PARSER  = parser
-OBJECT	= compiler
+scanner:lex.yy.cpp y.tab.cpp symbol_table.hpp
+	g++ -g -o scanner -O y.tab.cpp symbol_table.hpp
 
-$(OBJECT): y.tab.c y.tab.h lex.yy.c
-	$(CC) -o $(OBJECT) y.tab.c y.tab.h lex.yy.c
+lex.yy.cpp:lex.l
+	flex -o lex.yy.cpp lex.l
 
-y.tab.c y.tab.h: $(PARSER).y
-	$(YACC)  $(PARSER).y -H
-
-lex.yy.c: $(SCANNER).l
-	$(LEX) $(SCANNER).l
+y.tab.cpp:yacc.y
+	bison -d yacc.y -o y.tab.cpp
 
 clean:
-	rm *.c *.h *.gch $(OBJECT).exe
+	rm -f scanner lex.yy.* y.tab.*

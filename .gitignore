@@ -5,3 +5,6 @@ hw2/y.tab.c
 hw2/y.tab.h
 hw2/lex.yy.c
 hw2/try.l
+.vscode/configurationCache.log
+.gitignore
+.vscode/targets.log

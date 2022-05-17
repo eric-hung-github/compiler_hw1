@@ -1,5 +1,15 @@
 {
     "files.associations": {
-        "*.y": "c"
+        "*.y": "c",
+        "type_traits": "c",
+        "xlocale": "c",
+        "xlocmon": "c",
+        "xlocnum": "c",
+        "xloctime": "c",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "ostream": "c",
+        "iomanip": "c",
+        "iostream": "c"
     }
 }
