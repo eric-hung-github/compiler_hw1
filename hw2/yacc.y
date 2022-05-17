@@ -1,23 +1,21 @@
 %{
-#include <stdio.h>
-#include <stdlib.h>
+#define Trace(t)        printf(t)
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <string>
-// using namespace std;
 #include "symbol_table.hpp"
-#include "y.tab.hpp"
+#include "lex.yy.cpp"
+using namespace std;
+SymbolTableStack symbolTableStack =  SymbolTableStack();
+
 
 int yylex();
-int yyerror(string s);
 
-extern int linenum;
-extern FILE *yyin;
-extern char *yytext;
-extern char buf[256];
 
-SymbolTableStack symbolTableStack =  SymbolTableStack();
+void yyerror(string s)
+{
+    cout<<"Error : " << s <<endl;
+}
 
 int symbolTableSize = -1;
 int returnType;
@@ -38,7 +36,8 @@ bool blockIsDeclare =false;
     Value* value;
     Symbol* symbol;
 }
-%token <str_value> ID C_STR
+%token <str_value> ID
+%token <str_value> C_STR
 %token <int_value> C_INT
 %token <bool_value> TRUE FALSE
 %token <float_value> C_FLOAT
@@ -120,12 +119,11 @@ program_begin : CLASS ID LCB
 };
 
 program_end : RCB
-    {
-        programIsDeclare = false;
-        symbolTableStack.pop();
-        symbolTableSize--;
-    }
-    ;
+{
+    programIsDeclare = false;
+    symbolTableStack.pop();
+    symbolTableSize--;
+};
 
 program_content : declarations
                 ;
@@ -255,16 +253,6 @@ num     : C_INT
         ;
 
 %%
-
-int yyerror( string msg )
-{
-        fprintf( stderr, "\n|--------------------------------------------------------------------------\n" );
-        fprintf( stderr, "| Error found in Line #%d: %s\n", linenum, buf );
-        std::cerr<<"| Error : " << msg <<endl;
-        fprintf( stderr, "| Unmatched token: %s\n", yytext );
-        fprintf( stderr, "|--------------------------------------------------------------------------\n" );
-        exit(-1);
-}
 
 int main( int argc, char **argv )
 {

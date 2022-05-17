@@ -4,8 +4,9 @@
         #include <string>
         #include <memory.h>
         #include <stdlib.h>
-        #include "symbol_table.hpp"
         #include "y.tab.hpp"
+        using namespace std;
+
 
         #define MAX_LINE_LENG 256
 
@@ -14,9 +15,9 @@
 
         #define LIST     strcat(buf,yytext)
         #define token(t) {LIST; return t;}
-        #define tokenInteger(t,i) {LIST; yylval.str_value = i;return t;}
-        #define tokenString(t,s) {LIST; yylval.str_value = s;return t;}
-        #define tokenFloat(t,f) {LIST; yylval.str_value = f;return t;}
+        #define tokenInteger(t,i) {LIST;;return t;}
+        #define tokenString(t,s) {LIST;;return t;}
+        #define tokenFloat(t,f) {LIST;;return t;}
 
 %}
 
@@ -32,14 +33,14 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 <INITIAL>"/*"           { LIST;BEGIN(C_COMMENT); }
 <C_COMMENT>"*/"         {  LIST;BEGIN(INITIAL); }
 <C_COMMENT>\n           { LIST;
-                                printf("%d: %s", linenum++, buf);
+                                // printf("%d: %s", linenum++, buf);
                                 buf[0] = '\0'; }
 <C_COMMENT>[^*\n]*      { LIST;}
 <C_COMMENT>"*"+[^*/\n]* {  LIST;}
 
 <INITIAL>"//"           {  LIST;BEGIN(R_COMMENT); }
 <R_COMMENT>"\n"         {  LIST;BEGIN(INITIAL);
-                                printf("%d: %s", linenum++, buf);
+                                // printf("%d: %s", linenum++, buf);
                                 buf[0] = '\0'; }
 <R_COMMENT>[^\n]*	{ LIST;}
 
@@ -53,6 +54,7 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
                                 memmove(ptr,ptr+1, strlen(temp) - strlen(ptr+1));
                                 ptr=strstr(temp,"\"\"");
                               }
+                                yylval.str_value = new string(temp);
                               tokenString(C_STR,temp);
                               }
                               
@@ -113,31 +115,39 @@ val             {token(VAL);}
 var             {token(VAR);}
 while           {token(WHILE);}
 
-{identifier}                    {tokenString(ID,yytext);
-                                return ID;}
+{identifier}                    {
+                                yylval.str_value = new string(yytext);tokenString(ID,yytext);}
 
-0|([1-9][0-9]*)                 {tokenInteger(C_INT, yytext);}
+0|([1-9][0-9]*)                 {
+                                float f ;
+                                sscanf(yytext,"%f",&f);
+                                yylval.float_value = f;tokenInteger(C_INT, yytext);
+                                }
 
-(0|([1-9][0-9]*))"."[0-9]+	{tokenFloat(C_FLOAT, yytext);}
+(0|([1-9][0-9]*))"."[0-9]+	{
+                                int i;
+                                sscanf(yytext,"%d",&i);
+                                yylval.int_value = i;tokenFloat(C_FLOAT, yytext);
+                                }
 
 
 
 \n      {
         LIST;
-        printf("%d: %s", linenum++, buf);
+        // printf("%d: %s", linenum++, buf);
         buf[0] = '\0';
         }
 <<EOF>> {
         LIST;
-        printf("%d: %s\n", linenum++, buf);
+        // printf("%d: %s\n", linenum++, buf);
         buf[0] = '\0';
         return 0;
         }
 [ \t]  {LIST;}
 .       {
         LIST;
-        printf("%d:%s\n", linenum+1, buf);
-        printf("bad character:'%s'\n",yytext);
+        // printf("%d:%s\n", linenum+1, buf);
+        // printf("bad character:'%s'\n",yytext);
         exit(-1);
         }
 %%

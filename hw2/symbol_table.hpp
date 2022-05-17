@@ -4,7 +4,7 @@
 #include <iomanip>
 using namespace std;
 
-enum ID_TYPE
+enum IDType
 {
     ID_error = 0,
     ID_constant,
@@ -14,7 +14,7 @@ enum ID_TYPE
     ID_procedure,
 };
 
-enum VALUE_TYPE
+enum ValueType
 {
     Value_error = 0,
     Value_int,
@@ -22,9 +22,10 @@ enum VALUE_TYPE
     Value_boolean,
     Value_string,
     nullType,
+
 };
 
-string id_type_to_str(int type)
+string IDTypeToString(int type)
 {
 
     switch (type)
@@ -54,7 +55,7 @@ string id_type_to_str(int type)
     }
 }
 
-string val_type_to_str(int type)
+string ValueTypeToString(int type)
 {
 
     switch (type)
@@ -115,12 +116,11 @@ public:
     string name = "";
     vector<Symbol *> symbols;
     int local_no = 0;
-    int insert(Symbol *id)
+    int insert(Symbol *ID)
     {
-        if (lookup(id->name) == NULL)
+        if (lookup(ID->name) == NULL)
         {
-            // cout << "insert " << id->name << endl;
-            symbols.push_back(id);
+            symbols.push_back(ID);
         }
         return 1;
     }
@@ -147,36 +147,50 @@ public:
     {
         cout << "===================================================" << endl;
         cout << "Table: " << name << endl;
-        // cout << "<type>name" << endl;
+        cout << setw(20) << "name";
+        cout << setw(20) << "type" << endl;
 
         for (int i = 0; i < symbols.size(); i++)
         {
-            cout << "\t";
+            cout << setw(20) << symbols[i]->name;
+
             if (symbols[i]->type == ID_program)
             {
-                cout << "<" << id_type_to_str(symbols[i]->type) << ">";
+                cout << setw(20) << IDTypeToString(symbols[i]->type) << endl;
             }
 
             if (symbols[i]->type == ID_constant)
             {
-                cout << "<" << val_type_to_str(symbols[i]->value->valueType) << ">";
+                cout << setw(20) << ValueTypeToString(symbols[i]->value->valueType) << endl;
             }
 
             if (symbols[i]->type == ID_variable)
             {
-                cout << "<" << val_type_to_str(symbols[i]->value->valueType) << ">";
+                cout << setw(20) << ValueTypeToString(symbols[i]->value->valueType) << endl;
             }
 
             if (symbols[i]->type == ID_array)
             {
-                cout << "<" << val_type_to_str(symbols[i]->array_type) << ">";
+                cout << setw(20) << "array: ";
+                cout << ValueTypeToString(symbols[i]->array_type) << endl;
             }
 
             if (symbols[i]->type == ID_procedure)
             {
-                cout << "<" << id_type_to_str(symbols[i]->type) << ">";
+                cout << setw(20) << IDTypeToString(symbols[i]->type) << " ";
+                cout << setw(40) << "\t";
+                string str = "";
+                if (symbols[i]->return_type != nullType)
+                {
+                    str += "return Type : " + ValueTypeToString(symbols[i]->return_type) + "| parsType :";
+                }
+                cout << "asdf" << endl;
+                for (int j = 0; j < symbols[i]->params.size(); j++)
+                {
+                    str += "  " + ValueTypeToString(symbols[i]->params[j]->valueType);
+                }
+                cout << str << endl;
             }
-            cout << symbols[i]->name << endl;
         }
     }
 };
