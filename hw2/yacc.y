@@ -61,96 +61,166 @@ bool blockIsDeclare =false;
 %token BOOL BREAK CHAR CASE CLASS CONTINUE DECLARE DO ELSE EXIT FLOAT FOR FUN IF INT LOOP PRINT PRINTLN RETURN STRING VAL VAR WHILE
 
 
+%left NOT
 
-/* left */
-%left AND OR NOT
-%left BT ST SET BET EQL NEQ
-%left ADD SUB MUL DIV 
+%type <type> type  
+%type <value> const_expression int_expression bool_expression expression components literal_constant
 
 %start program
 %%
 
-// Data Types
-type    : INT
-        | FLOAT
-        | STRING
-        | BOOL
-        ;
-
-// Declarations
-glob_declaration        : declaration
-                        ;
-
-local_declaration       : declaration
-                        ;
-
-declaration     : const_declaration
-                | var_declaration
-                | array_declaration
-                ;
-
-const_declaration       : VAL ID ASIGN const_expression
-                        | VAL ID MO type ASIGN const_expression
-
-var_declaration         : VAR ID
-                        | VAR ID MO type
-                        | VAR ID MO type ASIGN const_expression
-                        | VAR ID ASIGN const_expression
-                        ;
-
-array_declaration       : VAR ID MO type LSB num RSB
-                        ;
-
 // Program
-program         : program_begin program_content program_end
+program         : program_begin program_contents program_end
                 ;
 
 program_begin : CLASS ID LCB
 {
-//     programIsDeclare = true;
-//     symbolTableStack.push();
-//     symbolTableSize++;
-//     symbolTableStack.tableStack[symbolTableSize].name = *$2;
+    programIsDeclare = true;
+    symbolTableStack.push();
+    symbolTableSize++;
+    symbolTableStack.tableStack[symbolTableSize].name = *$2;
 
-//     Symbol* symbol = new Symbol();
-//     symbol->name = *$2;
-//     symbol->type = ID_program;
-//     symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+    Symbol* symbol = new Symbol();
+    symbol->name = *$2;
+    symbol->type = ID_program;
+    symbolTableStack.tableStack[symbolTableSize].insert(symbol);
 
 };
 
 program_end : RCB
 {
-//     programIsDeclare = false;
-//     symbolTableStack.pop();
-//     symbolTableSize--;
+    programIsDeclare = false;
+    symbolTableStack.pop();
+    symbolTableSize--;
 };
 
-program_content : declarations
-                ;
+program_contents        : program_content program_contents
+                        | program_content
+                        ;
 
-// Declaration
-declarations    : declarations declarations
-                | glob_declaration
-                | fun_declaration
-                | proc_declaration
-                ;
+
+program_content         : va_declaration
+                        | fun_declaration
+                        | proc_declaration
+                        ;
+
+// Data Types
+type    : INT
+        {
+                $$ = Value_int;
+        }
+        | FLOAT
+        {
+                $$ = Value_float;
+        }
+        | STRING
+        {
+                $$ = Value_string;
+        }
+        | BOOL
+        {
+                $$ = Value_boolean;
+        }
+        ;
+
+// Declarations
+
+va_declaration          : const_declaration
+                        | var_declaration
+                        | array_declaration
+                        ;       
+
+const_declaration       : VAL ID ASIGN const_expression
+                        {
+                                Symbol* symbol = new Symbol();
+                                symbol->value = $4;
+                                symbol->type = ID_constant;
+                                symbol->name = *$2;        
+
+                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+                        }
+                        | VAL ID MO type ASIGN const_expression
+                        {       
+                                Symbol* symbol = new Symbol();
+                                symbol->value = $6;
+                                symbol->type = ID_constant;
+                                symbol->name = *$2;    
+
+                                if(symbol->value->valueType!=$4){
+                                        printf("type error");
+                                        exit(-1);
+                                }
+
+                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+                        }
+                        ;
+
+var_declaration         : VAR ID
+                        {
+                                Symbol* symbol = new Symbol();
+                                symbol->name = *$2;        
+
+                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+                        }
+                        | VAR ID MO type
+                        {       
+                                Symbol* symbol = new Symbol();
+                                symbol->type = $4;
+                                symbol->type = ID_constant;
+                                symbol->name = *$2;    
+
+                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+                        }
+                        | VAR ID MO type ASIGN const_expression
+                        {       
+                                Symbol* symbol = new Symbol();
+                                symbol->value = $6;
+                                symbol->type = ID_constant;
+                                symbol->name = *$2;    
+
+                                if(symbol->value->valueType!=$4){
+                                        printf("type error");
+                                        exit(-1);
+                                }
+
+                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+                        }
+                        | VAR ID ASIGN const_expression
+                        {       
+                                Symbol* symbol = new Symbol();
+                                symbol->value = $4;
+                                symbol->type = ID_constant;
+                                symbol->name = *$2;    
+
+                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+                        }
+                        ;
+
+array_declaration       : VAR ID MO type LSB num RSB
+                        ;
 
 // Function & Procedure declration
-fun_declaration : FUN ID LB formal_arguments RB MO type block
+fun_declaration : FUN ID LB formal_argument_list RB MO type block
                 ;
 
-proc_declaration: FUN ID LB formal_arguments RB block
+proc_declaration: FUN ID LB formal_argument_list RB block
                 ;
 
-formal_arguments        : formal_arguments COMMA formal_arguments
-                        | ID MO type
+formal_argument_list    : formal_argument COMMA formal_arguments
+                        | formal_arguments
                         |
                         ;
 
+
+formal_arguments        : formal_argument COMMA formal_arguments
+                        | formal_argument
+                        ;
+
+formal_argument         : ID MO type
+                        ;
+
 // Statements
-statements      : statements statements
-                | simple_statement
+statement       : simple_statement
                 | condition_statement
                 | loop_statement
                 | proc_invoc
@@ -159,7 +229,9 @@ statements      : statements statements
 simple_statement: ID ASIGN expression
                 | ID LSB int_expression RSB ASIGN expression
                 | PRINT LB expression RB
+                | PRINT expression 
                 | PRINTLN LB expression RB
+                | PRINTLN expression
                 | RETURN ID
                 | RETURN 
                 | RETURN expression 
@@ -167,41 +239,112 @@ simple_statement: ID ASIGN expression
 
 // Expression
 const_expression        : expression
+                        {
+                                $$=$1;
+                        }
                         ;
 
 int_expression          : expression
+                        {
+                                $$=$1;
+                        }
                         ;
 
 bool_expression         : expression
+                        {
+                                $$=$1;
+                        }
                         ;
 
 expression      : SUB expression
+                {
+                        $$=$2;
+                }
                 | expression math_operator expression
+                {
+                        $$=$1;
+                }
                 | expression logic_operator expression
+                {
+                        $$=$1;
+                }
                 | expression bit_operator expression
+                {
+                        $$=$1;
+                }
                 | components
+                {
+                        $$=$1;
+                }
+                ;
+/* 
+operator        : math_operator
+                | logic_operator
+                | bit_operator
+                ; */
+
+math_operator   : MUL 
+                | DIV
+                | ADD
+                | SUB
                 ;
 
-math_operator   : MUL DIV ADD SUB
+logic_operator  : BT 
+                | ST
+                | SET
+                | BET
+                | EQL
+                | NEQ
                 ;
 
-logic_operator  : BT ST SET BET EQL NEQ
-                ;
-
-bit_operator    : AND OR NOT
+bit_operator    : AND
+                | OR
+                | NOT
                 ;
 
 // Expression component
 components      : literal_constant
+                {
+                        // $$=$1;
+                }
                 | var_name
+                {
+                        // $$=$1;
+                }
                 | fun_invoc
+                {
+                        // $$=$1;
+                }
                 | array_refer
+                {
+                        // $$=$1;
+                }
                 ;
 
 literal_constant        : C_INT 
-                        | C_FLOAT
-                        | C_STR
-                        | c_bool
+                        {
+                                Value* value=new Value();
+                                value->valueType = Value_int;
+                                $$=value;
+                        }
+                        | C_FLOAT 
+                        {
+                                Value* value=new Value();
+                                value->valueType = Value_float;
+                                $$=value;
+                        }
+                        | C_STR 
+                        {
+                                Value* value=new Value();
+                                value->valueType = Value_string;
+                                $$=value;
+                        }
+                        | c_bool 
+                        {
+                                Value* value=new Value();
+                                value->valueType = Value_boolean;
+                                $$=value;
+                        }
                         ;
 
 c_bool  : TRUE
@@ -215,12 +358,16 @@ array_refer     : ID LSB int_expression RSB
                 ;
 
 // Block
-block   : LCB block_content RCB
+block   : LCB block_contents RCB
         ;
 
-block_content   : block_content block_content
-                | local_declaration
-                | statements
+block_contents  : block_content block_contents
+                | block_content
+                |
+                ;
+
+block_content   : va_declaration
+                | statement
                 ;
 
 // Conditional
@@ -234,7 +381,7 @@ loop_statement  : WHILE LB bool_expression RB block_or_simple_statement
                 ;
 
 block_or_simple_statement       : block
-                                | statements
+                                | simple_statement
                                 ;
 
 // Invocation
@@ -244,7 +391,7 @@ fun_invoc       : ID LB comma_separated_expressions RB
 proc_invoc      : ID LB comma_separated_expressions RB
                 ;
 
-comma_separated_expressions     : comma_separated_expressions COMMA comma_separated_expressions
+comma_separated_expressions     : expression COMMA comma_separated_expressions
                                 | expression
                                 ;
 

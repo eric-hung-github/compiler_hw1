@@ -58,7 +58,7 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
                               tokenString(C_STR,temp);
                               }
                               
-","     {token(DOT);}
+","     {token(COMMA);}
 ";"     {token(FAN);}
 ":"     {token(MO);}
 "->"    {token(ARROW);}

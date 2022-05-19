@@ -1188,7 +1188,7 @@ YY_RULE_SETUP
 case 12:
 YY_RULE_SETUP
 #line 61 "lex.l"
-{token(DOT);}
+{token(COMMA);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP

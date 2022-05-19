@@ -4,7 +4,7 @@
 #include <iomanip>
 using namespace std;
 
-enum IDType
+enum ID_TYPE
 {
     ID_error = 0,
     ID_constant,
@@ -15,7 +15,7 @@ enum IDType
     ID_procedure,
 };
 
-enum ValueType
+enum VALUE_TYPE
 {
     Value_error = 0,
     Value_int,
@@ -150,58 +150,6 @@ public:
 
     void dump()
     {
-        // cout << "===================================================" << endl;
-        // cout << "Table: " << name << endl;
-        // cout << setw(20) << "name";
-        // cout << setw(20) << "type" << endl;
-
-        // for (int i = 0; i < symbols.size(); i++)
-        // {
-        //     cout << setw(20) << symbols[i]->name;
-
-        //     if (symbols[i]->type == ID_program)
-        //     {
-        //         cout << setw(20) << IDTypeToString(symbols[i]->type) << endl;
-        //     }
-
-        //     if (symbols[i]->type == ID_constant)
-        //     {
-        //         cout << setw(20) << ValueTypeToString(symbols[i]->type) << endl;
-        //     }
-
-        //     if (symbols[i]->type == ID_variable)
-        //     {
-        //         cout << setw(20) << ValueTypeToString(symbols[i]->type) << endl;
-        //     }
-
-        //     if (symbols[i]->type == ID_array)
-        //     {
-        //         cout << setw(20) << "array: ";
-        //         cout << ValueTypeToString(symbols[i]->type) << endl;
-        //     }
-
-        //     if (symbols[i]->type == ID_function)
-        //     {
-        //         cout << setw(20) << IDTypeToString(symbols[i]->type) << " ";
-        //     }
-
-        //     if (symbols[i]->type == ID_procedure)
-        //     {
-        //         cout << setw(20) << IDTypeToString(symbols[i]->type) << " ";
-        //         // cout << setw(40) << "\t";
-        //         // string str = "";
-        //         // if (symbols[i]->return_type != nullType)
-        //         // {
-        //         //     str += "return Type : " + ValueTypeToString(symbols[i]->return_type) + "| parsType :";
-        //         // }
-        //         // cout << "asdf" << endl;
-        //         // for (int j = 0; j < symbols[i]->params.size(); j++)
-        //         // {
-        //         //     str += "  " + ValueTypeToString(symbols[i]->params[j]->valueType);
-        //         // }
-        //         // cout << str << endl;
-        //     }
-        // }
     }
 };
 
