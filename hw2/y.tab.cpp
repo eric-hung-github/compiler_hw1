@@ -554,7 +554,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   217
+#define YYLAST   226
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  63
@@ -618,16 +618,16 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,    73,    73,    76,    90,    97,    98,   102,   103,   104,
-     108,   112,   116,   120,   128,   129,   130,   133,   142,   158,
-     165,   174,   188,   199,   203,   206,   209,   210,   211,   215,
-     216,   219,   223,   224,   225,   226,   229,   230,   231,   232,
-     233,   234,   235,   236,   237,   241,   247,   253,   259,   263,
-     267,   271,   275,   286,   287,   288,   289,   292,   293,   294,
-     295,   296,   297,   300,   301,   302,   306,   310,   314,   318,
-     324,   330,   336,   342,   350,   351,   354,   357,   361,   364,
-     365,   366,   369,   370,   374,   375,   379,   380,   383,   384,
-     388,   391,   394,   395,   399
+       0,    75,    75,    78,    92,    99,   100,   104,   105,   106,
+     110,   114,   118,   122,   130,   131,   132,   135,   144,   160,
+     167,   176,   190,   201,   205,   208,   211,   212,   213,   217,
+     218,   221,   225,   226,   227,   228,   231,   232,   233,   234,
+     235,   236,   237,   238,   239,   243,   249,   255,   261,   265,
+     269,   273,   277,   288,   289,   290,   291,   294,   295,   296,
+     297,   298,   299,   302,   303,   304,   308,   312,   316,   320,
+     326,   332,   338,   344,   352,   353,   356,   359,   363,   366,
+     367,   368,   371,   372,   376,   377,   381,   382,   385,   386,
+     390,   393,   396,   397,   401
 };
 #endif
 
@@ -690,7 +690,7 @@ static const yytype_int16 yypact[] =
       50,  -122,    55,  -122,  -122,  -122,  -122,    39,    90,  -122,
     -122,  -122,  -122,  -122,   147,  -122,   183,  -122,  -122,  -122,
     -122,  -122,  -122,   -10,  -122,   -32,    31,    49,   147,   147,
-     147,   183,  -122,  -122,  -122,  -122,  -122,  -122,  -122,  -122,
+     147,   192,  -122,  -122,  -122,  -122,  -122,  -122,  -122,  -122,
     -122,  -122,  -122,  -122,  -122,   147,   147,   147,    76,   147,
     -122,   -32,    11,  -122,  -122,    73,  -122,    89,    79,    83,
      183,   183,   183,   183,  -122,    84,  -122,    91,     5,    99,
@@ -771,7 +771,8 @@ static const yytype_int16 yytable[] =
       70,    71,    72,    73,    74,   149,     0,     0,     0,     0,
       62,    63,    64,    65,     0,    66,    67,    68,    69,    70,
       71,    72,    73,    74,    62,    63,    64,    65,     0,    66,
-      67,    68,    69,    70,    71,    72,    73,    74
+      67,    68,    69,    70,    71,    72,    73,    74,    66,    67,
+      68,    69,    70,    71,    72,    73,    74
 };
 
 static const yytype_int16 yycheck[] =
@@ -797,7 +798,8 @@ static const yytype_int16 yycheck[] =
       30,    31,    32,    33,    34,    16,    -1,    -1,    -1,    -1,
       21,    22,    23,    24,    -1,    26,    27,    28,    29,    30,
       31,    32,    33,    34,    21,    22,    23,    24,    -1,    26,
-      27,    28,    29,    30,    31,    32,    33,    34
+      27,    28,    29,    30,    31,    32,    33,    34,    26,    27,
+      28,    29,    30,    31,    32,    33,    34
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -1314,7 +1316,7 @@ yyreduce:
   switch (yyn)
     {
   case 3: /* program_begin: CLASS ID LCB  */
-#line 77 "yacc.y"
+#line 79 "yacc.y"
 {
     programIsDeclare = true;
     symbolTableStack.push();
@@ -1327,53 +1329,53 @@ yyreduce:
     symbolTableStack.tableStack[symbolTableSize].insert(symbol);
 
 }
-#line 1331 "y.tab.cpp"
+#line 1333 "y.tab.cpp"
     break;
 
   case 4: /* program_end: RCB  */
-#line 91 "yacc.y"
+#line 93 "yacc.y"
 {
     programIsDeclare = false;
     symbolTableStack.pop();
     symbolTableSize--;
 }
-#line 1341 "y.tab.cpp"
+#line 1343 "y.tab.cpp"
     break;
 
   case 10: /* type: INT  */
-#line 109 "yacc.y"
+#line 111 "yacc.y"
         {
                 (yyval.type) = Value_int;
         }
-#line 1349 "y.tab.cpp"
+#line 1351 "y.tab.cpp"
     break;
 
   case 11: /* type: FLOAT  */
-#line 113 "yacc.y"
+#line 115 "yacc.y"
         {
                 (yyval.type) = Value_float;
         }
-#line 1357 "y.tab.cpp"
+#line 1359 "y.tab.cpp"
     break;
 
   case 12: /* type: STRING  */
-#line 117 "yacc.y"
+#line 119 "yacc.y"
         {
                 (yyval.type) = Value_string;
         }
-#line 1365 "y.tab.cpp"
+#line 1367 "y.tab.cpp"
     break;
 
   case 13: /* type: BOOL  */
-#line 121 "yacc.y"
+#line 123 "yacc.y"
         {
                 (yyval.type) = Value_boolean;
         }
-#line 1373 "y.tab.cpp"
+#line 1375 "y.tab.cpp"
     break;
 
   case 17: /* const_declaration: VAL ID ASIGN const_expression  */
-#line 134 "yacc.y"
+#line 136 "yacc.y"
                         {
                                 Symbol* symbol = new Symbol();
                                 symbol->value = (yyvsp[0].value);
@@ -1382,11 +1384,11 @@ yyreduce:
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
-#line 1386 "y.tab.cpp"
+#line 1388 "y.tab.cpp"
     break;
 
   case 18: /* const_declaration: VAL ID MO type ASIGN const_expression  */
-#line 143 "yacc.y"
+#line 145 "yacc.y"
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->value = (yyvsp[0].value);
@@ -1400,22 +1402,22 @@ yyreduce:
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
-#line 1404 "y.tab.cpp"
+#line 1406 "y.tab.cpp"
     break;
 
   case 19: /* var_declaration: VAR ID  */
-#line 159 "yacc.y"
+#line 161 "yacc.y"
                         {
                                 Symbol* symbol = new Symbol();
                                 symbol->name = *(yyvsp[0].str_value);        
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
-#line 1415 "y.tab.cpp"
+#line 1417 "y.tab.cpp"
     break;
 
   case 20: /* var_declaration: VAR ID MO type  */
-#line 166 "yacc.y"
+#line 168 "yacc.y"
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->type = (yyvsp[0].type);
@@ -1424,11 +1426,11 @@ yyreduce:
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
-#line 1428 "y.tab.cpp"
+#line 1430 "y.tab.cpp"
     break;
 
   case 21: /* var_declaration: VAR ID MO type ASIGN const_expression  */
-#line 175 "yacc.y"
+#line 177 "yacc.y"
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->value = (yyvsp[0].value);
@@ -1442,11 +1444,11 @@ yyreduce:
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
-#line 1446 "y.tab.cpp"
+#line 1448 "y.tab.cpp"
     break;
 
   case 22: /* var_declaration: VAR ID ASIGN const_expression  */
-#line 189 "yacc.y"
+#line 191 "yacc.y"
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->value = (yyvsp[0].value);
@@ -1455,147 +1457,147 @@ yyreduce:
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
-#line 1459 "y.tab.cpp"
+#line 1461 "y.tab.cpp"
     break;
 
   case 45: /* const_expression: expression  */
-#line 242 "yacc.y"
+#line 244 "yacc.y"
                         {
                                 (yyval.value)=(yyvsp[0].value);
                         }
-#line 1467 "y.tab.cpp"
+#line 1469 "y.tab.cpp"
     break;
 
   case 46: /* int_expression: expression  */
-#line 248 "yacc.y"
+#line 250 "yacc.y"
                         {
                                 (yyval.value)=(yyvsp[0].value);
                         }
-#line 1475 "y.tab.cpp"
+#line 1477 "y.tab.cpp"
     break;
 
   case 47: /* bool_expression: expression  */
-#line 254 "yacc.y"
+#line 256 "yacc.y"
                         {
                                 (yyval.value)=(yyvsp[0].value);
                         }
-#line 1483 "y.tab.cpp"
+#line 1485 "y.tab.cpp"
     break;
 
   case 48: /* expression: SUB expression  */
-#line 260 "yacc.y"
+#line 262 "yacc.y"
                 {
                         (yyval.value)=(yyvsp[0].value);
                 }
-#line 1491 "y.tab.cpp"
+#line 1493 "y.tab.cpp"
     break;
 
   case 49: /* expression: expression math_operator expression  */
-#line 264 "yacc.y"
+#line 266 "yacc.y"
                 {
                         (yyval.value)=(yyvsp[-2].value);
                 }
-#line 1499 "y.tab.cpp"
+#line 1501 "y.tab.cpp"
     break;
 
   case 50: /* expression: expression logic_operator expression  */
-#line 268 "yacc.y"
+#line 270 "yacc.y"
                 {
                         (yyval.value)=(yyvsp[-2].value);
                 }
-#line 1507 "y.tab.cpp"
+#line 1509 "y.tab.cpp"
     break;
 
   case 51: /* expression: expression bit_operator expression  */
-#line 272 "yacc.y"
+#line 274 "yacc.y"
                 {
                         (yyval.value)=(yyvsp[-2].value);
                 }
-#line 1515 "y.tab.cpp"
+#line 1517 "y.tab.cpp"
     break;
 
   case 52: /* expression: components  */
-#line 276 "yacc.y"
+#line 278 "yacc.y"
                 {
                         (yyval.value)=(yyvsp[0].value);
                 }
-#line 1523 "y.tab.cpp"
+#line 1525 "y.tab.cpp"
     break;
 
   case 66: /* components: literal_constant  */
-#line 307 "yacc.y"
+#line 309 "yacc.y"
                 {
                         // $$=$1;
                 }
-#line 1531 "y.tab.cpp"
+#line 1533 "y.tab.cpp"
     break;
 
   case 67: /* components: var_name  */
-#line 311 "yacc.y"
+#line 313 "yacc.y"
                 {
                         // $$=$1;
                 }
-#line 1539 "y.tab.cpp"
+#line 1541 "y.tab.cpp"
     break;
 
   case 68: /* components: fun_invoc  */
-#line 315 "yacc.y"
+#line 317 "yacc.y"
                 {
                         // $$=$1;
                 }
-#line 1547 "y.tab.cpp"
+#line 1549 "y.tab.cpp"
     break;
 
   case 69: /* components: array_refer  */
-#line 319 "yacc.y"
+#line 321 "yacc.y"
                 {
                         // $$=$1;
                 }
-#line 1555 "y.tab.cpp"
+#line 1557 "y.tab.cpp"
     break;
 
   case 70: /* literal_constant: C_INT  */
-#line 325 "yacc.y"
+#line 327 "yacc.y"
                         {
                                 Value* value=new Value();
                                 value->valueType = Value_int;
                                 (yyval.value)=value;
                         }
-#line 1565 "y.tab.cpp"
+#line 1567 "y.tab.cpp"
     break;
 
   case 71: /* literal_constant: C_FLOAT  */
-#line 331 "yacc.y"
+#line 333 "yacc.y"
                         {
                                 Value* value=new Value();
                                 value->valueType = Value_float;
                                 (yyval.value)=value;
                         }
-#line 1575 "y.tab.cpp"
+#line 1577 "y.tab.cpp"
     break;
 
   case 72: /* literal_constant: C_STR  */
-#line 337 "yacc.y"
+#line 339 "yacc.y"
                         {
                                 Value* value=new Value();
                                 value->valueType = Value_string;
                                 (yyval.value)=value;
                         }
-#line 1585 "y.tab.cpp"
+#line 1587 "y.tab.cpp"
     break;
 
   case 73: /* literal_constant: c_bool  */
-#line 343 "yacc.y"
+#line 345 "yacc.y"
                         {
                                 Value* value=new Value();
                                 value->valueType = Value_boolean;
                                 (yyval.value)=value;
                         }
-#line 1595 "y.tab.cpp"
+#line 1597 "y.tab.cpp"
     break;
 
 
-#line 1599 "y.tab.cpp"
+#line 1601 "y.tab.cpp"
 
       default: break;
     }
@@ -1788,7 +1790,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 402 "yacc.y"
+#line 404 "yacc.y"
 
 
 int main( int argc, char **argv )
