@@ -1,5 +1,3 @@
-
-
 all: clean parser
 
 parser:lex.yy.cpp y.tab.cpp symbol_table.hpp

@@ -1,1 +1,1 @@
-https://github.com/eric-hung-github/compiler_project.git
+git clone https://github.com/eric-hung-github/compiler_project.git

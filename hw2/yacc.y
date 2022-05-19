@@ -66,14 +66,19 @@ bool blockIsDeclare =false;
 %left AND OR NOT
 
 %type <type> type  
-%type <value> const_expression int_expression bool_expression expression components literal_constant
-
+%type <value> const_expression int_expression bool_expression expression 
+%type <value> components literal_constant var_name 
+/* %type <value> components literal_constant var_name fun_invoc array_refer */
 %start program
 %%
 
 // Program
 program         : program_begin program_contents program_end
-                ;
+                {
+                        programIsDeclare = false;
+                        symbolTableStack.pop();
+                        symbolTableSize--;
+                };
 
 program_begin : CLASS ID LCB
 {
@@ -89,12 +94,9 @@ program_begin : CLASS ID LCB
 
 };
 
-program_end : RCB
-{
-    programIsDeclare = false;
-    symbolTableStack.pop();
-    symbolTableSize--;
-};
+program_end     : RCB
+                ;
+
 
 program_contents        : program_content program_contents
                         | program_content
@@ -137,15 +139,16 @@ const_declaration       : VAL ID ASIGN const_expression
                                 Symbol* symbol = new Symbol();
                                 symbol->value = $4;
                                 symbol->type = ID_constant;
-                                symbol->name = *$2;        
+                                symbol->name = *$2;
+                                cout<<symbol->value->valueType<<endl;
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
                         | VAL ID MO type ASIGN const_expression
                         {       
                                 Symbol* symbol = new Symbol();
-                                symbol->value = $6;
-                                symbol->type = ID_constant;
+                                symbol->value= $6;
+                                symbol->type = ID_variable;
                                 symbol->name = *$2;    
 
                                 if(symbol->value->valueType!=$4){
@@ -160,15 +163,18 @@ const_declaration       : VAL ID ASIGN const_expression
 var_declaration         : VAR ID
                         {
                                 Symbol* symbol = new Symbol();
-                                symbol->name = *$2;        
+                                symbol->type = ID_variable;
+                                symbol->value->valueType=Value_int;
+                                symbol->name = *$2;          
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
                         | VAR ID MO type
                         {       
                                 Symbol* symbol = new Symbol();
-                                symbol->type = $4;
-                                symbol->type = ID_constant;
+                                symbol->value->valueType= $4;
+                                cout<<symbol->value->valueType<<endl;
+                                symbol->type = ID_variable;
                                 symbol->name = *$2;    
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
@@ -176,8 +182,8 @@ var_declaration         : VAR ID
                         | VAR ID MO type ASIGN const_expression
                         {       
                                 Symbol* symbol = new Symbol();
-                                symbol->value = $6;
-                                symbol->type = ID_constant;
+                                symbol->value= $6;
+                                symbol->type = ID_variable;
                                 symbol->name = *$2;    
 
                                 if(symbol->value->valueType!=$4){
@@ -190,8 +196,8 @@ var_declaration         : VAR ID
                         | VAR ID ASIGN const_expression
                         {       
                                 Symbol* symbol = new Symbol();
-                                symbol->value = $4;
-                                symbol->type = ID_constant;
+                                symbol->value= $4;
+                                symbol->type = ID_variable;
                                 symbol->name = *$2;    
 
                                 symbolTableStack.tableStack[symbolTableSize].insert(symbol);
@@ -229,6 +235,22 @@ statement       : simple_statement
                 ;
 
 simple_statement: ID ASIGN expression
+                {
+                        Symbol* symbol = symbolTableStack.lookup(*$1);
+                        if (!symbol)
+                        {
+                                cout<<"not found"<<endl;
+                                exit(-1);
+                        }else if (symbol->type==ID_constant)
+                        {
+                                cout<<symbol->name<<" is constant"<<endl;
+                                exit(-1);
+                        }else if (symbol->value->valueType!=$3->valueType)
+                        {
+                                cout<<"Type error "<<ValueTypeToString(symbol->value->valueType)<<"\t"<<ValueTypeToString($3->valueType)<<endl;
+                                exit(-1);
+                        }
+                }
                 | ID LSB int_expression RSB ASIGN expression
                 | PRINT LB expression RB
                 | PRINT expression 
@@ -262,16 +284,34 @@ expression      : SUB expression
                 {
                         $$=$2;
                 }
+                | NOT expression
+                {
+                        $$=$2;
+                }
                 | expression math_operator expression
                 {
+                        if($1->valueType!=$3->valueType){
+                                cout<<"type error: "<<ValueTypeToString($1->valueType)<<"\t"<<ValueTypeToString($3->valueType);
+                                exit(-1);
+                        }
                         $$=$1;
                 }
                 | expression logic_operator expression
                 {
+                        if($1->valueType!=$3->valueType){
+                                cout<<"type error: "<<ValueTypeToString($1->valueType)<<"\t"<<ValueTypeToString($3->valueType);
+
+                                exit(-1);
+                        }
                         $$=$1;
                 }
                 | expression bit_operator expression
                 {
+                        if($1->valueType!=$3->valueType){
+                                cout<<"type error: "<<ValueTypeToString($1->valueType)<<"\t"<<ValueTypeToString($3->valueType);
+
+                                exit(-1);
+                        }
                         $$=$1;
                 }
                 | components
@@ -307,11 +347,11 @@ bit_operator    : AND
 // Expression component
 components      : literal_constant
                 {
-                        // $$=$1;
+                        $$=$1;
                 }
                 | var_name
                 {
-                        // $$=$1;
+                        $$=$1;
                 }
                 | fun_invoc
                 {
@@ -354,14 +394,33 @@ c_bool  : TRUE
         ;
 
 var_name        : ID
+                {
+                        Symbol* symbol = symbolTableStack.lookup(*$1);
+                        $$ = symbol->value;
+                }
                 ;
 
 array_refer     : ID LSB int_expression RSB
                 ;
 
 // Block
-block   : LCB block_contents RCB
+block   : block_begin block_contents block_end
+        {
+                symbolTableStack.pop();
+                symbolTableSize--;
+        }
         ;
+
+block_begin     : LCB
+                {
+                        symbolTableStack.push();
+                        symbolTableSize++;
+                        symbolTableStack.tableStack[symbolTableSize].name = "block";
+                }
+                ;
+
+block_end       : RCB
+                ;
 
 block_contents  : block_content block_contents
                 | block_content
