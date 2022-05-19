@@ -8,3 +8,4 @@ hw2/try.l
 .vscode/configurationCache.log
 .gitignore
 .vscode/targets.log
+.vscode/dryrun.log

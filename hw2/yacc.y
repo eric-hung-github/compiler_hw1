@@ -8,6 +8,8 @@
 using namespace std;
 SymbolTableStack symbolTableStack =  SymbolTableStack();
 
+// a=a+b segmentation fault
+// (expression) 
 
 int yylex();
 
@@ -280,7 +282,8 @@ bool_expression         : expression
                         }
                         ;
 
-expression      : SUB expression
+expression      : LB expression RB
+                | SUB expression
                 {
                         $$=$2;
                 }
