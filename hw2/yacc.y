@@ -61,7 +61,9 @@ bool blockIsDeclare =false;
 %token BOOL BREAK CHAR CASE CLASS CONTINUE DECLARE DO ELSE EXIT FLOAT FOR FUN IF INT LOOP PRINT PRINTLN RETURN STRING VAL VAR WHILE
 
 
-%left NOT
+%left ADD SUB MUL DIV MOD
+%left BT ST SET BET EQL NEQ
+%left AND OR NOT
 
 %type <type> type  
 %type <value> const_expression int_expression bool_expression expression components literal_constant
