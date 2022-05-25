@@ -1,15 +1,14 @@
 %{
-#define Trace(t)        printf(t)
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "symbol_table.hpp"
 #include "lex.yy.cpp"
 using namespace std;
+#define Trace(t)        cout<<t<<endl;
 SymbolTableStack symbolTableStack =  SymbolTableStack();
 
 // a=a+b segmentation fault
-// (expression) 
 
 int yylex();
 
@@ -20,24 +19,18 @@ void yyerror(string s)
     exit(-1);
 }
 
-int symbolTableSize = -1;
-int returnType;
-int local_base = 0;
-int label_no = 0;
-vector<Value* > arguments;
-bool programIsDeclare = false;
-bool blockIsDeclare =false;
 %}
 
 %union
 {
-    int type;
+    int id_type;
     int int_value;
     float float_value;
     bool bool_value;
     string* str_value;
     Value* value;
     Symbol* symbol;
+    vector<Symbol*>* symbol_vector;
 }
 %token <str_value> ID
 %token <str_value> C_STR
@@ -67,32 +60,27 @@ bool blockIsDeclare =false;
 %left BT ST SET BET EQL NEQ
 %left AND OR NOT
 
-%type <type> type  
+%type <id_type> type_define  
 %type <value> const_expression int_expression bool_expression expression 
-%type <value> components literal_constant var_name 
-/* %type <value> components literal_constant var_name fun_invoc array_refer */
+%type <value> components literal_constant var_refer arr_refer
+/* %type <value> fun_invoc */
 %start program
 %%
 
 // Program
 program         : program_begin program_contents program_end
                 {
-                        programIsDeclare = false;
                         symbolTableStack.pop();
-                        symbolTableSize--;
                 };
 
 program_begin : CLASS ID LCB
 {
-    programIsDeclare = true;
-    symbolTableStack.push();
-    symbolTableSize++;
-    symbolTableStack.tableStack[symbolTableSize].name = *$2;
+    symbolTableStack.push(*$2);
 
     Symbol* symbol = new Symbol();
     symbol->name = *$2;
-    symbol->type = ID_program;
-    symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+    symbol->id_type = ID_PROGRAM;
+    symbolTableStack.insert(symbol);
 
 };
 
@@ -111,21 +99,21 @@ program_content         : va_declaration
                         ;
 
 // Data Types
-type    : INT
+type_define    : INT
         {
-                $$ = Value_int;
+                $$ = VALUE_INT;
         }
         | FLOAT
         {
-                $$ = Value_float;
+                $$ = VALUE_FLOAT;
         }
         | STRING
         {
-                $$ = Value_string;
+                $$ = VALUE_STR;
         }
         | BOOL
         {
-                $$ = Value_boolean;
+                $$ = VALUE_BOOL;
         }
         ;
 
@@ -139,94 +127,142 @@ va_declaration          : const_declaration
 const_declaration       : VAL ID ASIGN const_expression
                         {
                                 Symbol* symbol = new Symbol();
-                                symbol->value = $4;
-                                symbol->type = ID_constant;
+                                symbol->id_type = ID_CONST;
                                 symbol->name = *$2;
-                                cout<<symbol->value->valueType<<endl;
+                                symbol->value = $4;
 
-                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+                                symbolTableStack.insert(symbol);
                         }
-                        | VAL ID MO type ASIGN const_expression
+                        | VAL ID MO type_define ASIGN const_expression
                         {       
                                 Symbol* symbol = new Symbol();
-                                symbol->value= $6;
-                                symbol->type = ID_variable;
+                                symbol->id_type = ID_CONST;
                                 symbol->name = *$2;    
+                                symbol->value= $6;
 
-                                if(symbol->value->valueType!=$4){
-                                        printf("type error");
-                                        exit(-1);
+                                if(symbol->value->value_type==$4){
+                                        
+                                        symbolTableStack.insert(symbol);
+                                }else{
+                                        yyerror("Type error");
                                 }
-
-                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
                         ;
 
 var_declaration         : VAR ID
                         {
                                 Symbol* symbol = new Symbol();
-                                symbol->type = ID_variable;
-                                symbol->value->valueType=Value_int;
+                                symbol->id_type = ID_VAR;
                                 symbol->name = *$2;          
+                                symbol->value->value_type=VALUE_INT;
 
-                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+                                symbolTableStack.insert(symbol);
                         }
-                        | VAR ID MO type
+                        | VAR ID MO type_define
                         {       
                                 Symbol* symbol = new Symbol();
-                                symbol->value->valueType= $4;
-                                cout<<symbol->value->valueType<<endl;
-                                symbol->type = ID_variable;
+                                symbol->id_type = ID_VAR;
+                                symbol->name = *$2;   
+                                symbol->value->value_type= $4;
+ 
+                                symbolTableStack.insert(symbol);
+                        }
+                        | VAR ID MO type_define ASIGN const_expression
+                        {       
+                                Symbol* symbol = new Symbol();
+                                symbol->id_type = ID_VAR;
                                 symbol->name = *$2;    
-
-                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
-                        }
-                        | VAR ID MO type ASIGN const_expression
-                        {       
-                                Symbol* symbol = new Symbol();
                                 symbol->value= $6;
-                                symbol->type = ID_variable;
-                                symbol->name = *$2;    
 
-                                if(symbol->value->valueType!=$4){
-                                        printf("type error");
-                                        exit(-1);
+                                if(symbol->value->value_type==$4){
+                                        symbolTableStack.insert(symbol);
+                                }else{
+                                        yyerror("Type error");
                                 }
 
-                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
                         }
                         | VAR ID ASIGN const_expression
                         {       
                                 Symbol* symbol = new Symbol();
+                                symbol->id_type = ID_VAR;
+                                symbol->name = *$2;  
                                 symbol->value= $4;
-                                symbol->type = ID_variable;
-                                symbol->name = *$2;    
 
-                                symbolTableStack.tableStack[symbolTableSize].insert(symbol);
+                                symbolTableStack.insert(symbol);
                         }
                         ;
 
-array_declaration       : VAR ID MO type LSB num RSB
+array_declaration       : VAR ID MO type_define LSB num RSB
+                        {       
+                                Symbol* symbol = new Symbol();
+                                symbol->id_type = ID_ARR;
+                                symbol->name = *$2;   
+                                symbol->value->value_type= $4;
+ 
+                                symbolTableStack.insert(symbol);
+                        }
                         ;
 
 // Function & Procedure declration
-fun_declaration : FUN ID LB formal_argument_list RB MO type block
+fun_declaration : FUN ID LB formal_argument_list RB MO type_define block
+                {       
+                        Symbol* symbol = new Symbol();
+                        symbol->id_type = ID_FUNC;
+                        symbol->name = *$2;   
+                        symbol->value->value_type= $7;
+ 
+                        symbolTableStack.insert(symbol);
+
+                        symbol->arguments=symbolTableStack.argumentStack;
+                        symbolTableStack.argumentStack.clear();
+                }
+                | FUN ID LB RB MO type_define block
+                {       
+                        Symbol* symbol = new Symbol();
+                        symbol->id_type = ID_FUNC;
+                        symbol->name = *$2;   
+                        symbol->value->value_type= $6;
+ 
+                        symbolTableStack.insert(symbol);
+                }
                 ;
 
 proc_declaration: FUN ID LB formal_argument_list RB block
+                {       
+                        Symbol* symbol = new Symbol();
+                        symbol->id_type = ID_PROCEDURE;
+                        symbol->name = *$2;   
+                        symbol->value->value_type= VALUE_VOID;
+ 
+                        symbolTableStack.insert(symbol);
+
+                        symbol->arguments=symbolTableStack.argumentStack;
+                        symbolTableStack.argumentStack.clear();
+                }
+                | FUN ID LB RB block
+                {       
+                        Symbol* symbol = new Symbol();
+                        symbol->id_type = ID_PROCEDURE;
+                        symbol->name = *$2;   
+                        symbol->value->value_type= VALUE_VOID;
+ 
+                        symbolTableStack.insert(symbol);
+                }
                 ;
 
-formal_argument_list    : formal_argument COMMA formal_arguments
-                        | formal_arguments
-                        |
-                        ;
-
-
-formal_arguments        : formal_argument COMMA formal_arguments
+formal_argument_list    : formal_argument COMMA formal_argument_list
                         | formal_argument
                         ;
 
-formal_argument         : ID MO type
+formal_argument         : ID MO type_define
+                        {       
+                                Symbol* symbol = new Symbol();
+                                symbol->id_type = ID_ARG;
+                                symbol->name = *$1;   
+                                symbol->value->value_type= $3;
+
+                                symbolTableStack.argumentStack.push_back(symbol);
+                        }
                         ;
 
 // Statements
@@ -241,19 +277,29 @@ simple_statement: ID ASIGN expression
                         Symbol* symbol = symbolTableStack.lookup(*$1);
                         if (!symbol)
                         {
-                                cout<<"not found"<<endl;
-                                exit(-1);
-                        }else if (symbol->type==ID_constant)
+                                yyerror("ID not found");
+                        }else if (symbol->id_type==ID_CONST)
                         {
-                                cout<<symbol->name<<" is constant"<<endl;
-                                exit(-1);
-                        }else if (symbol->value->valueType!=$3->valueType)
-                        {
-                                cout<<"Type error "<<ValueTypeToString(symbol->value->valueType)<<"\t"<<ValueTypeToString($3->valueType)<<endl;
-                                exit(-1);
+                                yyerror("ID is const");
+                        }else if (symbol->value->value_type!=$3->value_type)
+                        {       
+                                yyerror("Type error");
                         }
                 }
                 | ID LSB int_expression RSB ASIGN expression
+                {
+                        Symbol* symbol = symbolTableStack.lookup(*$1);
+                        if (!symbol)
+                        {
+                                yyerror("ID not found");
+                        }else if (symbol->id_type!=ID_ARR)
+                        {
+                                yyerror("ID is not array");
+                        }else if (symbol->value->value_type!=$6->value_type)
+                        {       
+                                yyerror("Type error");
+                        }
+                }
                 | PRINT LB expression RB
                 | PRINT expression 
                 | PRINTLN LB expression RB
@@ -283,6 +329,9 @@ bool_expression         : expression
                         ;
 
 expression      : LB expression RB
+                {
+                        $$=$2;
+                }
                 | SUB expression
                 {
                         $$=$2;
@@ -293,27 +342,22 @@ expression      : LB expression RB
                 }
                 | expression math_operator expression
                 {
-                        if($1->valueType!=$3->valueType){
-                                cout<<"type error: "<<ValueTypeToString($1->valueType)<<"\t"<<ValueTypeToString($3->valueType);
-                                exit(-1);
+                        if($1->value_type!=$3->value_type){
+                                yyerror("Type error");
                         }
                         $$=$1;
                 }
                 | expression logic_operator expression
                 {
-                        if($1->valueType!=$3->valueType){
-                                cout<<"type error: "<<ValueTypeToString($1->valueType)<<"\t"<<ValueTypeToString($3->valueType);
-
-                                exit(-1);
+                        if($1->value_type!=$3->value_type){
+                                yyerror("Type error");
                         }
                         $$=$1;
                 }
                 | expression bit_operator expression
                 {
-                        if($1->valueType!=$3->valueType){
-                                cout<<"type error: "<<ValueTypeToString($1->valueType)<<"\t"<<ValueTypeToString($3->valueType);
-
-                                exit(-1);
+                        if($1->value_type!=$3->value_type){
+                                yyerror("Type error");
                         }
                         $$=$1;
                 }
@@ -322,11 +366,6 @@ expression      : LB expression RB
                         $$=$1;
                 }
                 ;
-/* 
-operator        : math_operator
-                | logic_operator
-                | bit_operator
-                ; */
 
 math_operator   : MUL 
                 | DIV
@@ -347,12 +386,12 @@ bit_operator    : AND
                 | NOT
                 ;
 
-// Expression component
+// Component
 components      : literal_constant
                 {
                         $$=$1;
                 }
-                | var_name
+                | var_refer
                 {
                         $$=$1;
                 }
@@ -360,34 +399,34 @@ components      : literal_constant
                 {
                         // $$=$1;
                 }
-                | array_refer
+                | arr_refer
                 {
-                        // $$=$1;
+                        $$=$1;
                 }
                 ;
 
 literal_constant        : C_INT 
                         {
                                 Value* value=new Value();
-                                value->valueType = Value_int;
+                                value->value_type = VALUE_INT;
                                 $$=value;
                         }
                         | C_FLOAT 
                         {
                                 Value* value=new Value();
-                                value->valueType = Value_float;
+                                value->value_type = VALUE_FLOAT;
                                 $$=value;
                         }
                         | C_STR 
                         {
                                 Value* value=new Value();
-                                value->valueType = Value_string;
+                                value->value_type = VALUE_STR;
                                 $$=value;
                         }
                         | c_bool 
                         {
                                 Value* value=new Value();
-                                value->valueType = Value_boolean;
+                                value->value_type = VALUE_BOOL;
                                 $$=value;
                         }
                         ;
@@ -396,29 +435,41 @@ c_bool  : TRUE
         | FALSE
         ;
 
-var_name        : ID
+var_refer        : ID
                 {
                         Symbol* symbol = symbolTableStack.lookup(*$1);
+                        if (!symbol)
+                        {
+                                yyerror("ID not found");
+                        }
                         $$ = symbol->value;
                 }
                 ;
 
-array_refer     : ID LSB int_expression RSB
+arr_refer       : ID LSB int_expression RSB
+                {
+                        Symbol* symbol = symbolTableStack.lookup(*$1);
+                        if (!symbol)
+                        {
+                                yyerror("ID not found");
+                        }else if (symbol->id_type!=ID_ARR)
+                        {
+                                yyerror("ID is not array");
+                        }
+                        $$ = symbol->value;
+                }
                 ;
 
 // Block
 block   : block_begin block_contents block_end
         {
                 symbolTableStack.pop();
-                symbolTableSize--;
-        }
+        };
         ;
 
 block_begin     : LCB
                 {
-                        symbolTableStack.push();
-                        symbolTableSize++;
-                        symbolTableStack.tableStack[symbolTableSize].name = "block";
+                        symbolTableStack.push("block");
                 }
                 ;
 
@@ -426,7 +477,6 @@ block_end       : RCB
                 ;
 
 block_contents  : block_content block_contents
-                | block_content
                 |
                 ;
 

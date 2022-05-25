@@ -10,6 +10,17 @@
         "xstring": "cpp",
         "ostream": "c",
         "iomanip": "c",
-        "iostream": "c"
+        "iostream": "c",
+        "cstddef": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "memory": "cpp",
+        "new": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp",
+        "xmemory": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp",
+        "system_error": "c"
     }
 }

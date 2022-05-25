@@ -6,23 +6,24 @@ using namespace std;
 
 enum IDType
 {
-    ID_error = 0,
-    ID_constant,
-    ID_variable,
-    ID_array,
-    ID_program,
-    ID_function,
-    ID_procedure,
+    ID_ERROR = 0,
+    ID_CONST,
+    ID_VAR,
+    ID_ARR,
+    ID_PROGRAM,
+    ID_FUNC,
+    ID_PROCEDURE,
+    ID_ARG,
 };
 
 enum ValueType
 {
-    Value_error = 0,
-    Value_int,
-    Value_float,
-    Value_boolean,
-    Value_string,
-    nullType,
+    VALUE_NONE = 0,
+    VALUE_INT,
+    VALUE_FLOAT,
+    VALUE_BOOL,
+    VALUE_STR,
+    VALUE_VOID,
 
 };
 
@@ -31,26 +32,29 @@ string IDTypeToString(int type)
 
     switch (type)
     {
-    case 0:
-        return "ID error";
+    case ID_ERROR:
+        return "ID_ERROR";
         break;
-    case 1:
+    case ID_CONST:
         return "constant";
         break;
-    case 2:
+    case ID_VAR:
         return "variable";
         break;
-    case 3:
+    case ID_ARR:
         return "array";
         break;
-    case 4:
+    case ID_PROGRAM:
         return "program";
         break;
-    case 5:
+    case ID_FUNC:
         return "function";
         break;
-    case 6:
+    case ID_PROCEDURE:
         return "procedure";
+        break;
+    case ID_ARG:
+        return "argument";
         break;
 
     default:
@@ -64,22 +68,22 @@ string ValueTypeToString(int type)
 
     switch (type)
     {
-    case 0:
-        return "Value error";
+    case VALUE_NONE:
+        return "VALUE_NONE";
         break;
-    case 1:
+    case VALUE_INT:
         return "int";
         break;
-    case 2:
+    case VALUE_FLOAT:
         return "float";
         break;
-    case 3:
+    case VALUE_BOOL:
         return "boolean";
         break;
-    case 4:
+    case VALUE_STR:
         return "string";
         break;
-    case 5:
+    case VALUE_VOID:
         return "void";
         break;
     default:
@@ -90,62 +94,67 @@ string ValueTypeToString(int type)
 
 struct Value
 {
-    int valueType = Value_error;
+    int value_type = VALUE_NONE;
 
-    int int_num;
-    bool bool_num;
-    string str_num;
+    int int_value;
+    float float_value;
+    bool bool_value;
+    string string_value;
 };
 
 struct Symbol
 {
     string name = "";
-    int type = ID_error;
+    int id_type = ID_ERROR;
 
-    int array_type;
-    int array_size;
-    int return_type;
-    int local_no = -1;
+    // int array_type;
+    // int array_size;
+    // int return_type;
+    // int local_no = -1;
 
     Value *value = new Value();
-    vector<Value *> elements;
-    vector<Value *> params;
+    vector<Symbol *> arguments;
+    // vector<Value *> params;
 };
 
 class SymbolTable
 {
-public:
-    SymbolTable() { symbols.clear(); }
-    ~SymbolTable() {}
-
     string name = "";
     vector<Symbol *> symbols;
-    int local_no = 0;
-    int insert(Symbol *ID)
+
+public:
+    SymbolTable(string table_name)
     {
-        if (lookup(ID->name) == NULL)
+        name = table_name;
+        symbols.clear();
+    }
+    ~SymbolTable() {}
+
+    bool insert(Symbol *ID)
+    {
+        if (lookup(ID->name) == nullptr)
         {
             symbols.push_back(ID);
+            return true;
         }
-        return 1;
+        else
+        {
+            return false;
+        }
     }
 
     Symbol *lookup(string name)
     {
-
-        if (symbols.size() < 1)
-        {
-            return NULL;
-        }
         for (int i = 0; i < symbols.size(); i++)
         {
+            cout << "lookup " << symbols[i]->name << endl;
             if (symbols[i]->name == name)
             {
                 return symbols[i];
             }
         }
 
-        return NULL;
+        return nullptr;
     }
 
     void dump()
@@ -153,114 +162,61 @@ public:
         cout << "===================================================" << endl;
         cout << "Table: " << name << endl;
         cout << setw(20) << "name";
-        cout << setw(20) << "type" << endl;
+        cout << setw(20) << "id type" << endl;
 
         for (int i = 0; i < symbols.size(); i++)
         {
             cout << setw(20) << symbols[i]->name;
 
-            if (symbols[i]->type == ID_program)
-            {
-                cout << setw(20) << IDTypeToString(symbols[i]->type) << endl;
-            }
+            cout << setw(20) << IDTypeToString(symbols[i]->id_type);
 
-            if (symbols[i]->type == ID_constant)
-            {
-                cout << setw(20) << ValueTypeToString(symbols[i]->type) << endl;
-            }
+            cout << "(" << ValueTypeToString(symbols[i]->value->value_type) << ")";
 
-            if (symbols[i]->type == ID_variable)
-            {
-                cout << setw(20) << ValueTypeToString(symbols[i]->type) << endl;
-            }
-
-            if (symbols[i]->type == ID_array)
-            {
-                cout << setw(20) << "array: ";
-                cout << ValueTypeToString(symbols[i]->type) << endl;
-            }
-
-            if (symbols[i]->type == ID_function)
-            {
-                cout << setw(20) << IDTypeToString(symbols[i]->type) << " ";
-            }
-
-            if (symbols[i]->type == ID_procedure)
-            {
-                cout << setw(20) << IDTypeToString(symbols[i]->type) << " ";
-                // cout << setw(40) << "\t";
-                // string str = "";
-                // if (symbols[i]->return_type != nullType)
-                // {
-                //     str += "return Type : " + ValueTypeToString(symbols[i]->return_type) + "| parsType :";
-                // }
-                // cout << "asdf" << endl;
-                // for (int j = 0; j < symbols[i]->params.size(); j++)
-                // {
-                //     str += "  " + ValueTypeToString(symbols[i]->params[j]->valueType);
-                // }
-                // cout << str << endl;
-            }
+            cout << endl;
         }
     }
 };
 
 class SymbolTableStack
 {
+    vector<SymbolTable> tableStack;
+
 public:
+    vector<Symbol *> argumentStack;
+
     SymbolTableStack()
     {
         tableStack.clear();
     }
     ~SymbolTableStack() {}
 
-    vector<SymbolTable> tableStack;
-
-    void push()
+    void push(string table_name)
     {
-        tableStack.push_back(SymbolTable());
+        tableStack.push_back(SymbolTable(table_name));
     }
 
     void pop()
     {
-        dump();
+        SymbolTable table = tableStack[tableStack.size() - 1];
+        table.dump();
         tableStack.pop_back();
+    }
+
+    bool insert(Symbol *ID)
+    {
+        return tableStack[tableStack.size() - 1].insert(ID);
     }
 
     Symbol *lookup(string name)
     {
-        Symbol *symbol = new Symbol();
-
-        if (tableStack.size() < 1)
-        {
-            return symbol;
-        }
-
         for (int i = tableStack.size() - 1; i >= 0; i--)
         {
-            symbol = tableStack[i].lookup(name);
-            if (symbol == NULL)
-            {
-                continue;
-            }
-            if (symbol->type != ID_error)
+            Symbol *symbol = tableStack[i].lookup(name);
+            if (symbol != nullptr)
             {
                 return symbol;
             }
         }
-        return symbol;
-    }
-
-    void dump()
-    {
-        if (tableStack.size() > 0)
-        {
-            tableStack[tableStack.size() - 1].dump();
-        }
-    }
-
-    Symbol *getSymbolOfProcedure()
-    {
-        return tableStack[0].symbols[tableStack[0].symbols.size() - 1];
+        return nullptr;
     }
 };

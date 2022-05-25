@@ -9,3 +9,8 @@ hw2/try.l
 .gitignore
 .vscode/targets.log
 .vscode/dryrun.log
+hw2/y.tab.cpp
+hw2/y.tab.hpp
+.vscode/dryrun.log
+hw2/exe.exe
+hw2/lex.yy.cpp

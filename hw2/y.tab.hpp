@@ -122,17 +122,18 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 31 "yacc.y"
+#line 25 "parser.y"
 
-    int type;
+    int id_type;
     int int_value;
     float float_value;
     bool bool_value;
     string* str_value;
     Value* value;
     Symbol* symbol;
+    vector<Symbol*>* symbol_vector;
 
-#line 136 "y.tab.hpp"
+#line 137 "y.tab.hpp"
 
 };
 typedef union YYSTYPE YYSTYPE;
