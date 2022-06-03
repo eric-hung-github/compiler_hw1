@@ -1129,7 +1129,7 @@ case 3:
 YY_RULE_SETUP
 #line 35 "scanner.l"
 { LIST;
-                                // printf("%d: %s", linenum++, buf);
+                                printf("%d: %s", linenum++, buf);
                                 buf[0] = '\0'; }
 	YY_BREAK
 case 4:
@@ -1152,7 +1152,7 @@ case 7:
 YY_RULE_SETUP
 #line 42 "scanner.l"
 {  LIST;BEGIN(INITIAL);
-                                // printf("%d: %s", linenum++, buf);
+                                printf("%d: %s", linenum++, buf);
                                 buf[0] = '\0'; }
 	YY_BREAK
 case 8:

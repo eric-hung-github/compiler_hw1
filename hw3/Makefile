@@ -2,7 +2,7 @@ CC = g++
 LEX = flex
 YACC = bison
 
-TARGET = exe
+TARGET = compiler
 PARSER = parser
 SCANNER = scanner
 SYMBOL = symbol_table

@@ -33,14 +33,14 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 <INITIAL>"/*"           { LIST;BEGIN(C_COMMENT); }
 <C_COMMENT>"*/"         {  LIST;BEGIN(INITIAL); }
 <C_COMMENT>\n           { LIST;
-                                // printf("%d: %s", linenum++, buf);
+                                printf("%d: %s", linenum++, buf);
                                 buf[0] = '\0'; }
 <C_COMMENT>[^*\n]*      { LIST;}
 <C_COMMENT>"*"+[^*/\n]* {  LIST;}
 
 <INITIAL>"//"           {  LIST;BEGIN(R_COMMENT); }
 <R_COMMENT>"\n"         {  LIST;BEGIN(INITIAL);
-                                // printf("%d: %s", linenum++, buf);
+                                printf("%d: %s", linenum++, buf);
                                 buf[0] = '\0'; }
 <R_COMMENT>[^\n]*	{ LIST;}
 
