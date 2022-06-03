@@ -6,7 +6,11 @@
 #include "lex.yy.cpp"
 using namespace std;
 #define Trace(t)        cout<<t<<endl;
+
 SymbolTableStack symbolTableStack =  SymbolTableStack();
+fstream javaa;
+#define Javaa(t)        javaa<<t;
+
 
 // a=a+b segmentation fault
 
@@ -528,6 +532,12 @@ int main( int argc, char **argv )
 		fprintf( stdout, "Open  file  error\n" );
 		exit(-1);
 	}
+
+        string jasm_target_path = argv[1];
+        jasm_target_path += ".jasm";
+        javaa.open(jasm_target_path, ios::out | ios::trunc);
+        if(yyparse() == 1)
+        yyerror("parsing error");
 
 	yyin = fp;
 	yyparse();
