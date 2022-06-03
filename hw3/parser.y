@@ -23,6 +23,10 @@ void yyerror(string s)
     exit(-1);
 }
 
+void TypeError(int a,int b){
+        yyerror("Type Error: "+ValueTypeToString(a)+" <-> "+ ValueTypeToString(a));
+}
+
 %}
 
 %union
@@ -66,7 +70,8 @@ void yyerror(string s)
 
 %type <id_type> type_define  
 %type <value> const_expression int_expression bool_expression expression 
-%type <value> components literal_constant var_refer arr_refer
+%type <value> components literal_constant var_refer
+%type <symbol> arr_refer
 /* %type <value> fun_invoc */
 %start program
 %%
@@ -147,7 +152,7 @@ const_declaration       : VAL ID ASIGN const_expression
                                         
                                         symbolTableStack.insert(symbol);
                                 }else{
-                                        yyerror("Type error");
+                                        TypeError(symbol->value->value_type,$4);
                                 }
                         }
                         ;
@@ -180,7 +185,7 @@ var_declaration         : VAR ID
                                 if(symbol->value->value_type==$4){
                                         symbolTableStack.insert(symbol);
                                 }else{
-                                        yyerror("Type error");
+                                        TypeError(symbol->value->value_type,$4);
                                 }
 
                         }
@@ -218,42 +223,75 @@ fun_declaration : FUN ID LB formal_argument_list RB MO type_define
 
                         symbol->arguments=symbolTableStack.argumentStack;
 
+                        symbolTableStack.push(*$2);
                         for(int i=0;i<symbolTableStack.argumentStack.size();i++){
                             symbolTableStack.insert(symbolTableStack.argumentStack[i]); 
                         }
+
                         symbolTableStack.argumentStack.clear();
-                } block
-                | FUN ID LB RB MO type_define block
+
+                } block{
+                        symbolTableStack.pop();
+                }
+                | FUN ID LB RB MO type_define
                 {       
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_FUNC;
                         symbol->name = *$2;   
-                        symbol->value->value_type= $6;
  
                         symbolTableStack.insert(symbol);
+
+                        // symbol->arguments=symbolTableStack.argumentStack;
+
+                        symbolTableStack.push(*$2);
+                        // for(int i=0;i<symbolTableStack.argumentStack.size();i++){
+                        //     symbolTableStack.insert(symbolTableStack.argumentStack[i]); 
+                        // }
+                        // symbolTableStack.argumentStack.clear();
+                } block{
+                        symbolTableStack.pop();
                 }
                 ;
 
-proc_declaration: FUN ID LB formal_argument_list RB block
+proc_declaration: FUN ID LB formal_argument_list RB
                 {       
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_PROCEDURE;
                         symbol->name = *$2;   
-                        symbol->value->value_type= VALUE_VOID;
  
                         symbolTableStack.insert(symbol);
 
                         symbol->arguments=symbolTableStack.argumentStack;
+
+                        symbolTableStack.push(*$2);
+                        for(int i=0;i<symbolTableStack.argumentStack.size();i++){
+                            symbolTableStack.insert(symbolTableStack.argumentStack[i]); 
+                        }
+
                         symbolTableStack.argumentStack.clear();
+
+                } block{
+                        symbolTableStack.pop();
                 }
-                | FUN ID LB RB block
+                | FUN ID LB RB
                 {       
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_PROCEDURE;
                         symbol->name = *$2;   
-                        symbol->value->value_type= VALUE_VOID;
  
                         symbolTableStack.insert(symbol);
+
+                        // symbol->arguments=symbolTableStack.argumentStack;
+
+                        symbolTableStack.push(*$2);
+                        // for(int i=0;i<symbolTableStack.argumentStack.size();i++){
+                        //     symbolTableStack.insert(symbolTableStack.argumentStack[i]); 
+                        // }
+
+                        symbolTableStack.argumentStack.clear();
+
+                } block{
+                        symbolTableStack.pop();
                 }
                 ;
 
@@ -290,21 +328,23 @@ simple_statement: ID ASIGN expression
                                 yyerror("ID is const");
                         }else if (symbol->value->value_type!=$3->value_type)
                         {       
-                                yyerror("Type error");
+                                // yyerror("Type error");
+                                // TypeError(symbol->value->value_type,$3->value_type);
                         }
                 }
-                | ID LSB int_expression RSB ASIGN expression
+                | arr_refer ASIGN expression
                 {
-                        Symbol* symbol = symbolTableStack.lookup(*$1);
+                        Symbol* symbol = $1;
                         if (!symbol)
                         {
                                 yyerror("ID not found");
                         }else if (symbol->id_type!=ID_ARR)
                         {
                                 yyerror("ID is not array");
-                        }else if (symbol->value->value_type!=$6->value_type)
+                        }else if (symbol->value->value_type!=$3->value_type)
                         {       
-                                yyerror("Type error");
+                                // yyerror("Type error");
+                                // TypeError(symbol->value->value_type,$3->value_type);
                         }
                 }
                 | PRINT LB expression RB
@@ -350,21 +390,25 @@ expression      : LB expression RB
                 | expression math_operator expression
                 {
                         if($1->value_type!=$3->value_type){
-                                yyerror("Type error");
+                                // yyerror("Type error");
+                                // TypeError($1->value_type,$3->value_type);
+
                         }
                         $$=$1;
                 }
                 | expression logic_operator expression
                 {
                         if($1->value_type!=$3->value_type){
-                                yyerror("Type error");
+                                // yyerror("Type error");
+                                // TypeError($1->value_type,$3->value_type);
                         }
                         $$=$1;
                 }
                 | expression bit_operator expression
                 {
                         if($1->value_type!=$3->value_type){
-                                yyerror("Type error");
+                                // yyerror("Type error");
+                                // TypeError($1->value_type,$3->value_type);
                         }
                         $$=$1;
                 }
@@ -408,7 +452,7 @@ components      : literal_constant
                 }
                 | arr_refer
                 {
-                        $$=$1;
+                        $$=$1->value;
                 }
                 ;
 
@@ -463,25 +507,14 @@ arr_refer       : ID LSB int_expression RSB
                         {
                                 yyerror("ID is not array");
                         }
-                        $$ = symbol->value;
+                        $$ = symbol;
                 }
                 ;
 
 // Block
-block   : block_begin block_contents block_end
-        {
-                symbolTableStack.pop();
-        };
+block   : LCB block_contents RCB
         ;
 
-block_begin     : LCB
-                {
-                        symbolTableStack.push("block");
-                }
-                ;
-
-block_end       : RCB
-                ;
 
 block_contents  : block_content block_contents
                 |
@@ -515,6 +548,9 @@ proc_invoc      : ID LB comma_separated_expressions RB
 comma_separated_expressions     : expression COMMA comma_separated_expressions
                                 | expression
                                 ;
+
+
+
 
 // Num
 num     : C_INT

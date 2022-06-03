@@ -21,6 +21,7 @@
         "xmemory": "cpp",
         "xtr1common": "cpp",
         "xutility": "cpp",
-        "system_error": "c"
+        "system_error": "c",
+        "initializer_list": "c"
     }
 }

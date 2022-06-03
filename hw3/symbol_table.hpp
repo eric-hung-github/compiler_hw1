@@ -132,13 +132,16 @@ public:
 
     bool insert(Symbol *ID)
     {
+
         if (lookup(ID->name) == nullptr)
         {
+            cout << "SymbolTable<" << name << "> insert: " << ID->name << endl;
             symbols.push_back(ID);
             return true;
         }
         else
         {
+            cout << "SymbolTable<" << name << "> insert exit: " << ID->name << endl;
             return false;
         }
     }
@@ -147,7 +150,7 @@ public:
     {
         for (int i = 0; i < symbols.size(); i++)
         {
-            cout << "lookup " << symbols[i]->name << endl;
+            // cout << "lookup " << symbols[i]->name << endl;
             if (symbols[i]->name == name)
             {
                 return symbols[i];
@@ -192,7 +195,9 @@ public:
 
     void push(string table_name)
     {
+
         tableStack.push_back(SymbolTable(table_name));
+        cout << "SymbolTableStack push: " << tableStack.size() - 1 << "->" << tableStack.size() << endl;
     }
 
     void pop()
@@ -200,6 +205,7 @@ public:
         SymbolTable table = tableStack[tableStack.size() - 1];
         table.dump();
         tableStack.pop_back();
+        cout << "SymbolTableStack push: " << tableStack.size() + 1 << "->" << tableStack.size() << endl;
     }
 
     bool insert(Symbol *ID)
