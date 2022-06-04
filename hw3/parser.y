@@ -70,7 +70,7 @@ void TypeError(int a,int b){
 
 %type <id_type> type_define  
 %type <value> const_expression int_expression bool_expression expression 
-%type <value> components literal_constant var_refer fun_invoc
+%type <value> components literal_constant var_refer fun_invoc proc_invoc num
 %type <symbol> arr_refer
 /* %type <value> fun_invoc */
 %start program
@@ -227,7 +227,6 @@ fun_declaration : FUN ID LB formal_argument_list RB MO type_define
                         for(int i=0;i<symbolTableStack.argumentStack.size();i++){
                             symbolTableStack.insert(symbolTableStack.argumentStack[i]); 
                         }
-
 
                         symbolTableStack.argumentStack.clear();
 
@@ -415,22 +414,12 @@ int_expression          : expression
                         }
                         ;
 
-bool_expression         : expression logic_operator expression
+bool_expression         : expression
                         {
-                                if($1->value_type!=$3->value_type){
-                                        TypeError($1->value_type,$3->value_type);
+                                if($1->value_type!=VALUE_BOOL){
+                                        TypeError($1->value_type,VALUE_BOOL);
                                 }
-                                Value *ret=new Value();
-                                ret->value_type=VALUE_BOOL;
-                                $$=ret;
-                        }
-                        | bool_expression bit_operator bool_expression
-                        {
                                 $$=$1;
-                        }
-                        | NOT bool_expression
-                        {
-                                $$=$2;
                         }
                         ;
 
@@ -448,6 +437,23 @@ expression      : LB expression RB
                                 TypeError($1->value_type,$3->value_type);
                         }
                         $$=$1;
+                }
+                | expression logic_operator expression
+                {
+                        if($1->value_type!=$3->value_type){
+                                TypeError($1->value_type,$3->value_type);
+                        }
+                        Value *ret=new Value();
+                        ret->value_type=VALUE_BOOL;
+                        $$=ret;
+                }
+                | bool_expression bit_operator bool_expression
+                {
+                        $$=$1;
+                }
+                | NOT bool_expression
+                {
+                        $$=$2;
                 }
                 | components
                 {
@@ -571,7 +577,14 @@ loop_statement  : WHILE LB bool_expression RB block_or_simple_statement
                 | FOR LB ID num DOT DOT num  RB block_or_simple_statement
                 ;
 
-block_or_simple_statement       : block
+block_or_simple_statement       : 
+                                {       
+                                        symbolTableStack.push("simple code block");
+
+                                } block
+                                {
+                                        symbolTableStack.pop();
+                                }
                                 | simple_statement
                                 ;
 
@@ -579,22 +592,68 @@ block_or_simple_statement       : block
 fun_invoc       : ID LB comma_separated_expressions RB
                 {
                         Symbol* symbol = symbolTableStack.lookup(*$1);
+                        if (!symbol)
+                        {
+                                yyerror("ID not found");
+                        }else if (symbol->id_type!=ID_FUNC)
+                        {
+                                yyerror("ID is not function");
+                        }else{
+                                for(int i=0;i<symbol->arguments.size();i++){
+                                        if(symbolTableStack.parseStack[i]->value_type!=symbol->arguments[i]->value->value_type){
+                                                TypeError(symbolTableStack.parseStack[i]->value_type,symbol->arguments[i]->value->value_type);
+                                        }
+                                }
+                        }
+
+                        symbolTableStack.parseStack.clear();
+
+
                         $$ = symbol->value;
                 }
                 ;
 
 proc_invoc      : ID LB comma_separated_expressions RB
+                {
+                        Symbol* symbol = symbolTableStack.lookup(*$1);
+                        if (!symbol)
+                        {
+                                yyerror("ID not found");
+                        }else if (symbol->id_type!=ID_PROCEDURE)
+                        {
+                                yyerror("ID is not procedure");
+                        }else{
+                                for(int i=0;i<symbol->arguments.size();i++){
+                                        if(symbolTableStack.parseStack[i]->value_type!=symbol->arguments[i]->value->value_type){
+                                                TypeError(symbolTableStack.parseStack[i]->value_type,symbol->arguments[i]->value->value_type);
+                                        }
+                                }
+                        }
+
+                        symbolTableStack.parseStack.clear();
+
+
+                        $$ = symbol->value;
+                }
                 ;
 
-comma_separated_expressions     : expression COMMA comma_separated_expressions
+comma_separated_expressions     : expression 
+                                {
+                                        symbolTableStack.parseStack.push_back($1);
+                                } COMMA comma_separated_expressions
                                 | expression
+                                {
+                                        symbolTableStack.parseStack.push_back($1);
+                                }
                                 ;
-
-
-
 
 // Num
 num     : C_INT
+        {
+                Value *ret=new Value();
+                ret->value_type=VALUE_INT;
+                $$=ret;
+        }
         ;
 
 %%

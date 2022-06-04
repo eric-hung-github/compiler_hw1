@@ -182,6 +182,7 @@ class SymbolTableStack
 
 public:
     vector<Symbol *> argumentStack;
+    vector<Value *> parseStack;
     Symbol *fun_ptr = nullptr;
 
     SymbolTableStack()

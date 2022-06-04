@@ -5,3 +5,7 @@ B10830020
     revise symbol table
     yacc function declaration
     c:332 Type error??
+2020/6/5
+    finish type error of assign
+    start dealing expression
+    !!! Still no fix const expression
