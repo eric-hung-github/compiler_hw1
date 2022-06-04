@@ -4,6 +4,8 @@
 #include <iomanip>
 using namespace std;
 
+int linenum = 1;
+
 enum IDType
 {
     ID_ERROR = 0,
@@ -107,14 +109,8 @@ struct Symbol
     string name = "";
     int id_type = ID_ERROR;
 
-    // int array_type;
-    // int array_size;
-    // int return_type;
-    // int local_no = -1;
-
     Value *value = new Value();
     vector<Symbol *> arguments;
-    // vector<Value *> params;
 };
 
 class SymbolTable
@@ -186,6 +182,7 @@ class SymbolTableStack
 
 public:
     vector<Symbol *> argumentStack;
+    Symbol *fun_ptr = nullptr;
 
     SymbolTableStack()
     {

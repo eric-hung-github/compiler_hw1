@@ -19,12 +19,12 @@ int yylex();
 
 void yyerror(string s)
 {
-    cout<<"Error : " << s <<endl;
+    cout<<"ERROR LINE<"+to_string(linenum)+">: " << s <<endl;
     exit(-1);
 }
 
 void TypeError(int a,int b){
-        yyerror("Type Error: "+ValueTypeToString(a)+" <-> "+ ValueTypeToString(a));
+        yyerror("Type Error: "+ValueTypeToString(a)+" <-> "+ ValueTypeToString(b));
 }
 
 %}
@@ -70,7 +70,7 @@ void TypeError(int a,int b){
 
 %type <id_type> type_define  
 %type <value> const_expression int_expression bool_expression expression 
-%type <value> components literal_constant var_refer
+%type <value> components literal_constant var_refer fun_invoc
 %type <symbol> arr_refer
 /* %type <value> fun_invoc */
 %start program
@@ -83,15 +83,15 @@ program         : program_begin program_contents program_end
                 };
 
 program_begin : CLASS ID LCB
-{
-    symbolTableStack.push(*$2);
+                {
+                symbolTableStack.push(*$2);
 
-    Symbol* symbol = new Symbol();
-    symbol->name = *$2;
-    symbol->id_type = ID_PROGRAM;
-    symbolTableStack.insert(symbol);
+                Symbol* symbol = new Symbol();
+                symbol->name = *$2;
+                symbol->id_type = ID_PROGRAM;
+                symbolTableStack.insert(symbol);
 
-};
+                };
 
 program_end     : RCB
                 ;
@@ -228,10 +228,16 @@ fun_declaration : FUN ID LB formal_argument_list RB MO type_define
                             symbolTableStack.insert(symbolTableStack.argumentStack[i]); 
                         }
 
+
                         symbolTableStack.argumentStack.clear();
+
+                        symbolTableStack.fun_ptr=symbol;
 
                 } block{
                         symbolTableStack.pop();
+
+                        symbolTableStack.fun_ptr=nullptr;
+
                 }
                 | FUN ID LB RB MO type_define
                 {       
@@ -241,15 +247,15 @@ fun_declaration : FUN ID LB formal_argument_list RB MO type_define
  
                         symbolTableStack.insert(symbol);
 
-                        // symbol->arguments=symbolTableStack.argumentStack;
-
                         symbolTableStack.push(*$2);
-                        // for(int i=0;i<symbolTableStack.argumentStack.size();i++){
-                        //     symbolTableStack.insert(symbolTableStack.argumentStack[i]); 
-                        // }
-                        // symbolTableStack.argumentStack.clear();
+
+                        symbolTableStack.fun_ptr=symbol;
+
                 } block{
                         symbolTableStack.pop();
+
+                        symbolTableStack.fun_ptr=nullptr;
+
                 }
                 ;
 
@@ -270,8 +276,14 @@ proc_declaration: FUN ID LB formal_argument_list RB
 
                         symbolTableStack.argumentStack.clear();
 
+                        symbolTableStack.fun_ptr=symbol;
+
+
                 } block{
                         symbolTableStack.pop();
+
+                        symbolTableStack.fun_ptr=nullptr;
+
                 }
                 | FUN ID LB RB
                 {       
@@ -281,17 +293,19 @@ proc_declaration: FUN ID LB formal_argument_list RB
  
                         symbolTableStack.insert(symbol);
 
-                        // symbol->arguments=symbolTableStack.argumentStack;
 
                         symbolTableStack.push(*$2);
-                        // for(int i=0;i<symbolTableStack.argumentStack.size();i++){
-                        //     symbolTableStack.insert(symbolTableStack.argumentStack[i]); 
-                        // }
 
                         symbolTableStack.argumentStack.clear();
 
+                        symbolTableStack.fun_ptr=symbol;
+
+
                 } block{
                         symbolTableStack.pop();
+
+                        symbolTableStack.fun_ptr=nullptr;
+
                 }
                 ;
 
@@ -328,8 +342,7 @@ simple_statement: ID ASIGN expression
                                 yyerror("ID is const");
                         }else if (symbol->value->value_type!=$3->value_type)
                         {       
-                                // yyerror("Type error");
-                                // TypeError(symbol->value->value_type,$3->value_type);
+                                TypeError(symbol->value->value_type,$3->value_type);
                         }
                 }
                 | arr_refer ASIGN expression
@@ -343,8 +356,7 @@ simple_statement: ID ASIGN expression
                                 yyerror("ID is not array");
                         }else if (symbol->value->value_type!=$3->value_type)
                         {       
-                                // yyerror("Type error");
-                                // TypeError(symbol->value->value_type,$3->value_type);
+                                TypeError(symbol->value->value_type,$3->value_type);
                         }
                 }
                 | PRINT LB expression RB
@@ -352,8 +364,39 @@ simple_statement: ID ASIGN expression
                 | PRINTLN LB expression RB
                 | PRINTLN expression
                 | RETURN ID
-                | RETURN 
+                {
+                        if(!symbolTableStack.fun_ptr){
+                                yyerror("Not in function");
+                        }else{
+                                Symbol* symbol = symbolTableStack.lookup(*$2);
+                                if (!symbol)
+                                {
+                                        yyerror("ID not found");
+                                }else if (symbol->value->value_type!=symbolTableStack.fun_ptr->value->value_type)
+                                {       
+                                        TypeError(symbol->value->value_type,symbolTableStack.fun_ptr->value->value_type);
+                                }
+                        }
+                }
+                | RETURN
+                {
+                        if(!symbolTableStack.fun_ptr){
+                                yyerror("Not in function");
+                        }else if (symbolTableStack.fun_ptr->value->value_type!=VALUE_NONE)
+                        {       
+                                TypeError(symbolTableStack.fun_ptr->value->value_type,VALUE_NONE);
+                        }
+                        
+                }
                 | RETURN expression 
+                {
+                        if(!symbolTableStack.fun_ptr){
+                                yyerror("Not in function");
+                        }else if ($2->value_type!=symbolTableStack.fun_ptr->value->value_type)
+                        {       
+                                TypeError($2->value_type,symbolTableStack.fun_ptr->value->value_type);
+                        }
+                }
                 ;
 
 // Expression
@@ -365,13 +408,29 @@ const_expression        : expression
 
 int_expression          : expression
                         {
+                                if($1->value_type!=VALUE_INT){
+                                        TypeError($1->value_type,VALUE_INT);
+                                }
                                 $$=$1;
                         }
                         ;
 
-bool_expression         : expression
+bool_expression         : expression logic_operator expression
+                        {
+                                if($1->value_type!=$3->value_type){
+                                        TypeError($1->value_type,$3->value_type);
+                                }
+                                Value *ret=new Value();
+                                ret->value_type=VALUE_BOOL;
+                                $$=ret;
+                        }
+                        | bool_expression bit_operator bool_expression
                         {
                                 $$=$1;
+                        }
+                        | NOT bool_expression
+                        {
+                                $$=$2;
                         }
                         ;
 
@@ -383,32 +442,10 @@ expression      : LB expression RB
                 {
                         $$=$2;
                 }
-                | NOT expression
-                {
-                        $$=$2;
-                }
                 | expression math_operator expression
                 {
                         if($1->value_type!=$3->value_type){
-                                // yyerror("Type error");
-                                // TypeError($1->value_type,$3->value_type);
-
-                        }
-                        $$=$1;
-                }
-                | expression logic_operator expression
-                {
-                        if($1->value_type!=$3->value_type){
-                                // yyerror("Type error");
-                                // TypeError($1->value_type,$3->value_type);
-                        }
-                        $$=$1;
-                }
-                | expression bit_operator expression
-                {
-                        if($1->value_type!=$3->value_type){
-                                // yyerror("Type error");
-                                // TypeError($1->value_type,$3->value_type);
+                                TypeError($1->value_type,$3->value_type);
                         }
                         $$=$1;
                 }
@@ -448,7 +485,7 @@ components      : literal_constant
                 }
                 | fun_invoc
                 {
-                        // $$=$1;
+                        $$=$1;
                 }
                 | arr_refer
                 {
@@ -527,7 +564,7 @@ block_content   : va_declaration
 // Conditional
 condition_statement     : IF LB bool_expression RB block_or_simple_statement
                         | IF LB bool_expression RB block_or_simple_statement ELSE block_or_simple_statement
-                        ;
+                        ; 
 
 // Loop
 loop_statement  : WHILE LB bool_expression RB block_or_simple_statement
@@ -540,6 +577,10 @@ block_or_simple_statement       : block
 
 // Invocation
 fun_invoc       : ID LB comma_separated_expressions RB
+                {
+                        Symbol* symbol = symbolTableStack.lookup(*$1);
+                        $$ = symbol->value;
+                }
                 ;
 
 proc_invoc      : ID LB comma_separated_expressions RB

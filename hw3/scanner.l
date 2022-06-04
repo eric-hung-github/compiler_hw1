@@ -10,7 +10,6 @@
 
         #define MAX_LINE_LENG 256
 
-        int linenum = 1;
         char buf[MAX_LINE_LENG];
 
         #define LIST     strcat(buf,yytext)
