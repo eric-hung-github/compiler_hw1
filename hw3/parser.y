@@ -261,6 +261,7 @@ fun_declaration : FUN ID LB formal_argument_list RB MO type_define
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_FUNC;
                         symbol->name = *$2;   
+                        symbol->value->value_type= VALUE_VOID;
  
                         symbolTableStack.insert(symbol);
 
@@ -690,9 +691,9 @@ int main( int argc, char **argv )
 		exit(-1);
 	}
 
-        string jasm_target_path = argv[1];
+        /* string jasm_target_path = argv[1];
         jasm_target_path += ".jasm";
-        jasm_file.open(jasm_target_path, ios::out | ios::trunc);
+        jasm_file.open(jasm_target_path, ios::out | ios::trunc); */
         /* if(yyparse() == 1){
         yyerror("parsing error");
                 
