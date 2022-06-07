@@ -1,6 +1,6 @@
 CC = g++
-LEX = flex
-YACC = bison
+LEX = lex
+YACC = yacc
 
 TARGET = compiler
 PARSER = parser
