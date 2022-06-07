@@ -5,17 +5,13 @@
 #include "symbol_table.hpp"
 #include "lex.yy.cpp"
 using namespace std;
+
 #define Trace(t)        cout<<t<<endl;
-
-SymbolTableStack symbolTableStack =  SymbolTableStack();
-fstream jasm_file;
-#define jasm(t)        jasm_file<<t;
-
-
+#define MAX_STACK 15
+#define MAX_LOCALS 15
 // a=a+b segmentation fault
 
 int yylex();
-
 
 void yyerror(string s)
 {
@@ -25,6 +21,12 @@ void yyerror(string s)
 
 void TypeError(int a,int b){
         yyerror("Type Error: "+ValueTypeToString(a)+" <-> "+ ValueTypeToString(b));
+}
+
+SymbolTableStack symbolTableStack =  SymbolTableStack();
+fstream jasm_file;
+void jasm(string s){
+        // jasm_file<<s<<endl;
 }
 
 %}
@@ -48,19 +50,12 @@ void TypeError(int a,int b){
 
 /* token */
 %token SEMICOLON
-
 %token COMMA FAN MO ARROW DOT
-
 %token LB RB LCB RCB LSB RSB
-
 %token ADD SUB MUL DIV MOD
-
 %token BT ST SET BET EQL NEQ
-
 %token AND OR NOT
-
 %token ASIGN ADDASIGN SUBASIGN MULASIGN DIVASIGN
- 
 %token BOOL BREAK CHAR CASE CLASS CONTINUE DECLARE DO ELSE EXIT FLOAT FOR FUN IF INT LOOP PRINT PRINTLN RETURN STRING VAL VAR WHILE
 
 
@@ -91,9 +86,14 @@ program_begin : CLASS ID LCB
                 symbol->id_type = ID_PROGRAM;
                 symbolTableStack.insert(symbol);
 
+                // jasm("class "+*$2+"\n{");
+
                 };
 
 program_end     : RCB
+                {
+                        // jasm("}");
+                }
                 ;
 
 
@@ -165,6 +165,12 @@ var_declaration         : VAR ID
                                 symbol->value->value_type=VALUE_INT;
 
                                 symbolTableStack.insert(symbol);
+                                
+                                // if(symbolTableStack.size()==1){
+                                //         jasm("field static int "+*$2);
+                                // }else{
+
+                                // }
                         }
                         | VAR ID MO type_define
                         {       
@@ -174,6 +180,12 @@ var_declaration         : VAR ID
                                 symbol->value->value_type= $4;
  
                                 symbolTableStack.insert(symbol);
+
+                                // if(symbolTableStack.size()==1){
+                                //         jasm("field static "+ValueTypeToString($4)+" "+*$2);
+                                // }else{
+                                        
+                                // }
                         }
                         | VAR ID MO type_define ASIGN const_expression
                         {       
@@ -187,6 +199,12 @@ var_declaration         : VAR ID
                                 }else{
                                         TypeError(symbol->value->value_type,$4);
                                 }
+
+                                // if(symbolTableStack.size()==1){
+                                //         jasm("field static "+ValueTypeToString($6->value_type)+" "+*$2+" = "+$6->display());
+                                // }else{
+                                        
+                                // }
 
                         }
                         | VAR ID ASIGN const_expression

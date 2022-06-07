@@ -873,40 +873,40 @@ static const yytype_int16 yytranslate[] =
 static const yytype_int16 yyrline[] =
 {
        0,   403,   403,   403,   408,   409,   414,   412,   421,   425,
-     427,   432,   434,   443,   447,   454,   460,   468,   474,   482,
-     484,   488,   490,   494,   496,   500,   502,   506,   508,   512,
-     514,   518,   520,   524,   526,   530,   532,   536,   538,   540,
-     542,   544,   548,   550,   554,   556,   561,   562,   565,   570,
-     574,   578,   582,   587,   592,   597,   598,   602,   607,   602,
-     623,   625,   629,   631,   636,   638,   642,   644,   653,   655,
-     658,   663,   669,   671,   674,   679,   682,   686,   691,   698,
-     700,   702,   704,   706,   708,   710,   712,   714,   722,   724,
-     728,   733,   738,   740,   745,   749,   752,   755,   757,   759,
-     761,   765,   769,   772,   775,   778,   784,   787,   790,   797,
-     800,   803,   806,   809,   813,   816,   821,   823,   825,   827,
-     829,   831,   833,   835,   837,   839,   841,   843,   845,   847,
-     849,   851,   853,   855,   857,   859,   861,   863,   865,   867,
-     869,   871,   873,   875,   877,   879,   881,   883,   885,   887,
-     889,   891,   893,   895,   897,   899,   901,   903,   905,   907,
-     909,   911,   913,   915,   917,   919,   921,   923,   925,   927,
-     929,   931,   933,   935,   937,   939,   941,   943,   945,   947,
-     949,   951,   953,   955,   957,   959,   961,   963,   965,   967,
-     969,   971,   973,   975,   977,   979,   981,   983,   985,   987,
-     989,   991,   993,   995,   997,   999,  1001,  1003,  1005,  1007,
-    1009,  1011,  1013,  1015,  1017,  1019,  1021,  1023,  1025,  1027,
-    1029,  1031,  1033,  1035,  1037,  1039,  1041,  1043,  1045,  1047,
-    1049,  1051,  1053,  1055,  1057,  1059,  1061,  1063,  1065,  1067,
-    1069,  1071,  1073,  1075,  1077,  1079,  1081,  1083,  1085,  1087,
-    1089,  1091,  1093,  1095,  1097,  1099,  1101,  1103,  1105,  1107,
-    1109,  1111,  1113,  1115,  1119,  1121,  1123,  1125,  1127,  1133,
-    1135,  1137,  1142,  1144,  1146,  1148,  1153,  1155,  1157,  1161,
-    1163,  1165,  1167,  1169,  1171,  1173,  1175,  1177,  1179,  1181,
-    1183,  1185,  1187,  1189,  1191,  1193,  1195,  1197,  1199,  1204,
-    1206,  1208,  1210,  1212,  1214,  1216,  1218,  1220,  1222,  1224,
-    1226,  1228,  1232,  1234,  1238,  1240,  1243,  1245,  1249,  1251,
-    1253,  1255,  1257,  1259,  1261,  1263,  1267,  1271,  1275,  1279,
-    1283,  1288,  1296,  1298,  1301,  1303,  1308,  1312,  1314,  1317,
-    1319,  1323,  1325,  1328,  1331,  1335,  1337
+     427,   432,   434,   442,   446,   453,   459,   467,   473,   481,
+     483,   487,   489,   493,   495,   499,   501,   505,   507,   511,
+     513,   517,   519,   523,   525,   529,   531,   535,   537,   539,
+     541,   543,   547,   549,   553,   555,   560,   561,   564,   569,
+     573,   577,   581,   586,   591,   596,   597,   601,   606,   601,
+     622,   624,   628,   630,   635,   637,   641,   643,   652,   654,
+     657,   662,   668,   670,   673,   678,   681,   685,   690,   697,
+     699,   701,   703,   705,   707,   709,   711,   713,   721,   723,
+     727,   732,   737,   739,   744,   748,   751,   754,   756,   758,
+     760,   764,   768,   771,   774,   777,   783,   786,   789,   796,
+     799,   802,   805,   808,   812,   815,   820,   822,   824,   826,
+     828,   830,   832,   834,   836,   838,   840,   842,   844,   846,
+     848,   850,   852,   854,   856,   858,   860,   862,   864,   866,
+     868,   870,   872,   874,   876,   878,   880,   882,   884,   886,
+     888,   890,   892,   894,   896,   898,   900,   902,   904,   906,
+     908,   910,   912,   914,   916,   918,   920,   922,   924,   926,
+     928,   930,   932,   934,   936,   938,   940,   942,   944,   946,
+     948,   950,   952,   954,   956,   958,   960,   962,   964,   966,
+     968,   970,   972,   974,   976,   978,   980,   982,   984,   986,
+     988,   990,   992,   994,   996,   998,  1000,  1002,  1004,  1006,
+    1008,  1010,  1012,  1014,  1016,  1018,  1020,  1022,  1024,  1026,
+    1028,  1030,  1032,  1034,  1036,  1038,  1040,  1042,  1044,  1046,
+    1048,  1050,  1052,  1054,  1056,  1058,  1060,  1062,  1064,  1066,
+    1068,  1070,  1072,  1074,  1076,  1078,  1080,  1082,  1084,  1086,
+    1088,  1090,  1092,  1094,  1096,  1098,  1100,  1102,  1104,  1106,
+    1108,  1110,  1112,  1114,  1118,  1120,  1122,  1124,  1126,  1132,
+    1134,  1136,  1141,  1143,  1145,  1147,  1152,  1154,  1156,  1160,
+    1162,  1164,  1166,  1168,  1170,  1172,  1174,  1176,  1178,  1180,
+    1182,  1184,  1186,  1188,  1190,  1192,  1194,  1196,  1198,  1203,
+    1205,  1207,  1209,  1211,  1213,  1215,  1217,  1219,  1221,  1223,
+    1225,  1227,  1231,  1233,  1237,  1239,  1242,  1244,  1248,  1250,
+    1252,  1254,  1256,  1258,  1260,  1262,  1266,  1270,  1274,  1278,
+    1282,  1287,  1295,  1297,  1300,  1302,  1307,  1311,  1313,  1316,
+    1318,  1322,  1324,  1327,  1330,  1334,  1336
 };
 #endif
 
@@ -1901,2140 +1901,2139 @@ yyreduce:
     {
   case 2: /* $@1: %empty  */
 #line 403 "javaa.y"
-      { InitAssembler();}
+          { InitAssembler();}
 #line 1906 "javaa.tab.c"
     break;
 
   case 3: /* compilation_unit: $@1 classlist  */
 #line 404 "javaa.y"
-            { EndAssembler();}
+                { EndAssembler();}
 #line 1912 "javaa.tab.c"
     break;
 
   case 6: /* $@2: %empty  */
 #line 414 "javaa.y"
-        {
-        SetThisClass((yyvsp[-6].intval), (yyvsp[-4].string), (yyvsp[-3].string));
-        }
+                {
+		SetThisClass((yyvsp[-6].intval), (yyvsp[-4].string), (yyvsp[-3].string));
+		}
 #line 1920 "javaa.tab.c"
     break;
 
   case 8: /* class_modifiers: abstract_entry final_entry public_entry interface_entry  */
 #line 422 "javaa.y"
-        {(yyval.intval) = (yyvsp[-3].intval) | (yyvsp[-2].intval) | (yyvsp[-1].intval) | (yyvsp[0].intval);}
+                {(yyval.intval) = (yyvsp[-3].intval) | (yyvsp[-2].intval) | (yyvsp[-1].intval) | (yyvsp[0].intval);}
 #line 1926 "javaa.tab.c"
     break;
 
   case 9: /* classword: CLASS  */
 #line 426 "javaa.y"
-        {break;}
+                {break;}
 #line 1932 "javaa.tab.c"
     break;
 
   case 10: /* classword: %empty  */
 #line 427 "javaa.y"
-        {break;}
+                {break;}
 #line 1938 "javaa.tab.c"
     break;
 
   case 11: /* superclass: EXTENDS classname  */
 #line 433 "javaa.y"
-        { (yyval.string) = (yyvsp[0].string);}
+                { (yyval.string) = (yyvsp[0].string);}
 #line 1944 "javaa.tab.c"
     break;
 
   case 12: /* superclass: %empty  */
 #line 434 "javaa.y"
-      {
-        char* tempstring;
-        int len = strlen("java/lang/Object")+1;
-        tempstring = (char *) malloc(sizeof(char)*len);
-        strncpy(tempstring,"java/lang/Object", len);
-        (yyval.string) = tempstring;
-      }
-#line 1956 "javaa.tab.c"
+          {
+	    char* tempstring;
+	    tempstring = (char *) malloc(strlen("java/lang/Object"));
+	    strcpy(tempstring,"java/lang/Object");
+	    (yyval.string) = tempstring;
+	  }
+#line 1955 "javaa.tab.c"
     break;
 
   case 13: /* classname: IDENTIFIER '.' classname  */
-#line 444 "javaa.y"
-        {
-          (yyval.string) = ConsStrings((yyvsp[-2].string),ConsStrings("/",(yyvsp[0].string)));
-        }
-#line 1964 "javaa.tab.c"
+#line 443 "javaa.y"
+                {
+		  (yyval.string) = ConsStrings((yyvsp[-2].string),ConsStrings("/",(yyvsp[0].string)));
+		}
+#line 1963 "javaa.tab.c"
     break;
 
   case 14: /* classname: IDENTIFIER  */
-#line 448 "javaa.y"
-        {
-          (yyval.string) = (yyvsp[0].string);
-        }
-#line 1972 "javaa.tab.c"
+#line 447 "javaa.y"
+                {
+		  (yyval.string) = (yyvsp[0].string);
+		}
+#line 1971 "javaa.tab.c"
     break;
 
   case 15: /* classfieldmethodname: IDENTIFIER '.' endname  */
-#line 455 "javaa.y"
-        {
-          if ((yyvsp[0].classfieldmethodstruct).classname == NULL) (yyval.classfieldmethodstruct).classname = (yyvsp[-2].string);
-          else (yyval.classfieldmethodstruct).classname = ConsStrings((yyvsp[-2].string),ConsStrings("/",(yyvsp[0].classfieldmethodstruct).classname));
-          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].classfieldmethodstruct).fieldmethodname;
-        }
-#line 1982 "javaa.tab.c"
+#line 454 "javaa.y"
+                {
+		  if ((yyvsp[0].classfieldmethodstruct).classname == NULL) (yyval.classfieldmethodstruct).classname = (yyvsp[-2].string);
+		  else (yyval.classfieldmethodstruct).classname = ConsStrings((yyvsp[-2].string),ConsStrings("/",(yyvsp[0].classfieldmethodstruct).classname));
+		  (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].classfieldmethodstruct).fieldmethodname;
+		}
+#line 1981 "javaa.tab.c"
     break;
 
   case 16: /* classfieldmethodname: IDENTIFIER  */
-#line 461 "javaa.y"
-        {
-          (yyval.classfieldmethodstruct).classname = GetThisClass();
-          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].string);
-        }
-#line 1991 "javaa.tab.c"
+#line 460 "javaa.y"
+                {
+		  (yyval.classfieldmethodstruct).classname = GetThisClass();
+		  (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].string);
+		}
+#line 1990 "javaa.tab.c"
     break;
 
   case 17: /* endname: IDENTIFIER '.' endname  */
-#line 469 "javaa.y"
-        {
-          if ((yyvsp[0].classfieldmethodstruct).classname == NULL) (yyval.classfieldmethodstruct).classname = (yyvsp[-2].string);
-          else (yyval.classfieldmethodstruct).classname = ConsStrings((yyvsp[-2].string),ConsStrings("/",(yyvsp[0].classfieldmethodstruct).classname));
-          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].classfieldmethodstruct).fieldmethodname;
-        }
-#line 2001 "javaa.tab.c"
+#line 468 "javaa.y"
+                {
+		  if ((yyvsp[0].classfieldmethodstruct).classname == NULL) (yyval.classfieldmethodstruct).classname = (yyvsp[-2].string);
+		  else (yyval.classfieldmethodstruct).classname = ConsStrings((yyvsp[-2].string),ConsStrings("/",(yyvsp[0].classfieldmethodstruct).classname));
+		  (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].classfieldmethodstruct).fieldmethodname;
+		}
+#line 2000 "javaa.tab.c"
     break;
 
   case 18: /* endname: IDENTIFIER  */
-#line 475 "javaa.y"
-        {
-          (yyval.classfieldmethodstruct).classname = NULL;
-          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].string);
-        }
-#line 2010 "javaa.tab.c"
+#line 474 "javaa.y"
+                {
+		  (yyval.classfieldmethodstruct).classname = NULL;
+		  (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].string);
+		}
+#line 2009 "javaa.tab.c"
     break;
 
   case 19: /* abstract_entry: ABSTRACT  */
-#line 483 "javaa.y"
-        {(yyval.intval) = 0x0400;}
-#line 2016 "javaa.tab.c"
+#line 482 "javaa.y"
+                {(yyval.intval) = 0x0400;}
+#line 2015 "javaa.tab.c"
     break;
 
   case 20: /* abstract_entry: %empty  */
-#line 484 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2022 "javaa.tab.c"
+#line 483 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2021 "javaa.tab.c"
     break;
 
   case 21: /* final_entry: FINAL  */
-#line 489 "javaa.y"
-        {(yyval.intval) = 0x0010;}
-#line 2028 "javaa.tab.c"
+#line 488 "javaa.y"
+                {(yyval.intval) = 0x0010;}
+#line 2027 "javaa.tab.c"
     break;
 
   case 22: /* final_entry: %empty  */
-#line 490 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2034 "javaa.tab.c"
+#line 489 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2033 "javaa.tab.c"
     break;
 
   case 23: /* public_entry: PUBLIC  */
-#line 495 "javaa.y"
-        {(yyval.intval) = 0x0001;}
-#line 2040 "javaa.tab.c"
+#line 494 "javaa.y"
+                {(yyval.intval) = 0x0001;}
+#line 2039 "javaa.tab.c"
     break;
 
   case 24: /* public_entry: %empty  */
-#line 496 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2046 "javaa.tab.c"
+#line 495 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2045 "javaa.tab.c"
     break;
 
   case 25: /* interface_entry: INTERFACE  */
-#line 501 "javaa.y"
-        {(yyval.intval) = 0x0200;}
-#line 2052 "javaa.tab.c"
+#line 500 "javaa.y"
+                {(yyval.intval) = 0x0200;}
+#line 2051 "javaa.tab.c"
     break;
 
   case 26: /* interface_entry: %empty  */
-#line 502 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2058 "javaa.tab.c"
+#line 501 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2057 "javaa.tab.c"
     break;
 
   case 27: /* static_entry: STATIC  */
-#line 507 "javaa.y"
-        {(yyval.intval) = 0x0008;}
-#line 2064 "javaa.tab.c"
+#line 506 "javaa.y"
+                {(yyval.intval) = 0x0008;}
+#line 2063 "javaa.tab.c"
     break;
 
   case 28: /* static_entry: %empty  */
-#line 508 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2070 "javaa.tab.c"
+#line 507 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2069 "javaa.tab.c"
     break;
 
   case 29: /* native_entry: NATIVE  */
-#line 513 "javaa.y"
-        {(yyval.intval) = 0x0100;}
-#line 2076 "javaa.tab.c"
+#line 512 "javaa.y"
+                {(yyval.intval) = 0x0100;}
+#line 2075 "javaa.tab.c"
     break;
 
   case 30: /* native_entry: %empty  */
-#line 514 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2082 "javaa.tab.c"
+#line 513 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2081 "javaa.tab.c"
     break;
 
   case 31: /* synchronized_entry: SYNCHRONIZED  */
-#line 519 "javaa.y"
-        {(yyval.intval) = 0x0020;}
-#line 2088 "javaa.tab.c"
+#line 518 "javaa.y"
+                {(yyval.intval) = 0x0020;}
+#line 2087 "javaa.tab.c"
     break;
 
   case 32: /* synchronized_entry: %empty  */
-#line 520 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2094 "javaa.tab.c"
+#line 519 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2093 "javaa.tab.c"
     break;
 
   case 33: /* transient_entry: TRANSIENT  */
-#line 525 "javaa.y"
-        {(yyval.intval) = 0x0080;}
-#line 2100 "javaa.tab.c"
+#line 524 "javaa.y"
+                {(yyval.intval) = 0x0080;}
+#line 2099 "javaa.tab.c"
     break;
 
   case 34: /* transient_entry: %empty  */
-#line 526 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2106 "javaa.tab.c"
+#line 525 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2105 "javaa.tab.c"
     break;
 
   case 35: /* volatile_entry: VOLATILE  */
-#line 531 "javaa.y"
-        {(yyval.intval) = 0x0040;}
-#line 2112 "javaa.tab.c"
+#line 530 "javaa.y"
+                {(yyval.intval) = 0x0040;}
+#line 2111 "javaa.tab.c"
     break;
 
   case 36: /* volatile_entry: %empty  */
-#line 532 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2118 "javaa.tab.c"
+#line 531 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2117 "javaa.tab.c"
     break;
 
   case 37: /* access_specifier: PRIVATE  */
-#line 537 "javaa.y"
-        {(yyval.intval) = 2;}
-#line 2124 "javaa.tab.c"
+#line 536 "javaa.y"
+                {(yyval.intval) = 2;}
+#line 2123 "javaa.tab.c"
     break;
 
   case 38: /* access_specifier: PRIVATE PROTECTED  */
-#line 539 "javaa.y"
-        {(yyval.intval) = 6;}
-#line 2130 "javaa.tab.c"
+#line 538 "javaa.y"
+                {(yyval.intval) = 6;}
+#line 2129 "javaa.tab.c"
     break;
 
   case 39: /* access_specifier: PROTECTED  */
-#line 541 "javaa.y"
-        {(yyval.intval) = 4;}
-#line 2136 "javaa.tab.c"
+#line 540 "javaa.y"
+                {(yyval.intval) = 4;}
+#line 2135 "javaa.tab.c"
     break;
 
   case 40: /* access_specifier: PUBLIC  */
-#line 543 "javaa.y"
-        {(yyval.intval) = 1;}
-#line 2142 "javaa.tab.c"
+#line 542 "javaa.y"
+                {(yyval.intval) = 1;}
+#line 2141 "javaa.tab.c"
     break;
 
   case 41: /* access_specifier: %empty  */
-#line 544 "javaa.y"
-      {(yyval.intval)=0;}
-#line 2148 "javaa.tab.c"
+#line 543 "javaa.y"
+          {(yyval.intval)=0;}
+#line 2147 "javaa.tab.c"
     break;
 
   case 42: /* interfaces: IMPLEMENTS interfacelist  */
-#line 549 "javaa.y"
-        {break;}
-#line 2154 "javaa.tab.c"
+#line 548 "javaa.y"
+                {break;}
+#line 2153 "javaa.tab.c"
     break;
 
   case 43: /* interfaces: %empty  */
-#line 550 "javaa.y"
-        {break;}
-#line 2160 "javaa.tab.c"
+#line 549 "javaa.y"
+                {break;}
+#line 2159 "javaa.tab.c"
     break;
 
   case 44: /* interfacelist: interfacelist classname  */
-#line 555 "javaa.y"
-        { AddToInterfaceList((yyvsp[0].string));}
-#line 2166 "javaa.tab.c"
+#line 554 "javaa.y"
+                { AddToInterfaceList((yyvsp[0].string));}
+#line 2165 "javaa.tab.c"
     break;
 
   case 45: /* interfacelist: classname  */
-#line 557 "javaa.y"
-        { AddToInterfaceList((yyvsp[0].string));}
-#line 2172 "javaa.tab.c"
+#line 556 "javaa.y"
+                { AddToInterfaceList((yyvsp[0].string));}
+#line 2171 "javaa.tab.c"
     break;
 
   case 47: /* fieldlist: %empty  */
-#line 562 "javaa.y"
-      {break;}
-#line 2178 "javaa.tab.c"
+#line 561 "javaa.y"
+          {break;}
+#line 2177 "javaa.tab.c"
     break;
 
   case 48: /* field: FIELD access_specifier field_modifiers type IDENTIFIER fieldconstant  */
-#line 566 "javaa.y"
-        {NewField((yyvsp[-4].intval)|(yyvsp[-3].intval), (yyvsp[-1].string), (yyvsp[-2].string), (yyvsp[0].argtype));}
-#line 2184 "javaa.tab.c"
+#line 565 "javaa.y"
+                {NewField((yyvsp[-4].intval)|(yyvsp[-3].intval), (yyvsp[-1].string), (yyvsp[-2].string), (yyvsp[0].argtype));}
+#line 2183 "javaa.tab.c"
     break;
 
   case 49: /* fieldconstant: '=' INTCONSTANT  */
-#line 571 "javaa.y"
+#line 570 "javaa.y"
              {(yyval.argtype).type = INTCONSTANT;
               (yyval.argtype).intval = (yyvsp[0].intval);
              }
-#line 2192 "javaa.tab.c"
+#line 2191 "javaa.tab.c"
     break;
 
   case 50: /* fieldconstant: '=' FLOATCONSTANT  */
-#line 575 "javaa.y"
+#line 574 "javaa.y"
              {(yyval.argtype).type = FLOATCONSTANT;
               (yyval.argtype).floatval = (yyvsp[0].floatval);
              }
-#line 2200 "javaa.tab.c"
+#line 2199 "javaa.tab.c"
     break;
 
   case 51: /* fieldconstant: '=' LONGCONSTANT  */
-#line 579 "javaa.y"
+#line 578 "javaa.y"
              {(yyval.argtype).type = LONGCONSTANT;
               (yyval.argtype).longval = (yyvsp[0].longval);
              }
-#line 2208 "javaa.tab.c"
+#line 2207 "javaa.tab.c"
     break;
 
   case 52: /* fieldconstant: '=' DOUBLECONSTANT  */
-#line 583 "javaa.y"
+#line 582 "javaa.y"
              {(yyval.argtype).type = DOUBLECONSTANT;
               (yyval.argtype).doubleval = (yyvsp[0].doubleval);
              }
-#line 2216 "javaa.tab.c"
+#line 2215 "javaa.tab.c"
     break;
 
   case 53: /* fieldconstant: %empty  */
-#line 587 "javaa.y"
+#line 586 "javaa.y"
              {(yyval.argtype).type = 0;
              }
-#line 2223 "javaa.tab.c"
+#line 2222 "javaa.tab.c"
     break;
 
   case 54: /* field_modifiers: static_entry final_entry transient_entry volatile_entry  */
-#line 593 "javaa.y"
-        { (yyval.intval) = (yyvsp[-3].intval) | (yyvsp[-2].intval) | (yyvsp[-1].intval) | (yyvsp[0].intval) ;}
-#line 2229 "javaa.tab.c"
+#line 592 "javaa.y"
+                { (yyval.intval) = (yyvsp[-3].intval) | (yyvsp[-2].intval) | (yyvsp[-1].intval) | (yyvsp[0].intval) ;}
+#line 2228 "javaa.tab.c"
     break;
 
   case 56: /* methodlist: %empty  */
-#line 598 "javaa.y"
-      {break;}
-#line 2235 "javaa.tab.c"
+#line 597 "javaa.y"
+          {break;}
+#line 2234 "javaa.tab.c"
     break;
 
   case 57: /* $@3: %empty  */
-#line 602 "javaa.y"
+#line 601 "javaa.y"
                                                    {NewNewMethod((yyvsp[-1].intval)|(yyvsp[0].intval));}
-#line 2241 "javaa.tab.c"
+#line 2240 "javaa.tab.c"
     break;
 
   case 58: /* $@4: %empty  */
-#line 607 "javaa.y"
-      {
-        char* tmpstr;
-        /*message("Calling NewMethod.");*/
-        tmpstr = ConsStrings("(",ConsStrings((yyvsp[-5].string),ConsStrings(")",(yyvsp[-8].string))));
-        /*message(tmpstr);*/
-        NewMethod((yyvsp[-7].string), tmpstr, (yyvsp[-1].intval), (yyvsp[0].intval)); }
-#line 2252 "javaa.tab.c"
+#line 606 "javaa.y"
+          { 
+	    char* tmpstr; 
+	    /*message("Calling NewMethod.");*/
+	    tmpstr = ConsStrings("(",ConsStrings((yyvsp[-5].string),ConsStrings(")",(yyvsp[-8].string))));
+	    /*message(tmpstr);*/
+	    NewMethod((yyvsp[-7].string), tmpstr, (yyvsp[-1].intval), (yyvsp[0].intval)); }
+#line 2251 "javaa.tab.c"
     break;
 
   case 59: /* method: METHOD access_specifier method_modifiers $@3 returntype IDENTIFIER '(' methodarguments ')' throwslist MAX_STACK INTCONSTANT max_locals_decl $@4 '{' code exceptiontable linenumbertable localvariabletable '}'  */
-#line 619 "javaa.y"
-        {EndMethod();}
-#line 2258 "javaa.tab.c"
+#line 618 "javaa.y"
+                {EndMethod();}
+#line 2257 "javaa.tab.c"
     break;
 
   case 60: /* throwslist: THROWS throwsentries  */
-#line 624 "javaa.y"
-        {break;}
-#line 2264 "javaa.tab.c"
+#line 623 "javaa.y"
+                {break;}
+#line 2263 "javaa.tab.c"
     break;
 
   case 61: /* throwslist: %empty  */
-#line 625 "javaa.y"
-        {break;}
-#line 2270 "javaa.tab.c"
+#line 624 "javaa.y"
+                {break;}
+#line 2269 "javaa.tab.c"
     break;
 
   case 62: /* throwsentries: throwsentries classname  */
-#line 630 "javaa.y"
-        {AddToThrowsList((yyvsp[0].string));}
-#line 2276 "javaa.tab.c"
+#line 629 "javaa.y"
+                {AddToThrowsList((yyvsp[0].string));}
+#line 2275 "javaa.tab.c"
     break;
 
   case 63: /* throwsentries: classname  */
-#line 632 "javaa.y"
-        {AddToThrowsList((yyvsp[0].string));}
-#line 2282 "javaa.tab.c"
+#line 631 "javaa.y"
+                {AddToThrowsList((yyvsp[0].string));}
+#line 2281 "javaa.tab.c"
     break;
 
   case 64: /* max_locals_decl: MAX_LOCALS INTCONSTANT  */
-#line 637 "javaa.y"
-        {(yyval.intval) = (yyvsp[0].intval);}
-#line 2288 "javaa.tab.c"
+#line 636 "javaa.y"
+                {(yyval.intval) = (yyvsp[0].intval);}
+#line 2287 "javaa.tab.c"
     break;
 
   case 65: /* max_locals_decl: %empty  */
-#line 638 "javaa.y"
-        {(yyval.intval) = -1;}
-#line 2294 "javaa.tab.c"
+#line 637 "javaa.y"
+                {(yyval.intval) = -1;}
+#line 2293 "javaa.tab.c"
     break;
 
   case 66: /* returntype: type  */
-#line 643 "javaa.y"
-        { (yyval.string) = (yyvsp[0].string); }
-#line 2300 "javaa.tab.c"
+#line 642 "javaa.y"
+                { (yyval.string) = (yyvsp[0].string); }
+#line 2299 "javaa.tab.c"
     break;
 
   case 67: /* returntype: VOID  */
-#line 645 "javaa.y"
-            { char* tempstring;
-              tempstring = (char *) malloc(sizeof(char) * (strlen("B")+1));
-              strcpy(tempstring,"V");
-              (yyval.string) = tempstring;
-        }
-#line 2310 "javaa.tab.c"
+#line 644 "javaa.y"
+                { char* tempstring;
+	     	  tempstring = (char *) malloc(strlen("B"));
+	     	  strcpy(tempstring,"V");
+	     	  (yyval.string) = tempstring;
+	  	}
+#line 2309 "javaa.tab.c"
     break;
 
   case 68: /* arguments: argumentlist  */
-#line 654 "javaa.y"
-        { (yyval.string) = (yyvsp[0].string);}
-#line 2316 "javaa.tab.c"
+#line 653 "javaa.y"
+                { (yyval.string) = (yyvsp[0].string);}
+#line 2315 "javaa.tab.c"
     break;
 
   case 69: /* arguments: %empty  */
-#line 655 "javaa.y"
-      {(yyval.string) = NULL;}
-#line 2322 "javaa.tab.c"
+#line 654 "javaa.y"
+          {(yyval.string) = NULL;}
+#line 2321 "javaa.tab.c"
     break;
 
   case 70: /* argumentlist: type ',' argumentlist  */
-#line 659 "javaa.y"
-        {
-          /*message("in arguments with comma.");*/
-          (yyval.string) = ConsStrings((yyvsp[-2].string),(yyvsp[0].string));
-        }
-#line 2331 "javaa.tab.c"
+#line 658 "javaa.y"
+                {
+		  /*message("in arguments with comma.");*/
+		  (yyval.string) = ConsStrings((yyvsp[-2].string),(yyvsp[0].string));
+		}
+#line 2330 "javaa.tab.c"
     break;
 
   case 71: /* argumentlist: type  */
-#line 664 "javaa.y"
-        { (yyval.string) = (yyvsp[0].string); /*message("in arguments");*/}
-#line 2337 "javaa.tab.c"
+#line 663 "javaa.y"
+                { (yyval.string) = (yyvsp[0].string); /*message("in arguments");*/}
+#line 2336 "javaa.tab.c"
     break;
 
   case 72: /* methodarguments: methodargumentlist  */
-#line 670 "javaa.y"
-        { (yyval.string) = (yyvsp[0].string);}
-#line 2343 "javaa.tab.c"
+#line 669 "javaa.y"
+                { (yyval.string) = (yyvsp[0].string);}
+#line 2342 "javaa.tab.c"
     break;
 
   case 73: /* methodarguments: %empty  */
-#line 671 "javaa.y"
-      {(yyval.string) = NULL;}
-#line 2349 "javaa.tab.c"
+#line 670 "javaa.y"
+          {(yyval.string) = NULL;}
+#line 2348 "javaa.tab.c"
     break;
 
   case 74: /* methodargumentlist: methodargument ',' methodargumentlist  */
-#line 675 "javaa.y"
-        {
-          /*message("in arguments with comma.");*/
-          (yyval.string) = ConsStrings((yyvsp[-2].string),(yyvsp[0].string));
-        }
-#line 2358 "javaa.tab.c"
+#line 674 "javaa.y"
+                {
+		  /*message("in arguments with comma.");*/
+		  (yyval.string) = ConsStrings((yyvsp[-2].string),(yyvsp[0].string));
+		}
+#line 2357 "javaa.tab.c"
     break;
 
   case 75: /* methodargumentlist: methodargument  */
-#line 680 "javaa.y"
-        { (yyval.string) = (yyvsp[0].string); /*message("in arguments");*/}
-#line 2364 "javaa.tab.c"
+#line 679 "javaa.y"
+                { (yyval.string) = (yyvsp[0].string); /*message("in arguments");*/}
+#line 2363 "javaa.tab.c"
     break;
 
   case 76: /* methodargument: type  */
-#line 683 "javaa.y"
-        { (yyval.string) = (yyvsp[0].string);
-          /*message("calling IncrementLocalVarSlot");*/
-          IncrementLocalVarSlot((yyvsp[0].string)); /*message("in methodargument");*/}
-#line 2372 "javaa.tab.c"
+#line 682 "javaa.y"
+                { (yyval.string) = (yyvsp[0].string); 
+		  /*message("calling IncrementLocalVarSlot");*/
+		  IncrementLocalVarSlot((yyvsp[0].string)); /*message("in methodargument");*/}
+#line 2371 "javaa.tab.c"
     break;
 
   case 77: /* methodargument: type IDENTIFIER  */
-#line 687 "javaa.y"
-        { (yyval.string) = (yyvsp[-1].string); NewLocalVar((yyvsp[0].string), (yyvsp[-1].string));/*message("in methodargument");*/}
-#line 2378 "javaa.tab.c"
+#line 686 "javaa.y"
+                { (yyval.string) = (yyvsp[-1].string); NewLocalVar((yyvsp[0].string), (yyvsp[-1].string));/*message("in methodargument");*/}
+#line 2377 "javaa.tab.c"
     break;
 
   case 78: /* type: basetype arrayadder  */
-#line 692 "javaa.y"
-        {
-          /*message("In type.");*/
-          (yyval.string) = ConsStrings((yyvsp[0].string),(yyvsp[-1].string));
-        }
-#line 2387 "javaa.tab.c"
+#line 691 "javaa.y"
+                {
+		  /*message("In type.");*/
+		  (yyval.string) = ConsStrings((yyvsp[0].string),(yyvsp[-1].string));
+		}
+#line 2386 "javaa.tab.c"
     break;
 
   case 79: /* basetype: BYTE  */
-#line 699 "javaa.y"
-        { (yyval.string) = ConsStrings("B",""); }
-#line 2393 "javaa.tab.c"
+#line 698 "javaa.y"
+                { (yyval.string) = ConsStrings("B",""); }
+#line 2392 "javaa.tab.c"
     break;
 
   case 80: /* basetype: CHAR  */
-#line 701 "javaa.y"
-        { (yyval.string) = ConsStrings("C",""); }
-#line 2399 "javaa.tab.c"
+#line 700 "javaa.y"
+                { (yyval.string) = ConsStrings("C",""); }
+#line 2398 "javaa.tab.c"
     break;
 
   case 81: /* basetype: DOUBLE  */
-#line 703 "javaa.y"
-        { (yyval.string) = ConsStrings("D",""); }
-#line 2405 "javaa.tab.c"
+#line 702 "javaa.y"
+                { (yyval.string) = ConsStrings("D",""); }
+#line 2404 "javaa.tab.c"
     break;
 
   case 82: /* basetype: FLOAT  */
-#line 705 "javaa.y"
-        { (yyval.string) = ConsStrings("F",""); }
-#line 2411 "javaa.tab.c"
+#line 704 "javaa.y"
+                { (yyval.string) = ConsStrings("F",""); }
+#line 2410 "javaa.tab.c"
     break;
 
   case 83: /* basetype: INT  */
-#line 707 "javaa.y"
-        { (yyval.string) = ConsStrings("I",""); }
-#line 2417 "javaa.tab.c"
+#line 706 "javaa.y"
+                { (yyval.string) = ConsStrings("I",""); }
+#line 2416 "javaa.tab.c"
     break;
 
   case 84: /* basetype: LONG  */
-#line 709 "javaa.y"
-        { (yyval.string) = ConsStrings("J",""); }
-#line 2423 "javaa.tab.c"
+#line 708 "javaa.y"
+                { (yyval.string) = ConsStrings("J",""); }
+#line 2422 "javaa.tab.c"
     break;
 
   case 85: /* basetype: SHORT  */
-#line 711 "javaa.y"
-        { (yyval.string) = ConsStrings("S",""); }
-#line 2429 "javaa.tab.c"
+#line 710 "javaa.y"
+                { (yyval.string) = ConsStrings("S",""); }
+#line 2428 "javaa.tab.c"
     break;
 
   case 86: /* basetype: BOOLEAN  */
-#line 713 "javaa.y"
-        { (yyval.string) = ConsStrings("Z",""); }
-#line 2435 "javaa.tab.c"
+#line 712 "javaa.y"
+                { (yyval.string) = ConsStrings("Z",""); }
+#line 2434 "javaa.tab.c"
     break;
 
   case 87: /* basetype: classname  */
-#line 715 "javaa.y"
-        {
-         (yyval.string) = ConsStrings("L", ConsStrings((yyvsp[0].string),";"));
-         /*message($$);*/
-         /*message("Got classname.");*/}
-#line 2444 "javaa.tab.c"
+#line 714 "javaa.y"
+                {
+		 (yyval.string) = ConsStrings("L", ConsStrings((yyvsp[0].string),";"));
+	   	 /*message($$);*/
+		 /*message("Got classname.");*/}
+#line 2443 "javaa.tab.c"
     break;
 
   case 88: /* arrayadder: '[' ']' arrayadder  */
-#line 723 "javaa.y"
-        {(yyval.string) = ConsStrings("[",(yyvsp[0].string));}
-#line 2450 "javaa.tab.c"
+#line 722 "javaa.y"
+                {(yyval.string) = ConsStrings("[",(yyvsp[0].string));}
+#line 2449 "javaa.tab.c"
     break;
 
   case 89: /* arrayadder: %empty  */
-#line 724 "javaa.y"
-      {(yyval.string)=NULL;}
-#line 2456 "javaa.tab.c"
+#line 723 "javaa.y"
+          {(yyval.string)=NULL;}
+#line 2455 "javaa.tab.c"
     break;
 
   case 90: /* method_modifiers: static_entry abstract_entry final_entry native_entry synchronized_entry  */
-#line 730 "javaa.y"
-        { (yyval.intval) = (yyvsp[-4].intval) | (yyvsp[-3].intval) | (yyvsp[-2].intval) | (yyvsp[-1].intval) | (yyvsp[0].intval);}
-#line 2462 "javaa.tab.c"
+#line 729 "javaa.y"
+                { (yyval.intval) = (yyvsp[-4].intval) | (yyvsp[-3].intval) | (yyvsp[-2].intval) | (yyvsp[-1].intval) | (yyvsp[0].intval);}
+#line 2461 "javaa.tab.c"
     break;
 
   case 91: /* localvar: type IDENTIFIER  */
-#line 734 "javaa.y"
-        {NewLocalVar((yyvsp[0].string), (yyvsp[-1].string));}
-#line 2468 "javaa.tab.c"
+#line 733 "javaa.y"
+                {NewLocalVar((yyvsp[0].string), (yyvsp[-1].string));}
+#line 2467 "javaa.tab.c"
     break;
 
   case 92: /* arrayorclassname: classname  */
-#line 739 "javaa.y"
-        {(yyval.string) = (yyvsp[0].string);}
-#line 2474 "javaa.tab.c"
+#line 738 "javaa.y"
+                {(yyval.string) = (yyvsp[0].string);}
+#line 2473 "javaa.tab.c"
     break;
 
   case 93: /* arrayorclassname: basetype '[' ']' arrayadder  */
-#line 741 "javaa.y"
-        {(yyval.string) = ConsStrings("[",ConsStrings((yyvsp[0].string),(yyvsp[-3].string)));}
-#line 2480 "javaa.tab.c"
+#line 740 "javaa.y"
+                {(yyval.string) = ConsStrings("[",ConsStrings((yyvsp[0].string),(yyvsp[-3].string)));}
+#line 2479 "javaa.tab.c"
     break;
 
   case 94: /* code: op_list  */
-#line 746 "javaa.y"
-            {break;}
-#line 2486 "javaa.tab.c"
+#line 745 "javaa.y"
+                {break;}
+#line 2485 "javaa.tab.c"
     break;
 
   case 95: /* op_list: op_list op_line  */
-#line 750 "javaa.y"
-            {break;}
-#line 2492 "javaa.tab.c"
+#line 749 "javaa.y"
+                {break;}
+#line 2491 "javaa.tab.c"
     break;
 
   case 96: /* op_list: %empty  */
-#line 752 "javaa.y"
-            {break;}
-#line 2498 "javaa.tab.c"
+#line 751 "javaa.y"
+                {break;}
+#line 2497 "javaa.tab.c"
     break;
 
   case 97: /* op_line: label op  */
-#line 756 "javaa.y"
-            {break;}
-#line 2504 "javaa.tab.c"
+#line 755 "javaa.y"
+                {break;}
+#line 2503 "javaa.tab.c"
     break;
 
   case 98: /* op_line: op  */
-#line 758 "javaa.y"
-            {break;}
-#line 2510 "javaa.tab.c"
+#line 757 "javaa.y"
+                {break;}
+#line 2509 "javaa.tab.c"
     break;
 
   case 99: /* op_line: localvar  */
-#line 760 "javaa.y"
-            {break;}
-#line 2516 "javaa.tab.c"
+#line 759 "javaa.y"
+                {break;}
+#line 2515 "javaa.tab.c"
     break;
 
   case 100: /* op_line: label localvar  */
-#line 762 "javaa.y"
-            {break;}
-#line 2522 "javaa.tab.c"
+#line 761 "javaa.y"
+                {break;}
+#line 2521 "javaa.tab.c"
     break;
 
   case 101: /* label: LABEL  */
-#line 766 "javaa.y"
-        {DefineLabel((yyvsp[0].string));}
-#line 2528 "javaa.tab.c"
+#line 765 "javaa.y"
+                {DefineLabel((yyvsp[0].string));}
+#line 2527 "javaa.tab.c"
     break;
 
   case 102: /* op: no_arg_op  */
-#line 770 "javaa.y"
+#line 769 "javaa.y"
                 {GenNoArgCode((yyvsp[0].intval));
-        }
-#line 2535 "javaa.tab.c"
+		}
+#line 2534 "javaa.tab.c"
     break;
 
   case 103: /* op: one_arg_op argument  */
-#line 773 "javaa.y"
-        {GenOneArgCode((yyvsp[-1].intval), (yyvsp[0].argtype));
-        }
-#line 2542 "javaa.tab.c"
+#line 772 "javaa.y"
+                {GenOneArgCode((yyvsp[-1].intval), (yyvsp[0].argtype));
+		}
+#line 2541 "javaa.tab.c"
     break;
 
   case 104: /* op: fieldref_arg_op type classfieldmethodname  */
-#line 776 "javaa.y"
-        {GenFieldArgCode((yyvsp[-2].intval), (yyvsp[0].classfieldmethodstruct).classname, (yyvsp[0].classfieldmethodstruct).fieldmethodname, (yyvsp[-1].string));
-        }
-#line 2549 "javaa.tab.c"
+#line 775 "javaa.y"
+                {GenFieldArgCode((yyvsp[-2].intval), (yyvsp[0].classfieldmethodstruct).classname, (yyvsp[0].classfieldmethodstruct).fieldmethodname, (yyvsp[-1].string));
+		}
+#line 2548 "javaa.tab.c"
     break;
 
   case 105: /* op: methodref_arg_op returntype classfieldmethodname '(' arguments ')'  */
-#line 780 "javaa.y"
-        {GenMethodArgCode((yyvsp[-5].intval), (yyvsp[-3].classfieldmethodstruct).classname, (yyvsp[-3].classfieldmethodstruct).fieldmethodname,
-                     ConsStrings("(",ConsStrings((yyvsp[-1].string),
-                   ConsStrings(")",(yyvsp[-4].string)))));
-        }
-#line 2558 "javaa.tab.c"
+#line 779 "javaa.y"
+                {GenMethodArgCode((yyvsp[-5].intval), (yyvsp[-3].classfieldmethodstruct).classname, (yyvsp[-3].classfieldmethodstruct).fieldmethodname,
+		         	 ConsStrings("(",ConsStrings((yyvsp[-1].string),
+				   ConsStrings(")",(yyvsp[-4].string))))); 
+		}
+#line 2557 "javaa.tab.c"
     break;
 
   case 106: /* op: class_arg_op classname  */
-#line 785 "javaa.y"
-        {GenClassArgCode((yyvsp[-1].intval), (yyvsp[0].string));
-        }
-#line 2565 "javaa.tab.c"
+#line 784 "javaa.y"
+                {GenClassArgCode((yyvsp[-1].intval), (yyvsp[0].string));
+		}
+#line 2564 "javaa.tab.c"
     break;
 
   case 107: /* op: ANEWARRAY arrayorclassname  */
-#line 788 "javaa.y"
-        {GenClassArgCode((yyvsp[-1].Rk).terminal, (yyvsp[0].string));
-        }
-#line 2572 "javaa.tab.c"
+#line 787 "javaa.y"
+                {GenClassArgCode((yyvsp[-1].Rk).terminal, (yyvsp[0].string));
+		}
+#line 2571 "javaa.tab.c"
     break;
 
   case 108: /* op: INVOKEINTERFACE returntype classfieldmethodname '(' arguments ')' INTCONSTANT  */
-#line 792 "javaa.y"
-        {GenINVOKEINTERFACECode((yyvsp[-6].Rk).terminal, (yyvsp[-4].classfieldmethodstruct).classname,
-                 (yyvsp[-4].classfieldmethodstruct).fieldmethodname,
-                     ConsStrings("(",ConsStrings((yyvsp[-2].string),
-                   ConsStrings(")",(yyvsp[-5].string)))), (yyvsp[0].intval));
-        }
-#line 2582 "javaa.tab.c"
+#line 791 "javaa.y"
+                {GenINVOKEINTERFACECode((yyvsp[-6].Rk).terminal, (yyvsp[-4].classfieldmethodstruct).classname,
+				 (yyvsp[-4].classfieldmethodstruct).fieldmethodname,
+		         	 ConsStrings("(",ConsStrings((yyvsp[-2].string),
+				   ConsStrings(")",(yyvsp[-5].string)))), (yyvsp[0].intval)); 
+		}
+#line 2581 "javaa.tab.c"
     break;
 
   case 109: /* op: label_arg_op IDENTIFIER  */
-#line 798 "javaa.y"
-        {GenLabelArgCode((yyvsp[-1].intval), (yyvsp[0].string));
-        }
-#line 2589 "javaa.tab.c"
+#line 797 "javaa.y"
+                {GenLabelArgCode((yyvsp[-1].intval), (yyvsp[0].string));
+		}
+#line 2588 "javaa.tab.c"
     break;
 
   case 110: /* op: localvar_arg_op localvar_arg  */
-#line 801 "javaa.y"
-        {GenLocalVarArgCode((yyvsp[-1].intval),(yyvsp[0].intval));
-        }
-#line 2596 "javaa.tab.c"
+#line 800 "javaa.y"
+                {GenLocalVarArgCode((yyvsp[-1].intval),(yyvsp[0].intval));
+		}
+#line 2595 "javaa.tab.c"
     break;
 
   case 111: /* op: IINC localvar_arg INTCONSTANT  */
-#line 804 "javaa.y"
-        {GenIINCCode((yyvsp[-2].Rk).terminal,(yyvsp[-1].intval),(yyvsp[0].intval));
-        }
-#line 2603 "javaa.tab.c"
+#line 803 "javaa.y"
+                {GenIINCCode((yyvsp[-2].Rk).terminal,(yyvsp[-1].intval),(yyvsp[0].intval));
+		}
+#line 2602 "javaa.tab.c"
     break;
 
   case 112: /* op: LOOKUPSWITCH DEFAULT IDENTIFIER '{' lookuplist '}'  */
-#line 807 "javaa.y"
-        {GenLOOKUPSWITCHCode((yyvsp[-5].Rk).terminal,(yyvsp[-3].string),(yyvsp[-1].lookuplistptr));
-        }
-#line 2610 "javaa.tab.c"
+#line 806 "javaa.y"
+                {GenLOOKUPSWITCHCode((yyvsp[-5].Rk).terminal,(yyvsp[-3].string),(yyvsp[-1].lookuplistptr));
+		}
+#line 2609 "javaa.tab.c"
     break;
 
   case 113: /* op: TABLESWITCH INTCONSTANT TO INTCONSTANT DEFAULT IDENTIFIER '{' tablelist '}'  */
-#line 811 "javaa.y"
-        {GenTABLESWITCHCode((yyvsp[-8].Rk).terminal,(yyvsp[-7].intval),(yyvsp[-5].intval),(yyvsp[-3].string),(yyvsp[-1].tablelistptr));
-        }
-#line 2617 "javaa.tab.c"
+#line 810 "javaa.y"
+                {GenTABLESWITCHCode((yyvsp[-8].Rk).terminal,(yyvsp[-7].intval),(yyvsp[-5].intval),(yyvsp[-3].string),(yyvsp[-1].tablelistptr));
+		}
+#line 2616 "javaa.tab.c"
     break;
 
   case 114: /* op: MULTIANEWARRAY arrayorclassname INTCONSTANT  */
-#line 814 "javaa.y"
-        {GenMULTIANEWARRAYCode((yyvsp[-2].Rk).terminal,(yyvsp[-1].string),(yyvsp[0].intval));
-        }
-#line 2624 "javaa.tab.c"
+#line 813 "javaa.y"
+                {GenMULTIANEWARRAYCode((yyvsp[-2].Rk).terminal,(yyvsp[-1].string),(yyvsp[0].intval));
+		}
+#line 2623 "javaa.tab.c"
     break;
 
   case 115: /* op: NEWARRAY newarraytype  */
-#line 817 "javaa.y"
-        {GenNEWARRAYCode((yyvsp[-1].Rk).terminal,(yyvsp[0].intval));
-        }
-#line 2631 "javaa.tab.c"
+#line 816 "javaa.y"
+                {GenNEWARRAYCode((yyvsp[-1].Rk).terminal,(yyvsp[0].intval));
+		}
+#line 2630 "javaa.tab.c"
     break;
 
   case 116: /* no_arg_op: AALOAD  */
-#line 822 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2637 "javaa.tab.c"
+#line 821 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2636 "javaa.tab.c"
     break;
 
   case 117: /* no_arg_op: AASTORE  */
-#line 824 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2643 "javaa.tab.c"
+#line 823 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2642 "javaa.tab.c"
     break;
 
   case 118: /* no_arg_op: ACONST_NULL  */
-#line 826 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2649 "javaa.tab.c"
+#line 825 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2648 "javaa.tab.c"
     break;
 
   case 119: /* no_arg_op: ALOAD_0  */
-#line 828 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2655 "javaa.tab.c"
+#line 827 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2654 "javaa.tab.c"
     break;
 
   case 120: /* no_arg_op: ALOAD_1  */
-#line 830 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2661 "javaa.tab.c"
+#line 829 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2660 "javaa.tab.c"
     break;
 
   case 121: /* no_arg_op: ALOAD_2  */
-#line 832 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2667 "javaa.tab.c"
+#line 831 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2666 "javaa.tab.c"
     break;
 
   case 122: /* no_arg_op: ALOAD_3  */
-#line 834 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2673 "javaa.tab.c"
+#line 833 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2672 "javaa.tab.c"
     break;
 
   case 123: /* no_arg_op: ARETURN  */
-#line 836 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2679 "javaa.tab.c"
+#line 835 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2678 "javaa.tab.c"
     break;
 
   case 124: /* no_arg_op: ARRAYLENGTH  */
-#line 838 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2685 "javaa.tab.c"
+#line 837 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2684 "javaa.tab.c"
     break;
 
   case 125: /* no_arg_op: ASTORE_0  */
-#line 840 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2691 "javaa.tab.c"
+#line 839 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2690 "javaa.tab.c"
     break;
 
   case 126: /* no_arg_op: ASTORE_1  */
-#line 842 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2697 "javaa.tab.c"
+#line 841 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2696 "javaa.tab.c"
     break;
 
   case 127: /* no_arg_op: ASTORE_2  */
-#line 844 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2703 "javaa.tab.c"
+#line 843 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2702 "javaa.tab.c"
     break;
 
   case 128: /* no_arg_op: ASTORE_3  */
-#line 846 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2709 "javaa.tab.c"
+#line 845 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2708 "javaa.tab.c"
     break;
 
   case 129: /* no_arg_op: ATHROW  */
-#line 848 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2715 "javaa.tab.c"
+#line 847 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2714 "javaa.tab.c"
     break;
 
   case 130: /* no_arg_op: BALOAD  */
-#line 850 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2721 "javaa.tab.c"
+#line 849 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2720 "javaa.tab.c"
     break;
 
   case 131: /* no_arg_op: BASTORE  */
-#line 852 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2727 "javaa.tab.c"
+#line 851 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2726 "javaa.tab.c"
     break;
 
   case 132: /* no_arg_op: CALOAD  */
-#line 854 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2733 "javaa.tab.c"
+#line 853 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2732 "javaa.tab.c"
     break;
 
   case 133: /* no_arg_op: CASTORE  */
-#line 856 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2739 "javaa.tab.c"
+#line 855 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2738 "javaa.tab.c"
     break;
 
   case 134: /* no_arg_op: D2F  */
-#line 858 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2745 "javaa.tab.c"
+#line 857 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2744 "javaa.tab.c"
     break;
 
   case 135: /* no_arg_op: D2I  */
-#line 860 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2751 "javaa.tab.c"
+#line 859 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2750 "javaa.tab.c"
     break;
 
   case 136: /* no_arg_op: D2L  */
-#line 862 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2757 "javaa.tab.c"
+#line 861 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2756 "javaa.tab.c"
     break;
 
   case 137: /* no_arg_op: DADD  */
-#line 864 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2763 "javaa.tab.c"
+#line 863 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2762 "javaa.tab.c"
     break;
 
   case 138: /* no_arg_op: DALOAD  */
-#line 866 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2769 "javaa.tab.c"
+#line 865 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2768 "javaa.tab.c"
     break;
 
   case 139: /* no_arg_op: DASTORE  */
-#line 868 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2775 "javaa.tab.c"
+#line 867 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2774 "javaa.tab.c"
     break;
 
   case 140: /* no_arg_op: DCMPG  */
-#line 870 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2781 "javaa.tab.c"
+#line 869 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2780 "javaa.tab.c"
     break;
 
   case 141: /* no_arg_op: DCMPL  */
-#line 872 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2787 "javaa.tab.c"
+#line 871 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2786 "javaa.tab.c"
     break;
 
   case 142: /* no_arg_op: DCONST_0  */
-#line 874 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2793 "javaa.tab.c"
+#line 873 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2792 "javaa.tab.c"
     break;
 
   case 143: /* no_arg_op: DCONST_1  */
-#line 876 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2799 "javaa.tab.c"
+#line 875 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2798 "javaa.tab.c"
     break;
 
   case 144: /* no_arg_op: DDIV  */
-#line 878 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2805 "javaa.tab.c"
+#line 877 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2804 "javaa.tab.c"
     break;
 
   case 145: /* no_arg_op: DLOAD_0  */
-#line 880 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2811 "javaa.tab.c"
+#line 879 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2810 "javaa.tab.c"
     break;
 
   case 146: /* no_arg_op: DLOAD_1  */
-#line 882 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2817 "javaa.tab.c"
+#line 881 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2816 "javaa.tab.c"
     break;
 
   case 147: /* no_arg_op: DLOAD_2  */
-#line 884 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2823 "javaa.tab.c"
+#line 883 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2822 "javaa.tab.c"
     break;
 
   case 148: /* no_arg_op: DLOAD_3  */
-#line 886 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2829 "javaa.tab.c"
+#line 885 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2828 "javaa.tab.c"
     break;
 
   case 149: /* no_arg_op: DMUL  */
-#line 888 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2835 "javaa.tab.c"
+#line 887 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2834 "javaa.tab.c"
     break;
 
   case 150: /* no_arg_op: DNEG  */
-#line 890 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2841 "javaa.tab.c"
+#line 889 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2840 "javaa.tab.c"
     break;
 
   case 151: /* no_arg_op: DREM  */
-#line 892 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2847 "javaa.tab.c"
+#line 891 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2846 "javaa.tab.c"
     break;
 
   case 152: /* no_arg_op: DRETURN  */
-#line 894 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2853 "javaa.tab.c"
+#line 893 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2852 "javaa.tab.c"
     break;
 
   case 153: /* no_arg_op: DSTORE_0  */
-#line 896 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2859 "javaa.tab.c"
+#line 895 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2858 "javaa.tab.c"
     break;
 
   case 154: /* no_arg_op: DSTORE_1  */
-#line 898 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2865 "javaa.tab.c"
+#line 897 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2864 "javaa.tab.c"
     break;
 
   case 155: /* no_arg_op: DSTORE_2  */
-#line 900 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2871 "javaa.tab.c"
+#line 899 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2870 "javaa.tab.c"
     break;
 
   case 156: /* no_arg_op: DSTORE_3  */
-#line 902 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2877 "javaa.tab.c"
+#line 901 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2876 "javaa.tab.c"
     break;
 
   case 157: /* no_arg_op: DSUB  */
-#line 904 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2883 "javaa.tab.c"
+#line 903 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2882 "javaa.tab.c"
     break;
 
   case 158: /* no_arg_op: DUP  */
-#line 906 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2889 "javaa.tab.c"
+#line 905 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2888 "javaa.tab.c"
     break;
 
   case 159: /* no_arg_op: DUP_X1  */
-#line 908 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2895 "javaa.tab.c"
+#line 907 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2894 "javaa.tab.c"
     break;
 
   case 160: /* no_arg_op: DUP_X2  */
-#line 910 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2901 "javaa.tab.c"
+#line 909 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2900 "javaa.tab.c"
     break;
 
   case 161: /* no_arg_op: DUP2  */
-#line 912 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2907 "javaa.tab.c"
+#line 911 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2906 "javaa.tab.c"
     break;
 
   case 162: /* no_arg_op: DUP2_X1  */
-#line 914 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2913 "javaa.tab.c"
+#line 913 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2912 "javaa.tab.c"
     break;
 
   case 163: /* no_arg_op: DUP2_X2  */
-#line 916 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2919 "javaa.tab.c"
+#line 915 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2918 "javaa.tab.c"
     break;
 
   case 164: /* no_arg_op: F2D  */
-#line 918 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2925 "javaa.tab.c"
+#line 917 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2924 "javaa.tab.c"
     break;
 
   case 165: /* no_arg_op: F2I  */
-#line 920 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2931 "javaa.tab.c"
+#line 919 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2930 "javaa.tab.c"
     break;
 
   case 166: /* no_arg_op: F2L  */
-#line 922 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2937 "javaa.tab.c"
+#line 921 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2936 "javaa.tab.c"
     break;
 
   case 167: /* no_arg_op: FADD  */
-#line 924 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2943 "javaa.tab.c"
+#line 923 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2942 "javaa.tab.c"
     break;
 
   case 168: /* no_arg_op: FALOAD  */
-#line 926 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2949 "javaa.tab.c"
+#line 925 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2948 "javaa.tab.c"
     break;
 
   case 169: /* no_arg_op: FASTORE  */
-#line 928 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2955 "javaa.tab.c"
+#line 927 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2954 "javaa.tab.c"
     break;
 
   case 170: /* no_arg_op: FCMPG  */
-#line 930 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2961 "javaa.tab.c"
+#line 929 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2960 "javaa.tab.c"
     break;
 
   case 171: /* no_arg_op: FCMPL  */
-#line 932 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2967 "javaa.tab.c"
+#line 931 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2966 "javaa.tab.c"
     break;
 
   case 172: /* no_arg_op: FCONST_0  */
-#line 934 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2973 "javaa.tab.c"
+#line 933 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2972 "javaa.tab.c"
     break;
 
   case 173: /* no_arg_op: FCONST_1  */
-#line 936 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2979 "javaa.tab.c"
+#line 935 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2978 "javaa.tab.c"
     break;
 
   case 174: /* no_arg_op: FCONST_2  */
-#line 938 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2985 "javaa.tab.c"
+#line 937 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2984 "javaa.tab.c"
     break;
 
   case 175: /* no_arg_op: FDIV  */
-#line 940 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2991 "javaa.tab.c"
+#line 939 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2990 "javaa.tab.c"
     break;
 
   case 176: /* no_arg_op: FLOAD_0  */
-#line 942 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 2997 "javaa.tab.c"
+#line 941 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2996 "javaa.tab.c"
     break;
 
   case 177: /* no_arg_op: FLOAD_1  */
-#line 944 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3003 "javaa.tab.c"
+#line 943 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3002 "javaa.tab.c"
     break;
 
   case 178: /* no_arg_op: FLOAD_2  */
-#line 946 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3009 "javaa.tab.c"
+#line 945 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3008 "javaa.tab.c"
     break;
 
   case 179: /* no_arg_op: FLOAD_3  */
-#line 948 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3015 "javaa.tab.c"
+#line 947 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3014 "javaa.tab.c"
     break;
 
   case 180: /* no_arg_op: FMUL  */
-#line 950 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3021 "javaa.tab.c"
+#line 949 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3020 "javaa.tab.c"
     break;
 
   case 181: /* no_arg_op: FNEG  */
-#line 952 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3027 "javaa.tab.c"
+#line 951 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3026 "javaa.tab.c"
     break;
 
   case 182: /* no_arg_op: FREM  */
-#line 954 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3033 "javaa.tab.c"
+#line 953 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3032 "javaa.tab.c"
     break;
 
   case 183: /* no_arg_op: FRETURN  */
-#line 956 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3039 "javaa.tab.c"
+#line 955 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3038 "javaa.tab.c"
     break;
 
   case 184: /* no_arg_op: FSTORE_0  */
-#line 958 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3045 "javaa.tab.c"
+#line 957 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3044 "javaa.tab.c"
     break;
 
   case 185: /* no_arg_op: FSTORE_1  */
-#line 960 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3051 "javaa.tab.c"
+#line 959 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3050 "javaa.tab.c"
     break;
 
   case 186: /* no_arg_op: FSTORE_2  */
-#line 962 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3057 "javaa.tab.c"
+#line 961 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3056 "javaa.tab.c"
     break;
 
   case 187: /* no_arg_op: FSTORE_3  */
-#line 964 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3063 "javaa.tab.c"
+#line 963 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3062 "javaa.tab.c"
     break;
 
   case 188: /* no_arg_op: FSUB  */
-#line 966 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3069 "javaa.tab.c"
+#line 965 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3068 "javaa.tab.c"
     break;
 
   case 189: /* no_arg_op: I2B  */
-#line 968 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3075 "javaa.tab.c"
+#line 967 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3074 "javaa.tab.c"
     break;
 
   case 190: /* no_arg_op: I2C  */
-#line 970 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3081 "javaa.tab.c"
+#line 969 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3080 "javaa.tab.c"
     break;
 
   case 191: /* no_arg_op: I2D  */
-#line 972 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3087 "javaa.tab.c"
+#line 971 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3086 "javaa.tab.c"
     break;
 
   case 192: /* no_arg_op: I2F  */
-#line 974 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3093 "javaa.tab.c"
+#line 973 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3092 "javaa.tab.c"
     break;
 
   case 193: /* no_arg_op: I2L  */
-#line 976 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3099 "javaa.tab.c"
+#line 975 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3098 "javaa.tab.c"
     break;
 
   case 194: /* no_arg_op: I2S  */
-#line 978 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3105 "javaa.tab.c"
+#line 977 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3104 "javaa.tab.c"
     break;
 
   case 195: /* no_arg_op: IADD  */
-#line 980 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3111 "javaa.tab.c"
+#line 979 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3110 "javaa.tab.c"
     break;
 
   case 196: /* no_arg_op: IALOAD  */
-#line 982 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3117 "javaa.tab.c"
+#line 981 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3116 "javaa.tab.c"
     break;
 
   case 197: /* no_arg_op: IAND  */
-#line 984 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3123 "javaa.tab.c"
+#line 983 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3122 "javaa.tab.c"
     break;
 
   case 198: /* no_arg_op: IASTORE  */
-#line 986 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3129 "javaa.tab.c"
+#line 985 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3128 "javaa.tab.c"
     break;
 
   case 199: /* no_arg_op: ICONST_0  */
-#line 988 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3135 "javaa.tab.c"
+#line 987 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3134 "javaa.tab.c"
     break;
 
   case 200: /* no_arg_op: ICONST_1  */
-#line 990 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3141 "javaa.tab.c"
+#line 989 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3140 "javaa.tab.c"
     break;
 
   case 201: /* no_arg_op: ICONST_2  */
-#line 992 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3147 "javaa.tab.c"
+#line 991 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3146 "javaa.tab.c"
     break;
 
   case 202: /* no_arg_op: ICONST_3  */
-#line 994 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3153 "javaa.tab.c"
+#line 993 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3152 "javaa.tab.c"
     break;
 
   case 203: /* no_arg_op: ICONST_4  */
-#line 996 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3159 "javaa.tab.c"
+#line 995 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3158 "javaa.tab.c"
     break;
 
   case 204: /* no_arg_op: ICONST_5  */
-#line 998 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3165 "javaa.tab.c"
+#line 997 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3164 "javaa.tab.c"
     break;
 
   case 205: /* no_arg_op: ICONST_M1  */
-#line 1000 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3171 "javaa.tab.c"
+#line 999 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3170 "javaa.tab.c"
     break;
 
   case 206: /* no_arg_op: IDIV  */
-#line 1002 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3177 "javaa.tab.c"
+#line 1001 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3176 "javaa.tab.c"
     break;
 
   case 207: /* no_arg_op: ILOAD_0  */
-#line 1004 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3183 "javaa.tab.c"
+#line 1003 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3182 "javaa.tab.c"
     break;
 
   case 208: /* no_arg_op: ILOAD_1  */
-#line 1006 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3189 "javaa.tab.c"
+#line 1005 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3188 "javaa.tab.c"
     break;
 
   case 209: /* no_arg_op: ILOAD_2  */
-#line 1008 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3195 "javaa.tab.c"
+#line 1007 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3194 "javaa.tab.c"
     break;
 
   case 210: /* no_arg_op: ILOAD_3  */
-#line 1010 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3201 "javaa.tab.c"
+#line 1009 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3200 "javaa.tab.c"
     break;
 
   case 211: /* no_arg_op: IMUL  */
-#line 1012 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3207 "javaa.tab.c"
+#line 1011 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3206 "javaa.tab.c"
     break;
 
   case 212: /* no_arg_op: INEG  */
-#line 1014 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3213 "javaa.tab.c"
+#line 1013 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3212 "javaa.tab.c"
     break;
 
   case 213: /* no_arg_op: IOR  */
-#line 1016 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3219 "javaa.tab.c"
+#line 1015 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3218 "javaa.tab.c"
     break;
 
   case 214: /* no_arg_op: IREM  */
-#line 1018 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3225 "javaa.tab.c"
+#line 1017 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3224 "javaa.tab.c"
     break;
 
   case 215: /* no_arg_op: IRETURN  */
-#line 1020 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3231 "javaa.tab.c"
+#line 1019 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3230 "javaa.tab.c"
     break;
 
   case 216: /* no_arg_op: ISHL  */
-#line 1022 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3237 "javaa.tab.c"
+#line 1021 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3236 "javaa.tab.c"
     break;
 
   case 217: /* no_arg_op: ISHR  */
-#line 1024 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3243 "javaa.tab.c"
+#line 1023 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3242 "javaa.tab.c"
     break;
 
   case 218: /* no_arg_op: ISTORE_0  */
-#line 1026 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3249 "javaa.tab.c"
+#line 1025 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3248 "javaa.tab.c"
     break;
 
   case 219: /* no_arg_op: ISTORE_1  */
-#line 1028 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3255 "javaa.tab.c"
+#line 1027 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3254 "javaa.tab.c"
     break;
 
   case 220: /* no_arg_op: ISTORE_2  */
-#line 1030 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3261 "javaa.tab.c"
+#line 1029 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3260 "javaa.tab.c"
     break;
 
   case 221: /* no_arg_op: ISTORE_3  */
-#line 1032 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3267 "javaa.tab.c"
+#line 1031 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3266 "javaa.tab.c"
     break;
 
   case 222: /* no_arg_op: ISUB  */
-#line 1034 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3273 "javaa.tab.c"
+#line 1033 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3272 "javaa.tab.c"
     break;
 
   case 223: /* no_arg_op: IUSHR  */
-#line 1036 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3279 "javaa.tab.c"
+#line 1035 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3278 "javaa.tab.c"
     break;
 
   case 224: /* no_arg_op: IXOR  */
-#line 1038 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3285 "javaa.tab.c"
+#line 1037 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3284 "javaa.tab.c"
     break;
 
   case 225: /* no_arg_op: L2D  */
-#line 1040 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3291 "javaa.tab.c"
+#line 1039 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3290 "javaa.tab.c"
     break;
 
   case 226: /* no_arg_op: L2F  */
-#line 1042 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3297 "javaa.tab.c"
+#line 1041 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3296 "javaa.tab.c"
     break;
 
   case 227: /* no_arg_op: L2I  */
-#line 1044 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3303 "javaa.tab.c"
+#line 1043 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3302 "javaa.tab.c"
     break;
 
   case 228: /* no_arg_op: LADD  */
-#line 1046 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3309 "javaa.tab.c"
+#line 1045 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3308 "javaa.tab.c"
     break;
 
   case 229: /* no_arg_op: LALOAD  */
-#line 1048 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3315 "javaa.tab.c"
+#line 1047 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3314 "javaa.tab.c"
     break;
 
   case 230: /* no_arg_op: LAND  */
-#line 1050 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3321 "javaa.tab.c"
+#line 1049 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3320 "javaa.tab.c"
     break;
 
   case 231: /* no_arg_op: LASTORE  */
-#line 1052 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3327 "javaa.tab.c"
+#line 1051 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3326 "javaa.tab.c"
     break;
 
   case 232: /* no_arg_op: LCMP  */
-#line 1054 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3333 "javaa.tab.c"
+#line 1053 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3332 "javaa.tab.c"
     break;
 
   case 233: /* no_arg_op: LCONST_0  */
-#line 1056 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3339 "javaa.tab.c"
+#line 1055 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3338 "javaa.tab.c"
     break;
 
   case 234: /* no_arg_op: LCONST_1  */
-#line 1058 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3345 "javaa.tab.c"
+#line 1057 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3344 "javaa.tab.c"
     break;
 
   case 235: /* no_arg_op: LDIV  */
-#line 1060 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3351 "javaa.tab.c"
+#line 1059 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3350 "javaa.tab.c"
     break;
 
   case 236: /* no_arg_op: LLOAD_0  */
-#line 1062 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3357 "javaa.tab.c"
+#line 1061 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3356 "javaa.tab.c"
     break;
 
   case 237: /* no_arg_op: LLOAD_1  */
-#line 1064 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3363 "javaa.tab.c"
+#line 1063 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3362 "javaa.tab.c"
     break;
 
   case 238: /* no_arg_op: LLOAD_2  */
-#line 1066 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3369 "javaa.tab.c"
+#line 1065 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3368 "javaa.tab.c"
     break;
 
   case 239: /* no_arg_op: LLOAD_3  */
-#line 1068 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3375 "javaa.tab.c"
+#line 1067 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3374 "javaa.tab.c"
     break;
 
   case 240: /* no_arg_op: LMUL  */
-#line 1070 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3381 "javaa.tab.c"
+#line 1069 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3380 "javaa.tab.c"
     break;
 
   case 241: /* no_arg_op: LNEG  */
-#line 1072 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3387 "javaa.tab.c"
+#line 1071 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3386 "javaa.tab.c"
     break;
 
   case 242: /* no_arg_op: LOR  */
-#line 1074 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3393 "javaa.tab.c"
+#line 1073 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3392 "javaa.tab.c"
     break;
 
   case 243: /* no_arg_op: LREM  */
-#line 1076 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3399 "javaa.tab.c"
+#line 1075 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3398 "javaa.tab.c"
     break;
 
   case 244: /* no_arg_op: LRETURN  */
-#line 1078 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3405 "javaa.tab.c"
+#line 1077 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3404 "javaa.tab.c"
     break;
 
   case 245: /* no_arg_op: LSHL  */
-#line 1080 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3411 "javaa.tab.c"
+#line 1079 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3410 "javaa.tab.c"
     break;
 
   case 246: /* no_arg_op: LSHR  */
-#line 1082 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3417 "javaa.tab.c"
+#line 1081 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3416 "javaa.tab.c"
     break;
 
   case 247: /* no_arg_op: LSTORE_0  */
-#line 1084 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3423 "javaa.tab.c"
+#line 1083 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3422 "javaa.tab.c"
     break;
 
   case 248: /* no_arg_op: LSTORE_1  */
-#line 1086 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3429 "javaa.tab.c"
+#line 1085 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3428 "javaa.tab.c"
     break;
 
   case 249: /* no_arg_op: LSTORE_2  */
-#line 1088 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3435 "javaa.tab.c"
+#line 1087 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3434 "javaa.tab.c"
     break;
 
   case 250: /* no_arg_op: LSTORE_3  */
-#line 1090 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3441 "javaa.tab.c"
+#line 1089 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3440 "javaa.tab.c"
     break;
 
   case 251: /* no_arg_op: LSUB  */
-#line 1092 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3447 "javaa.tab.c"
+#line 1091 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3446 "javaa.tab.c"
     break;
 
   case 252: /* no_arg_op: LUSHR  */
-#line 1094 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3453 "javaa.tab.c"
+#line 1093 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3452 "javaa.tab.c"
     break;
 
   case 253: /* no_arg_op: LXOR  */
-#line 1096 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3459 "javaa.tab.c"
+#line 1095 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3458 "javaa.tab.c"
     break;
 
   case 254: /* no_arg_op: MONITORENTER  */
-#line 1098 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3465 "javaa.tab.c"
+#line 1097 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3464 "javaa.tab.c"
     break;
 
   case 255: /* no_arg_op: MONITOREXIT  */
-#line 1100 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3471 "javaa.tab.c"
+#line 1099 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3470 "javaa.tab.c"
     break;
 
   case 256: /* no_arg_op: NOP  */
-#line 1102 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3477 "javaa.tab.c"
+#line 1101 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3476 "javaa.tab.c"
     break;
 
   case 257: /* no_arg_op: POP  */
-#line 1104 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3483 "javaa.tab.c"
+#line 1103 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3482 "javaa.tab.c"
     break;
 
   case 258: /* no_arg_op: POP2  */
-#line 1106 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3489 "javaa.tab.c"
+#line 1105 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3488 "javaa.tab.c"
     break;
 
   case 259: /* no_arg_op: RETURN  */
-#line 1108 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3495 "javaa.tab.c"
+#line 1107 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3494 "javaa.tab.c"
     break;
 
   case 260: /* no_arg_op: SALOAD  */
-#line 1110 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3501 "javaa.tab.c"
+#line 1109 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3500 "javaa.tab.c"
     break;
 
   case 261: /* no_arg_op: SASTORE  */
-#line 1112 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3507 "javaa.tab.c"
+#line 1111 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3506 "javaa.tab.c"
     break;
 
   case 262: /* no_arg_op: SWAP  */
-#line 1114 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3513 "javaa.tab.c"
+#line 1113 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3512 "javaa.tab.c"
     break;
 
   case 263: /* no_arg_op: WIDE  */
-#line 1116 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3519 "javaa.tab.c"
+#line 1115 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3518 "javaa.tab.c"
     break;
 
   case 264: /* one_arg_op: BIPUSH  */
-#line 1120 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3525 "javaa.tab.c"
+#line 1119 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3524 "javaa.tab.c"
     break;
 
   case 265: /* one_arg_op: LDC  */
-#line 1122 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3531 "javaa.tab.c"
+#line 1121 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3530 "javaa.tab.c"
     break;
 
   case 266: /* one_arg_op: LDC_W  */
-#line 1124 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3537 "javaa.tab.c"
+#line 1123 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3536 "javaa.tab.c"
     break;
 
   case 267: /* one_arg_op: LDC2_W  */
-#line 1126 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3543 "javaa.tab.c"
+#line 1125 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3542 "javaa.tab.c"
     break;
 
   case 268: /* one_arg_op: SIPUSH  */
-#line 1128 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3549 "javaa.tab.c"
+#line 1127 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3548 "javaa.tab.c"
     break;
 
   case 269: /* methodref_arg_op: INVOKESTATIC  */
-#line 1134 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3555 "javaa.tab.c"
+#line 1133 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3554 "javaa.tab.c"
     break;
 
   case 270: /* methodref_arg_op: INVOKENONVIRTUAL  */
-#line 1136 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3561 "javaa.tab.c"
+#line 1135 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3560 "javaa.tab.c"
     break;
 
   case 271: /* methodref_arg_op: INVOKEVIRTUAL  */
-#line 1138 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3567 "javaa.tab.c"
+#line 1137 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3566 "javaa.tab.c"
     break;
 
   case 272: /* fieldref_arg_op: GETFIELD  */
-#line 1143 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3573 "javaa.tab.c"
+#line 1142 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3572 "javaa.tab.c"
     break;
 
   case 273: /* fieldref_arg_op: GETSTATIC  */
-#line 1145 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3579 "javaa.tab.c"
+#line 1144 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3578 "javaa.tab.c"
     break;
 
   case 274: /* fieldref_arg_op: PUTFIELD  */
-#line 1147 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3585 "javaa.tab.c"
+#line 1146 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3584 "javaa.tab.c"
     break;
 
   case 275: /* fieldref_arg_op: PUTSTATIC  */
-#line 1149 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3591 "javaa.tab.c"
+#line 1148 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3590 "javaa.tab.c"
     break;
 
   case 276: /* class_arg_op: CHECKCAST  */
-#line 1154 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3597 "javaa.tab.c"
+#line 1153 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3596 "javaa.tab.c"
     break;
 
   case 277: /* class_arg_op: INSTANCEOF  */
-#line 1156 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3603 "javaa.tab.c"
+#line 1155 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3602 "javaa.tab.c"
     break;
 
   case 278: /* class_arg_op: NEW  */
-#line 1158 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3609 "javaa.tab.c"
+#line 1157 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3608 "javaa.tab.c"
     break;
 
   case 279: /* label_arg_op: GOTO  */
-#line 1162 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3615 "javaa.tab.c"
+#line 1161 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3614 "javaa.tab.c"
     break;
 
   case 280: /* label_arg_op: GOTO_W  */
-#line 1164 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3621 "javaa.tab.c"
+#line 1163 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3620 "javaa.tab.c"
     break;
 
   case 281: /* label_arg_op: IF_ACMPEQ  */
-#line 1166 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3627 "javaa.tab.c"
+#line 1165 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3626 "javaa.tab.c"
     break;
 
   case 282: /* label_arg_op: IF_ACMPNE  */
-#line 1168 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3633 "javaa.tab.c"
+#line 1167 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3632 "javaa.tab.c"
     break;
 
   case 283: /* label_arg_op: IF_ICMPEQ  */
-#line 1170 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3639 "javaa.tab.c"
+#line 1169 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3638 "javaa.tab.c"
     break;
 
   case 284: /* label_arg_op: IF_ICMPNE  */
-#line 1172 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3645 "javaa.tab.c"
+#line 1171 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3644 "javaa.tab.c"
     break;
 
   case 285: /* label_arg_op: IF_ICMPLT  */
-#line 1174 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3651 "javaa.tab.c"
+#line 1173 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3650 "javaa.tab.c"
     break;
 
   case 286: /* label_arg_op: IF_ICMPGE  */
-#line 1176 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3657 "javaa.tab.c"
+#line 1175 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3656 "javaa.tab.c"
     break;
 
   case 287: /* label_arg_op: IF_ICMPGT  */
-#line 1178 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3663 "javaa.tab.c"
+#line 1177 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3662 "javaa.tab.c"
     break;
 
   case 288: /* label_arg_op: IF_ICMPLE  */
-#line 1180 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3669 "javaa.tab.c"
+#line 1179 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3668 "javaa.tab.c"
     break;
 
   case 289: /* label_arg_op: IFEQ  */
-#line 1182 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3675 "javaa.tab.c"
+#line 1181 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3674 "javaa.tab.c"
     break;
 
   case 290: /* label_arg_op: IFNE  */
-#line 1184 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3681 "javaa.tab.c"
+#line 1183 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3680 "javaa.tab.c"
     break;
 
   case 291: /* label_arg_op: IFLT  */
-#line 1186 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3687 "javaa.tab.c"
+#line 1185 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3686 "javaa.tab.c"
     break;
 
   case 292: /* label_arg_op: IFGE  */
-#line 1188 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3693 "javaa.tab.c"
+#line 1187 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3692 "javaa.tab.c"
     break;
 
   case 293: /* label_arg_op: IFGT  */
-#line 1190 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3699 "javaa.tab.c"
+#line 1189 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3698 "javaa.tab.c"
     break;
 
   case 294: /* label_arg_op: IFLE  */
-#line 1192 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3705 "javaa.tab.c"
+#line 1191 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3704 "javaa.tab.c"
     break;
 
   case 295: /* label_arg_op: IFNONNULL  */
-#line 1194 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3711 "javaa.tab.c"
+#line 1193 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3710 "javaa.tab.c"
     break;
 
   case 296: /* label_arg_op: IFNULL  */
-#line 1196 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3717 "javaa.tab.c"
+#line 1195 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3716 "javaa.tab.c"
     break;
 
   case 297: /* label_arg_op: JSR  */
-#line 1198 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3723 "javaa.tab.c"
+#line 1197 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3722 "javaa.tab.c"
     break;
 
   case 298: /* label_arg_op: JSR_W  */
-#line 1200 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3729 "javaa.tab.c"
+#line 1199 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3728 "javaa.tab.c"
     break;
 
   case 299: /* localvar_arg_op: ILOAD  */
-#line 1205 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3735 "javaa.tab.c"
+#line 1204 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3734 "javaa.tab.c"
     break;
 
   case 300: /* localvar_arg_op: FLOAD  */
-#line 1207 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3741 "javaa.tab.c"
+#line 1206 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3740 "javaa.tab.c"
     break;
 
   case 301: /* localvar_arg_op: ALOAD  */
-#line 1209 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3747 "javaa.tab.c"
+#line 1208 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3746 "javaa.tab.c"
     break;
 
   case 302: /* localvar_arg_op: LLOAD  */
-#line 1211 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3753 "javaa.tab.c"
+#line 1210 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3752 "javaa.tab.c"
     break;
 
   case 303: /* localvar_arg_op: DLOAD  */
-#line 1213 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3759 "javaa.tab.c"
+#line 1212 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3758 "javaa.tab.c"
     break;
 
   case 304: /* localvar_arg_op: ISTORE  */
-#line 1215 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3765 "javaa.tab.c"
+#line 1214 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3764 "javaa.tab.c"
     break;
 
   case 305: /* localvar_arg_op: FSTORE  */
-#line 1217 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3771 "javaa.tab.c"
+#line 1216 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3770 "javaa.tab.c"
     break;
 
   case 306: /* localvar_arg_op: ASTORE  */
-#line 1219 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3777 "javaa.tab.c"
+#line 1218 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3776 "javaa.tab.c"
     break;
 
   case 307: /* localvar_arg_op: LSTORE  */
-#line 1221 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3783 "javaa.tab.c"
+#line 1220 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3782 "javaa.tab.c"
     break;
 
   case 308: /* localvar_arg_op: DSTORE  */
-#line 1223 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3789 "javaa.tab.c"
+#line 1222 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3788 "javaa.tab.c"
     break;
 
   case 309: /* localvar_arg_op: RET  */
-#line 1225 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3795 "javaa.tab.c"
+#line 1224 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3794 "javaa.tab.c"
     break;
 
   case 310: /* localvar_arg_op: LOAD  */
-#line 1227 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3801 "javaa.tab.c"
+#line 1226 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3800 "javaa.tab.c"
     break;
 
   case 311: /* localvar_arg_op: STORE  */
-#line 1229 "javaa.y"
-        {(yyval.intval)=(yyvsp[0].Rk).terminal;}
-#line 3807 "javaa.tab.c"
+#line 1228 "javaa.y"
+                {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3806 "javaa.tab.c"
     break;
 
   case 312: /* localvar_arg: INTCONSTANT  */
-#line 1233 "javaa.y"
-        { (yyval.intval) = (yyvsp[0].intval);}
-#line 3813 "javaa.tab.c"
+#line 1232 "javaa.y"
+                { (yyval.intval) = (yyvsp[0].intval);}
+#line 3812 "javaa.tab.c"
     break;
 
   case 313: /* localvar_arg: IDENTIFIER  */
-#line 1235 "javaa.y"
-        { (yyval.intval) = GetLocalVar((yyvsp[0].string));}
-#line 3819 "javaa.tab.c"
+#line 1234 "javaa.y"
+                { (yyval.intval) = GetLocalVar((yyvsp[0].string));}
+#line 3818 "javaa.tab.c"
     break;
 
   case 314: /* lookuplist: INTCONSTANT ':' IDENTIFIER lookuplist  */
-#line 1239 "javaa.y"
-        { (yyval.lookuplistptr) = AddToLookupList((yyvsp[0].lookuplistptr),(yyvsp[-3].intval),(yyvsp[-1].string)); }
-#line 3825 "javaa.tab.c"
+#line 1238 "javaa.y"
+                { (yyval.lookuplistptr) = AddToLookupList((yyvsp[0].lookuplistptr),(yyvsp[-3].intval),(yyvsp[-1].string)); }
+#line 3824 "javaa.tab.c"
     break;
 
   case 315: /* lookuplist: %empty  */
-#line 1240 "javaa.y"
-        {(yyval.lookuplistptr) = NULL;}
-#line 3831 "javaa.tab.c"
+#line 1239 "javaa.y"
+                {(yyval.lookuplistptr) = NULL;}
+#line 3830 "javaa.tab.c"
     break;
 
   case 316: /* tablelist: IDENTIFIER tablelist  */
-#line 1244 "javaa.y"
-        { (yyval.tablelistptr) = AddToTableList((yyvsp[0].tablelistptr),(yyvsp[-1].string)); }
-#line 3837 "javaa.tab.c"
+#line 1243 "javaa.y"
+                { (yyval.tablelistptr) = AddToTableList((yyvsp[0].tablelistptr),(yyvsp[-1].string)); }
+#line 3836 "javaa.tab.c"
     break;
 
   case 317: /* tablelist: %empty  */
-#line 1245 "javaa.y"
-        {(yyval.tablelistptr) = NULL;}
-#line 3843 "javaa.tab.c"
+#line 1244 "javaa.y"
+                {(yyval.tablelistptr) = NULL;}
+#line 3842 "javaa.tab.c"
     break;
 
   case 318: /* newarraytype: BOOLEAN  */
-#line 1250 "javaa.y"
-        { (yyval.intval) = 4;}
-#line 3849 "javaa.tab.c"
+#line 1249 "javaa.y"
+                { (yyval.intval) = 4;}
+#line 3848 "javaa.tab.c"
     break;
 
   case 319: /* newarraytype: CHAR  */
-#line 1252 "javaa.y"
-        { (yyval.intval) = 5;}
-#line 3855 "javaa.tab.c"
+#line 1251 "javaa.y"
+                { (yyval.intval) = 5;}
+#line 3854 "javaa.tab.c"
     break;
 
   case 320: /* newarraytype: FLOAT  */
-#line 1254 "javaa.y"
-        { (yyval.intval) = 6;}
-#line 3861 "javaa.tab.c"
+#line 1253 "javaa.y"
+                { (yyval.intval) = 6;}
+#line 3860 "javaa.tab.c"
     break;
 
   case 321: /* newarraytype: DOUBLE  */
-#line 1256 "javaa.y"
-        { (yyval.intval) = 7;}
-#line 3867 "javaa.tab.c"
+#line 1255 "javaa.y"
+                { (yyval.intval) = 7;}
+#line 3866 "javaa.tab.c"
     break;
 
   case 322: /* newarraytype: BYTE  */
-#line 1258 "javaa.y"
-        { (yyval.intval) = 8;}
-#line 3873 "javaa.tab.c"
+#line 1257 "javaa.y"
+                { (yyval.intval) = 8;}
+#line 3872 "javaa.tab.c"
     break;
 
   case 323: /* newarraytype: SHORT  */
-#line 1260 "javaa.y"
-        { (yyval.intval) = 9;}
-#line 3879 "javaa.tab.c"
+#line 1259 "javaa.y"
+                { (yyval.intval) = 9;}
+#line 3878 "javaa.tab.c"
     break;
 
   case 324: /* newarraytype: INT  */
-#line 1262 "javaa.y"
-        { (yyval.intval) = 10;}
-#line 3885 "javaa.tab.c"
+#line 1261 "javaa.y"
+                { (yyval.intval) = 10;}
+#line 3884 "javaa.tab.c"
     break;
 
   case 325: /* newarraytype: LONG  */
-#line 1264 "javaa.y"
-        { (yyval.intval) = 11;}
-#line 3891 "javaa.tab.c"
+#line 1263 "javaa.y"
+                { (yyval.intval) = 11;}
+#line 3890 "javaa.tab.c"
     break;
 
   case 326: /* argument: IDENTIFIER  */
-#line 1268 "javaa.y"
+#line 1267 "javaa.y"
              {(yyval.argtype).type = IDENTIFIER;
               (yyval.argtype).stringval = (yyvsp[0].string);
              }
-#line 3899 "javaa.tab.c"
+#line 3898 "javaa.tab.c"
     break;
 
   case 327: /* argument: INTCONSTANT  */
-#line 1272 "javaa.y"
+#line 1271 "javaa.y"
              {(yyval.argtype).type = INTCONSTANT;
               (yyval.argtype).intval = (yyvsp[0].intval);
              }
-#line 3907 "javaa.tab.c"
+#line 3906 "javaa.tab.c"
     break;
 
   case 328: /* argument: LONGCONSTANT  */
-#line 1276 "javaa.y"
+#line 1275 "javaa.y"
              {(yyval.argtype).type = LONGCONSTANT;
               (yyval.argtype).longval = (yyvsp[0].longval);
              }
-#line 3915 "javaa.tab.c"
+#line 3914 "javaa.tab.c"
     break;
 
   case 329: /* argument: STRING_LITERAL  */
-#line 1280 "javaa.y"
+#line 1279 "javaa.y"
              {(yyval.argtype).type = STRING_LITERAL;
               (yyval.argtype).stringval = (yyvsp[0].string);
              }
-#line 3923 "javaa.tab.c"
+#line 3922 "javaa.tab.c"
     break;
 
   case 330: /* argument: FLOATCONSTANT  */
-#line 1284 "javaa.y"
+#line 1283 "javaa.y"
              {(yyval.argtype).type = FLOATCONSTANT;
               (yyval.argtype).floatval = (yyvsp[0].floatval);
-          /*message("got a float constant.");*/
+	      /*message("got a float constant.");*/
              }
-#line 3932 "javaa.tab.c"
+#line 3931 "javaa.tab.c"
     break;
 
   case 331: /* argument: DOUBLECONSTANT  */
-#line 1289 "javaa.y"
+#line 1288 "javaa.y"
              {(yyval.argtype).type = DOUBLECONSTANT;
               (yyval.argtype).doubleval = (yyvsp[0].doubleval);
-          /*message("got a double constant.");*/
+	      /*message("got a double constant.");*/
              }
-#line 3941 "javaa.tab.c"
+#line 3940 "javaa.tab.c"
     break;
 
   case 332: /* exceptiontable: EXCEPTIONS '{' exceptionslist '}'  */
-#line 1297 "javaa.y"
-        { break; }
-#line 3947 "javaa.tab.c"
+#line 1296 "javaa.y"
+                { break; }
+#line 3946 "javaa.tab.c"
     break;
 
   case 333: /* exceptiontable: %empty  */
-#line 1298 "javaa.y"
-      {break;}
-#line 3953 "javaa.tab.c"
+#line 1297 "javaa.y"
+          {break;}
+#line 3952 "javaa.tab.c"
     break;
 
   case 334: /* exceptionslist: exceptionslist IDENTIFIER IDENTIFIER IDENTIFIER classname  */
-#line 1302 "javaa.y"
-        { AddToExceptionList((yyvsp[-3].string),(yyvsp[-2].string),(yyvsp[-1].string),(yyvsp[0].string)); }
-#line 3959 "javaa.tab.c"
+#line 1301 "javaa.y"
+                { AddToExceptionList((yyvsp[-3].string),(yyvsp[-2].string),(yyvsp[-1].string),(yyvsp[0].string)); }
+#line 3958 "javaa.tab.c"
     break;
 
   case 335: /* exceptionslist: exceptionslist IDENTIFIER IDENTIFIER IDENTIFIER INTCONSTANT  */
-#line 1304 "javaa.y"
-        {
-          if ((yyvsp[0].intval) != 0) oops("Must have a class name or 0 here.");
-              AddToExceptionList((yyvsp[-3].string),(yyvsp[-2].string),(yyvsp[-1].string),NULL);
-        }
-#line 3968 "javaa.tab.c"
+#line 1303 "javaa.y"
+                { 
+		  if ((yyvsp[0].intval) != 0) oops("Must have a class name or 0 here.");
+	          AddToExceptionList((yyvsp[-3].string),(yyvsp[-2].string),(yyvsp[-1].string),NULL); 
+		}
+#line 3967 "javaa.tab.c"
     break;
 
   case 336: /* exceptionslist: %empty  */
-#line 1308 "javaa.y"
-        {break;}
-#line 3974 "javaa.tab.c"
+#line 1307 "javaa.y"
+                {break;}
+#line 3973 "javaa.tab.c"
     break;
 
   case 337: /* linenumbertable: LINENUMBERTABLE '{' linenumberlist '}'  */
-#line 1313 "javaa.y"
-        { break; }
-#line 3980 "javaa.tab.c"
+#line 1312 "javaa.y"
+                { break; }
+#line 3979 "javaa.tab.c"
     break;
 
   case 338: /* linenumbertable: %empty  */
-#line 1314 "javaa.y"
-      {break;}
-#line 3986 "javaa.tab.c"
+#line 1313 "javaa.y"
+          {break;}
+#line 3985 "javaa.tab.c"
     break;
 
   case 339: /* linenumberlist: linenumberlist IDENTIFIER INTCONSTANT  */
-#line 1318 "javaa.y"
-        { AddToLineNumberList((yyvsp[-1].string),(yyvsp[0].intval)); }
-#line 3992 "javaa.tab.c"
+#line 1317 "javaa.y"
+                { AddToLineNumberList((yyvsp[-1].string),(yyvsp[0].intval)); }
+#line 3991 "javaa.tab.c"
     break;
 
   case 340: /* linenumberlist: %empty  */
-#line 1319 "javaa.y"
-        {break;}
-#line 3998 "javaa.tab.c"
+#line 1318 "javaa.y"
+                {break;}
+#line 3997 "javaa.tab.c"
     break;
 
   case 341: /* localvariabletable: LOCALVARIABLETABLE '{' localvariablelist '}'  */
-#line 1324 "javaa.y"
-        { break; }
-#line 4004 "javaa.tab.c"
+#line 1323 "javaa.y"
+                { break; }
+#line 4003 "javaa.tab.c"
     break;
 
   case 342: /* localvariabletable: %empty  */
-#line 1325 "javaa.y"
-      {break;}
-#line 4010 "javaa.tab.c"
+#line 1324 "javaa.y"
+          {break;}
+#line 4009 "javaa.tab.c"
     break;
 
   case 343: /* localvariablelist: localvariablelist IDENTIFIER IDENTIFIER type IDENTIFIER INTCONSTANT  */
-#line 1330 "javaa.y"
-        { AddToUserLocalVarList((yyvsp[-4].string),(yyvsp[-3].string),(yyvsp[-2].string),(yyvsp[-1].string),(yyvsp[0].intval)); }
-#line 4016 "javaa.tab.c"
+#line 1329 "javaa.y"
+                { AddToUserLocalVarList((yyvsp[-4].string),(yyvsp[-3].string),(yyvsp[-2].string),(yyvsp[-1].string),(yyvsp[0].intval)); }
+#line 4015 "javaa.tab.c"
     break;
 
   case 344: /* localvariablelist: %empty  */
-#line 1331 "javaa.y"
-        {break;}
-#line 4022 "javaa.tab.c"
+#line 1330 "javaa.y"
+                {break;}
+#line 4021 "javaa.tab.c"
     break;
 
   case 345: /* sourcefilename: SOURCEFILE STRING_LITERAL  */
-#line 1336 "javaa.y"
-        { SetSourceFile((yyvsp[0].string)); }
-#line 4028 "javaa.tab.c"
+#line 1335 "javaa.y"
+                { SetSourceFile((yyvsp[0].string)); }
+#line 4027 "javaa.tab.c"
     break;
 
   case 346: /* sourcefilename: %empty  */
-#line 1337 "javaa.y"
-        {break;}
-#line 4034 "javaa.tab.c"
+#line 1336 "javaa.y"
+                {break;}
+#line 4033 "javaa.tab.c"
     break;
 
 
-#line 4038 "javaa.tab.c"
+#line 4037 "javaa.tab.c"
 
       default: break;
     }
@@ -4227,5 +4226,5 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 1339 "javaa.y"
+#line 1338 "javaa.y"
 

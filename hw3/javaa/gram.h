@@ -337,15 +337,15 @@ union YYSTYPE
    BaseType        basetype;
    StorageClass    storageclass;
    TypeQualifier   typequalifier;
-   ArgType     argtype;
-
+   ArgType	   argtype;
+  
    lookupentry *   lookuplistptr;
    tableentry *    tablelistptr;
 
    struct {
-    char* classname;
-    char* fieldmethodname;
-   }        classfieldmethodstruct;
+	char* classname;
+	char* fieldmethodname;
+   }		classfieldmethodstruct;
 
    struct _declinfo {
       int   function;
@@ -354,7 +354,7 @@ union YYSTYPE
       int   numdims;
       char *name;
    }               declinfo;
-
+   
    struct {
       TreeNode *formals;
       struct _declinfo D;

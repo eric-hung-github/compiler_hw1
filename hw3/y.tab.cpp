@@ -75,17 +75,13 @@
 #include "symbol_table.hpp"
 #include "lex.yy.cpp"
 using namespace std;
+
 #define Trace(t)        cout<<t<<endl;
-
-SymbolTableStack symbolTableStack =  SymbolTableStack();
-fstream jasm_file;
-#define jasm(t)        jasm_file<<t;
-
-
+#define MAX_STACK 15
+#define MAX_LOCALS 15
 // a=a+b segmentation fault
 
 int yylex();
-
 
 void yyerror(string s)
 {
@@ -97,8 +93,14 @@ void TypeError(int a,int b){
         yyerror("Type Error: "+ValueTypeToString(a)+" <-> "+ ValueTypeToString(b));
 }
 
+SymbolTableStack symbolTableStack =  SymbolTableStack();
+fstream jasm_file;
+void jasm(string s){
+        // jasm_file<<s<<endl;
+}
 
-#line 102 "y.tab.cpp"
+
+#line 104 "y.tab.cpp"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -625,17 +627,17 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,    80,    80,    85,    96,   100,   101,   105,   106,   107,
+       0,    75,    75,    80,    93,   100,   101,   105,   106,   107,
      111,   115,   119,   123,   130,   131,   132,   135,   144,   160,
-     169,   178,   192,   203,   216,   215,   242,   241,   262,   261,
-     288,   287,   311,   312,   315,   327,   328,   329,   330,   333,
-     347,   361,   362,   363,   364,   365,   380,   390,   402,   408,
-     417,   426,   430,   434,   441,   450,   454,   458,   464,   465,
-     466,   467,   470,   471,   472,   473,   474,   475,   478,   479,
-     480,   484,   488,   492,   496,   502,   508,   514,   520,   528,
-     529,   532,   543,   558,   562,   563,   566,   567,   571,   572,
-     576,   577,   581,   581,   588,   592,   616,   641,   640,   644,
-     651
+     175,   190,   210,   221,   234,   233,   260,   259,   280,   279,
+     306,   305,   329,   330,   333,   345,   346,   347,   348,   351,
+     365,   379,   380,   381,   382,   383,   398,   408,   420,   426,
+     435,   444,   448,   452,   459,   468,   472,   476,   482,   483,
+     484,   485,   488,   489,   490,   491,   492,   493,   496,   497,
+     498,   502,   506,   510,   514,   520,   526,   532,   538,   546,
+     547,   550,   561,   576,   580,   581,   584,   585,   589,   590,
+     594,   595,   599,   599,   606,   610,   634,   659,   658,   662,
+     669
 };
 #endif
 
@@ -1350,15 +1352,15 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: program_begin program_contents program_end  */
-#line 81 "parser.y"
+#line 76 "parser.y"
                 {
                         symbolTableStack.pop();
                 }
-#line 1358 "y.tab.cpp"
+#line 1360 "y.tab.cpp"
     break;
 
   case 3: /* program_begin: CLASS ID LCB  */
-#line 86 "parser.y"
+#line 81 "parser.y"
                 {
                 symbolTableStack.push(*(yyvsp[-1].str_value));
 
@@ -1367,8 +1369,18 @@ yyreduce:
                 symbol->id_type = ID_PROGRAM;
                 symbolTableStack.insert(symbol);
 
+                // jasm("class "+*$2+"\n{");
+
                 }
-#line 1372 "y.tab.cpp"
+#line 1376 "y.tab.cpp"
+    break;
+
+  case 4: /* program_end: RCB  */
+#line 94 "parser.y"
+                {
+                        // jasm("}");
+                }
+#line 1384 "y.tab.cpp"
     break;
 
   case 10: /* type_define: INT  */
@@ -1376,7 +1388,7 @@ yyreduce:
         {
                 (yyval.id_type) = VALUE_INT;
         }
-#line 1380 "y.tab.cpp"
+#line 1392 "y.tab.cpp"
     break;
 
   case 11: /* type_define: FLOAT  */
@@ -1384,7 +1396,7 @@ yyreduce:
         {
                 (yyval.id_type) = VALUE_FLOAT;
         }
-#line 1388 "y.tab.cpp"
+#line 1400 "y.tab.cpp"
     break;
 
   case 12: /* type_define: STRING  */
@@ -1392,7 +1404,7 @@ yyreduce:
         {
                 (yyval.id_type) = VALUE_STR;
         }
-#line 1396 "y.tab.cpp"
+#line 1408 "y.tab.cpp"
     break;
 
   case 13: /* type_define: BOOL  */
@@ -1400,7 +1412,7 @@ yyreduce:
         {
                 (yyval.id_type) = VALUE_BOOL;
         }
-#line 1404 "y.tab.cpp"
+#line 1416 "y.tab.cpp"
     break;
 
   case 17: /* const_declaration: VAL ID ASIGN const_expression  */
@@ -1413,7 +1425,7 @@ yyreduce:
 
                                 symbolTableStack.insert(symbol);
                         }
-#line 1417 "y.tab.cpp"
+#line 1429 "y.tab.cpp"
     break;
 
   case 18: /* const_declaration: VAL ID MO type_define ASIGN const_expression  */
@@ -1431,7 +1443,7 @@ yyreduce:
                                         TypeError(symbol->value->value_type,(yyvsp[-2].id_type));
                                 }
                         }
-#line 1435 "y.tab.cpp"
+#line 1447 "y.tab.cpp"
     break;
 
   case 19: /* var_declaration: VAR ID  */
@@ -1443,12 +1455,18 @@ yyreduce:
                                 symbol->value->value_type=VALUE_INT;
 
                                 symbolTableStack.insert(symbol);
+                                
+                                // if(symbolTableStack.size()==1){
+                                //         jasm("field static int "+*$2);
+                                // }else{
+
+                                // }
                         }
-#line 1448 "y.tab.cpp"
+#line 1466 "y.tab.cpp"
     break;
 
   case 20: /* var_declaration: VAR ID MO type_define  */
-#line 170 "parser.y"
+#line 176 "parser.y"
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->id_type = ID_VAR;
@@ -1456,12 +1474,18 @@ yyreduce:
                                 symbol->value->value_type= (yyvsp[0].id_type);
  
                                 symbolTableStack.insert(symbol);
+
+                                // if(symbolTableStack.size()==1){
+                                //         jasm("field static "+ValueTypeToString($4)+" "+*$2);
+                                // }else{
+                                        
+                                // }
                         }
-#line 1461 "y.tab.cpp"
+#line 1485 "y.tab.cpp"
     break;
 
   case 21: /* var_declaration: VAR ID MO type_define ASIGN const_expression  */
-#line 179 "parser.y"
+#line 191 "parser.y"
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->id_type = ID_VAR;
@@ -1474,12 +1498,18 @@ yyreduce:
                                         TypeError(symbol->value->value_type,(yyvsp[-2].id_type));
                                 }
 
+                                // if(symbolTableStack.size()==1){
+                                //         jasm("field static "+ValueTypeToString($6->value_type)+" "+*$2+" = "+$6->display());
+                                // }else{
+                                        
+                                // }
+
                         }
-#line 1479 "y.tab.cpp"
+#line 1509 "y.tab.cpp"
     break;
 
   case 22: /* var_declaration: VAR ID ASIGN const_expression  */
-#line 193 "parser.y"
+#line 211 "parser.y"
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->id_type = ID_VAR;
@@ -1488,11 +1518,11 @@ yyreduce:
 
                                 symbolTableStack.insert(symbol);
                         }
-#line 1492 "y.tab.cpp"
+#line 1522 "y.tab.cpp"
     break;
 
   case 23: /* array_declaration: VAR ID MO type_define LSB num RSB  */
-#line 204 "parser.y"
+#line 222 "parser.y"
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->id_type = ID_ARR;
@@ -1501,11 +1531,11 @@ yyreduce:
  
                                 symbolTableStack.insert(symbol);
                         }
-#line 1505 "y.tab.cpp"
+#line 1535 "y.tab.cpp"
     break;
 
   case 24: /* $@1: %empty  */
-#line 216 "parser.y"
+#line 234 "parser.y"
                 {       
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_FUNC;
@@ -1526,22 +1556,22 @@ yyreduce:
                         symbolTableStack.fun_ptr=symbol;
 
                 }
-#line 1530 "y.tab.cpp"
+#line 1560 "y.tab.cpp"
     break;
 
   case 25: /* fun_declaration: FUN ID LB formal_argument_list RB MO type_define $@1 block  */
-#line 235 "parser.y"
+#line 253 "parser.y"
                        {
                         symbolTableStack.pop();
 
                         symbolTableStack.fun_ptr=nullptr;
 
                 }
-#line 1541 "y.tab.cpp"
+#line 1571 "y.tab.cpp"
     break;
 
   case 26: /* $@2: %empty  */
-#line 242 "parser.y"
+#line 260 "parser.y"
                 {       
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_FUNC;
@@ -1554,22 +1584,22 @@ yyreduce:
                         symbolTableStack.fun_ptr=symbol;
 
                 }
-#line 1558 "y.tab.cpp"
+#line 1588 "y.tab.cpp"
     break;
 
   case 27: /* fun_declaration: FUN ID LB RB MO type_define $@2 block  */
-#line 253 "parser.y"
+#line 271 "parser.y"
                        {
                         symbolTableStack.pop();
 
                         symbolTableStack.fun_ptr=nullptr;
 
                 }
-#line 1569 "y.tab.cpp"
+#line 1599 "y.tab.cpp"
     break;
 
   case 28: /* $@3: %empty  */
-#line 262 "parser.y"
+#line 280 "parser.y"
                 {       
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_PROCEDURE;
@@ -1590,22 +1620,22 @@ yyreduce:
 
 
                 }
-#line 1594 "y.tab.cpp"
+#line 1624 "y.tab.cpp"
     break;
 
   case 29: /* proc_declaration: FUN ID LB formal_argument_list RB $@3 block  */
-#line 281 "parser.y"
+#line 299 "parser.y"
                        {
                         symbolTableStack.pop();
 
                         symbolTableStack.fun_ptr=nullptr;
 
                 }
-#line 1605 "y.tab.cpp"
+#line 1635 "y.tab.cpp"
     break;
 
   case 30: /* $@4: %empty  */
-#line 288 "parser.y"
+#line 306 "parser.y"
                 {       
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_PROCEDURE;
@@ -1622,22 +1652,22 @@ yyreduce:
 
 
                 }
-#line 1626 "y.tab.cpp"
+#line 1656 "y.tab.cpp"
     break;
 
   case 31: /* proc_declaration: FUN ID LB RB $@4 block  */
-#line 303 "parser.y"
+#line 321 "parser.y"
                        {
                         symbolTableStack.pop();
 
                         symbolTableStack.fun_ptr=nullptr;
 
                 }
-#line 1637 "y.tab.cpp"
+#line 1667 "y.tab.cpp"
     break;
 
   case 34: /* formal_argument: ID MO type_define  */
-#line 316 "parser.y"
+#line 334 "parser.y"
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->id_type = ID_ARG;
@@ -1646,11 +1676,11 @@ yyreduce:
 
                                 symbolTableStack.argumentStack.push_back(symbol);
                         }
-#line 1650 "y.tab.cpp"
+#line 1680 "y.tab.cpp"
     break;
 
   case 39: /* simple_statement: ID ASIGN expression  */
-#line 334 "parser.y"
+#line 352 "parser.y"
                 {
                         Symbol* symbol = symbolTableStack.lookup(*(yyvsp[-2].str_value));
                         if (!symbol)
@@ -1664,11 +1694,11 @@ yyreduce:
                                 TypeError(symbol->value->value_type,(yyvsp[0].value)->value_type);
                         }
                 }
-#line 1668 "y.tab.cpp"
+#line 1698 "y.tab.cpp"
     break;
 
   case 40: /* simple_statement: arr_refer ASIGN expression  */
-#line 348 "parser.y"
+#line 366 "parser.y"
                 {
                         Symbol* symbol = (yyvsp[-2].symbol);
                         if (!symbol)
@@ -1682,11 +1712,11 @@ yyreduce:
                                 TypeError(symbol->value->value_type,(yyvsp[0].value)->value_type);
                         }
                 }
-#line 1686 "y.tab.cpp"
+#line 1716 "y.tab.cpp"
     break;
 
   case 45: /* simple_statement: RETURN ID  */
-#line 366 "parser.y"
+#line 384 "parser.y"
                 {
                         if(!symbolTableStack.fun_ptr){
                                 yyerror("Not in function");
@@ -1701,11 +1731,11 @@ yyreduce:
                                 }
                         }
                 }
-#line 1705 "y.tab.cpp"
+#line 1735 "y.tab.cpp"
     break;
 
   case 46: /* simple_statement: RETURN  */
-#line 381 "parser.y"
+#line 399 "parser.y"
                 {
                         if(!symbolTableStack.fun_ptr){
                                 yyerror("Not in function");
@@ -1715,11 +1745,11 @@ yyreduce:
                         }
                         
                 }
-#line 1719 "y.tab.cpp"
+#line 1749 "y.tab.cpp"
     break;
 
   case 47: /* simple_statement: RETURN expression  */
-#line 391 "parser.y"
+#line 409 "parser.y"
                 {
                         if(!symbolTableStack.fun_ptr){
                                 yyerror("Not in function");
@@ -1728,68 +1758,68 @@ yyreduce:
                                 TypeError((yyvsp[0].value)->value_type,symbolTableStack.fun_ptr->value->value_type);
                         }
                 }
-#line 1732 "y.tab.cpp"
+#line 1762 "y.tab.cpp"
     break;
 
   case 48: /* const_expression: expression  */
-#line 403 "parser.y"
+#line 421 "parser.y"
                         {
                                 (yyval.value)=(yyvsp[0].value);
                         }
-#line 1740 "y.tab.cpp"
+#line 1770 "y.tab.cpp"
     break;
 
   case 49: /* int_expression: expression  */
-#line 409 "parser.y"
+#line 427 "parser.y"
                         {
                                 if((yyvsp[0].value)->value_type!=VALUE_INT){
                                         TypeError((yyvsp[0].value)->value_type,VALUE_INT);
                                 }
                                 (yyval.value)=(yyvsp[0].value);
                         }
-#line 1751 "y.tab.cpp"
+#line 1781 "y.tab.cpp"
     break;
 
   case 50: /* bool_expression: expression  */
-#line 418 "parser.y"
+#line 436 "parser.y"
                         {
                                 if((yyvsp[0].value)->value_type!=VALUE_BOOL){
                                         TypeError((yyvsp[0].value)->value_type,VALUE_BOOL);
                                 }
                                 (yyval.value)=(yyvsp[0].value);
                         }
-#line 1762 "y.tab.cpp"
+#line 1792 "y.tab.cpp"
     break;
 
   case 51: /* expression: LB expression RB  */
-#line 427 "parser.y"
+#line 445 "parser.y"
                 {
                         (yyval.value)=(yyvsp[-1].value);
                 }
-#line 1770 "y.tab.cpp"
+#line 1800 "y.tab.cpp"
     break;
 
   case 52: /* expression: SUB expression  */
-#line 431 "parser.y"
+#line 449 "parser.y"
                 {
                         (yyval.value)=(yyvsp[0].value);
                 }
-#line 1778 "y.tab.cpp"
+#line 1808 "y.tab.cpp"
     break;
 
   case 53: /* expression: expression math_operator expression  */
-#line 435 "parser.y"
+#line 453 "parser.y"
                 {
                         if((yyvsp[-2].value)->value_type!=(yyvsp[0].value)->value_type){
                                 TypeError((yyvsp[-2].value)->value_type,(yyvsp[0].value)->value_type);
                         }
                         (yyval.value)=(yyvsp[-2].value);
                 }
-#line 1789 "y.tab.cpp"
+#line 1819 "y.tab.cpp"
     break;
 
   case 54: /* expression: expression logic_operator expression  */
-#line 442 "parser.y"
+#line 460 "parser.y"
                 {
                         if((yyvsp[-2].value)->value_type!=(yyvsp[0].value)->value_type){
                                 TypeError((yyvsp[-2].value)->value_type,(yyvsp[0].value)->value_type);
@@ -1798,107 +1828,107 @@ yyreduce:
                         ret->value_type=VALUE_BOOL;
                         (yyval.value)=ret;
                 }
-#line 1802 "y.tab.cpp"
+#line 1832 "y.tab.cpp"
     break;
 
   case 55: /* expression: bool_expression bit_operator bool_expression  */
-#line 451 "parser.y"
+#line 469 "parser.y"
                 {
                         (yyval.value)=(yyvsp[-2].value);
                 }
-#line 1810 "y.tab.cpp"
+#line 1840 "y.tab.cpp"
     break;
 
   case 56: /* expression: NOT bool_expression  */
-#line 455 "parser.y"
+#line 473 "parser.y"
                 {
                         (yyval.value)=(yyvsp[0].value);
                 }
-#line 1818 "y.tab.cpp"
+#line 1848 "y.tab.cpp"
     break;
 
   case 57: /* expression: components  */
-#line 459 "parser.y"
+#line 477 "parser.y"
                 {
                         (yyval.value)=(yyvsp[0].value);
                 }
-#line 1826 "y.tab.cpp"
+#line 1856 "y.tab.cpp"
     break;
 
   case 71: /* components: literal_constant  */
-#line 485 "parser.y"
+#line 503 "parser.y"
                 {
                         (yyval.value)=(yyvsp[0].value);
                 }
-#line 1834 "y.tab.cpp"
+#line 1864 "y.tab.cpp"
     break;
 
   case 72: /* components: var_refer  */
-#line 489 "parser.y"
+#line 507 "parser.y"
                 {
                         (yyval.value)=(yyvsp[0].value);
                 }
-#line 1842 "y.tab.cpp"
+#line 1872 "y.tab.cpp"
     break;
 
   case 73: /* components: fun_invoc  */
-#line 493 "parser.y"
+#line 511 "parser.y"
                 {
                         (yyval.value)=(yyvsp[0].value);
                 }
-#line 1850 "y.tab.cpp"
+#line 1880 "y.tab.cpp"
     break;
 
   case 74: /* components: arr_refer  */
-#line 497 "parser.y"
+#line 515 "parser.y"
                 {
                         (yyval.value)=(yyvsp[0].symbol)->value;
                 }
-#line 1858 "y.tab.cpp"
+#line 1888 "y.tab.cpp"
     break;
 
   case 75: /* literal_constant: C_INT  */
-#line 503 "parser.y"
+#line 521 "parser.y"
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_INT;
                                 (yyval.value)=value;
                         }
-#line 1868 "y.tab.cpp"
+#line 1898 "y.tab.cpp"
     break;
 
   case 76: /* literal_constant: C_FLOAT  */
-#line 509 "parser.y"
+#line 527 "parser.y"
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_FLOAT;
                                 (yyval.value)=value;
                         }
-#line 1878 "y.tab.cpp"
+#line 1908 "y.tab.cpp"
     break;
 
   case 77: /* literal_constant: C_STR  */
-#line 515 "parser.y"
+#line 533 "parser.y"
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_STR;
                                 (yyval.value)=value;
                         }
-#line 1888 "y.tab.cpp"
+#line 1918 "y.tab.cpp"
     break;
 
   case 78: /* literal_constant: c_bool  */
-#line 521 "parser.y"
+#line 539 "parser.y"
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_BOOL;
                                 (yyval.value)=value;
                         }
-#line 1898 "y.tab.cpp"
+#line 1928 "y.tab.cpp"
     break;
 
   case 81: /* var_refer: ID  */
-#line 533 "parser.y"
+#line 551 "parser.y"
                 {
                         Symbol* symbol = symbolTableStack.lookup(*(yyvsp[0].str_value));
                         if (!symbol)
@@ -1907,11 +1937,11 @@ yyreduce:
                         }
                         (yyval.value) = symbol->value;
                 }
-#line 1911 "y.tab.cpp"
+#line 1941 "y.tab.cpp"
     break;
 
   case 82: /* arr_refer: ID LSB int_expression RSB  */
-#line 544 "parser.y"
+#line 562 "parser.y"
                 {
                         Symbol* symbol = symbolTableStack.lookup(*(yyvsp[-3].str_value));
                         if (!symbol)
@@ -1923,28 +1953,28 @@ yyreduce:
                         }
                         (yyval.symbol) = symbol;
                 }
-#line 1927 "y.tab.cpp"
+#line 1957 "y.tab.cpp"
     break;
 
   case 92: /* $@5: %empty  */
-#line 581 "parser.y"
+#line 599 "parser.y"
                                 {       
                                         symbolTableStack.push("simple code block");
 
                                 }
-#line 1936 "y.tab.cpp"
+#line 1966 "y.tab.cpp"
     break;
 
   case 93: /* block_or_simple_statement: $@5 block  */
-#line 585 "parser.y"
+#line 603 "parser.y"
                                 {
                                         symbolTableStack.pop();
                                 }
-#line 1944 "y.tab.cpp"
+#line 1974 "y.tab.cpp"
     break;
 
   case 95: /* fun_invoc: ID LB comma_separated_expressions RB  */
-#line 593 "parser.y"
+#line 611 "parser.y"
                 {
                         Symbol* symbol = symbolTableStack.lookup(*(yyvsp[-3].str_value));
                         if (!symbol)
@@ -1966,11 +1996,11 @@ yyreduce:
 
                         (yyval.value) = symbol->value;
                 }
-#line 1970 "y.tab.cpp"
+#line 2000 "y.tab.cpp"
     break;
 
   case 96: /* proc_invoc: ID LB comma_separated_expressions RB  */
-#line 617 "parser.y"
+#line 635 "parser.y"
                 {
                         Symbol* symbol = symbolTableStack.lookup(*(yyvsp[-3].str_value));
                         if (!symbol)
@@ -1992,37 +2022,37 @@ yyreduce:
 
                         (yyval.value) = symbol->value;
                 }
-#line 1996 "y.tab.cpp"
+#line 2026 "y.tab.cpp"
     break;
 
   case 97: /* $@6: %empty  */
-#line 641 "parser.y"
+#line 659 "parser.y"
                                 {
                                         symbolTableStack.parseStack.push_back((yyvsp[0].value));
                                 }
-#line 2004 "y.tab.cpp"
+#line 2034 "y.tab.cpp"
     break;
 
   case 99: /* comma_separated_expressions: expression  */
-#line 645 "parser.y"
+#line 663 "parser.y"
                                 {
                                         symbolTableStack.parseStack.push_back((yyvsp[0].value));
                                 }
-#line 2012 "y.tab.cpp"
+#line 2042 "y.tab.cpp"
     break;
 
   case 100: /* num: C_INT  */
-#line 652 "parser.y"
+#line 670 "parser.y"
         {
                 Value *ret=new Value();
                 ret->value_type=VALUE_INT;
                 (yyval.value)=ret;
         }
-#line 2022 "y.tab.cpp"
+#line 2052 "y.tab.cpp"
     break;
 
 
-#line 2026 "y.tab.cpp"
+#line 2056 "y.tab.cpp"
 
       default: break;
     }
@@ -2215,7 +2245,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 659 "parser.y"
+#line 677 "parser.y"
 
 
 int main( int argc, char **argv )

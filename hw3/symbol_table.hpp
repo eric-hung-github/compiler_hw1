@@ -102,6 +102,31 @@ struct Value
     float float_value;
     bool bool_value;
     string string_value;
+
+public:
+    string display()
+    {
+        switch (value_type)
+        {
+        case VALUE_INT:
+            return to_string(int_value);
+            break;
+        case VALUE_FLOAT:
+            return to_string(float_value);
+            break;
+        case VALUE_BOOL:
+            return (bool_value) ? "True" : "False";
+            break;
+        case VALUE_STR:
+            return string_value;
+            break;
+        case VALUE_VOID:
+            return "VALUE_VOID";
+            break;
+        default:
+            return "VALUE_NONE";
+        }
+    }
 };
 
 struct Symbol
@@ -190,6 +215,16 @@ public:
         tableStack.clear();
     }
     ~SymbolTableStack() {}
+
+    int size()
+    {
+        return tableStack.size();
+    }
+
+    SymbolTable *top()
+    {
+        return &tableStack[size() - 1];
+    }
 
     void push(string table_name)
     {
