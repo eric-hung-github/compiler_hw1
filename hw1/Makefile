@@ -1,7 +1,6 @@
 CC = gcc
-# SRCFILES = main.c
 LEXYACC = b10830020
-TARGET = executable
+TARGET = compiler
 
 all: $(TARGET)
 

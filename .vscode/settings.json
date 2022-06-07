@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.l": "lex",
         "*.y": "yacc",
         "type_traits": "c",
         "xlocale": "c",
@@ -23,6 +24,7 @@
         "xutility": "cpp",
         "system_error": "c",
         "initializer_list": "c",
-        "streambuf": "c"
+        "streambuf": "c",
+        "string": "cpp"
     }
 }
