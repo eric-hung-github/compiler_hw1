@@ -1,6 +1,6 @@
 {
     "files.associations": {
-        "*.y": "c",
+        "*.y": "yacc",
         "type_traits": "c",
         "xlocale": "c",
         "xlocmon": "c",
