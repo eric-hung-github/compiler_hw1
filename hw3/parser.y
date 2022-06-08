@@ -740,7 +740,7 @@ var_refer        : ID
                                 yyerror("ID not found");
                         }
 
-                        if(symbol->id_type=ID_CONST){
+                        if(symbol->id_type==ID_CONST){
                                 symbolTableStack.load_value(symbol);
                         }else{ 
                                 if(symbol->is_global){
