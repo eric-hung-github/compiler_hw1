@@ -290,7 +290,7 @@ public:
                 {
                     store_value(id);
                 }
-                symbol->counter = top()->size() - 1;
+                id->counter = top()->size() - 1;
             }
         }
         return true;
