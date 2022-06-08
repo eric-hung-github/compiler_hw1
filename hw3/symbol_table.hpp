@@ -60,9 +60,6 @@ string IDTypeToString(int type)
     case ID_PROCEDURE:
         return "procedure";
         break;
-    case ID_ARG:
-        return "argument";
-        break;
 
     default:
         return "error type";
