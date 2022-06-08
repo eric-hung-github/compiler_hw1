@@ -1,14 +1,14 @@
-/* A Bison parser, made by GNU Bison 3.8.2.  */
+/* A Bison parser, made by GNU Bison 2.3.  */
 
-/* Bison interface for Yacc-like parsers in C
+/* Skeleton interface for Bison's Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
-   Inc.
+   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   Free Software Foundation, Inc.
 
-   This program is free software: you can redistribute it and/or modify
+   This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,7 +16,9 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -31,297 +33,539 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
-   especially those whose name start with YY_ or yy_.  They are
-   private implementation details that can be changed or removed.  */
-
-#ifndef YY_YY_JAVAA_TAB_H_INCLUDED
-# define YY_YY_JAVAA_TAB_H_INCLUDED
-/* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 1
-#endif
-#if YYDEBUG
-extern int yydebug;
-#endif
-
-/* Token kinds.  */
+/* Tokens.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-  enum yytokentype
-  {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    LABEL = 258,                   /* LABEL  */
-    IDENTIFIER = 259,              /* IDENTIFIER  */
-    INTCONSTANT = 260,             /* INTCONSTANT  */
-    LONGCONSTANT = 261,            /* LONGCONSTANT  */
-    FLOATCONSTANT = 262,           /* FLOATCONSTANT  */
-    DOUBLECONSTANT = 263,          /* DOUBLECONSTANT  */
-    CHARCONSTANT = 264,            /* CHARCONSTANT  */
-    STRING_LITERAL = 265,          /* STRING_LITERAL  */
-    CLASS = 266,                   /* CLASS  */
-    EXTENDS = 267,                 /* EXTENDS  */
-    ACCESS = 268,                  /* ACCESS  */
-    IMPLEMENTS = 269,              /* IMPLEMENTS  */
-    FIELD = 270,                   /* FIELD  */
-    METHOD = 271,                  /* METHOD  */
-    MAX_STACK = 272,               /* MAX_STACK  */
-    MAX_LOCALS = 273,              /* MAX_LOCALS  */
-    CODE = 274,                    /* CODE  */
-    PUBLIC = 275,                  /* PUBLIC  */
-    PRIVATE = 276,                 /* PRIVATE  */
-    PROTECTED = 277,               /* PROTECTED  */
-    ABSTRACT = 278,                /* ABSTRACT  */
-    FINAL = 279,                   /* FINAL  */
-    INTERFACE = 280,               /* INTERFACE  */
-    STATIC = 281,                  /* STATIC  */
-    NATIVE = 282,                  /* NATIVE  */
-    SYNCHRONIZED = 283,            /* SYNCHRONIZED  */
-    TRANSIENT = 284,               /* TRANSIENT  */
-    VOLATILE = 285,                /* VOLATILE  */
-    BYTE = 286,                    /* BYTE  */
-    CHAR = 287,                    /* CHAR  */
-    DOUBLE = 288,                  /* DOUBLE  */
-    FLOAT = 289,                   /* FLOAT  */
-    INT = 290,                     /* INT  */
-    LONG = 291,                    /* LONG  */
-    SHORT = 292,                   /* SHORT  */
-    BOOLEAN = 293,                 /* BOOLEAN  */
-    VOID = 294,                    /* VOID  */
-    DEFAULT = 295,                 /* DEFAULT  */
-    TO = 296,                      /* TO  */
-    EXCEPTIONS = 297,              /* EXCEPTIONS  */
-    SOURCEFILE = 298,              /* SOURCEFILE  */
-    THROWS = 299,                  /* THROWS  */
-    LINENUMBERTABLE = 300,         /* LINENUMBERTABLE  */
-    LOCALVARIABLETABLE = 301,      /* LOCALVARIABLETABLE  */
-    ACC_PUBLIC = 302,              /* ACC_PUBLIC  */
-    ACC_PRIVATE = 303,             /* ACC_PRIVATE  */
-    ACC_PROTECTED = 304,           /* ACC_PROTECTED  */
-    ACC_STATIC = 305,              /* ACC_STATIC  */
-    ACC_FINAL = 306,               /* ACC_FINAL  */
-    ACC_SYNCHRONIZED = 307,        /* ACC_SYNCHRONIZED  */
-    ACC_VOLATILE = 308,            /* ACC_VOLATILE  */
-    ACC_TRANSIENT = 309,           /* ACC_TRANSIENT  */
-    ACC_NATIVE = 310,              /* ACC_NATIVE  */
-    ACC_INTERFACE = 311,           /* ACC_INTERFACE  */
-    ACC_ABSTRACT = 312,            /* ACC_ABSTRACT  */
-    AALOAD = 313,                  /* AALOAD  */
-    AASTORE = 314,                 /* AASTORE  */
-    ACONST_NULL = 315,             /* ACONST_NULL  */
-    ALOAD_0 = 316,                 /* ALOAD_0  */
-    ALOAD_1 = 317,                 /* ALOAD_1  */
-    ALOAD_2 = 318,                 /* ALOAD_2  */
-    ALOAD_3 = 319,                 /* ALOAD_3  */
-    ANEWARRAY = 320,               /* ANEWARRAY  */
-    ARETURN = 321,                 /* ARETURN  */
-    ARRAYLENGTH = 322,             /* ARRAYLENGTH  */
-    ASTORE_0 = 323,                /* ASTORE_0  */
-    ASTORE_1 = 324,                /* ASTORE_1  */
-    ASTORE_2 = 325,                /* ASTORE_2  */
-    ASTORE_3 = 326,                /* ASTORE_3  */
-    ATHROW = 327,                  /* ATHROW  */
-    BALOAD = 328,                  /* BALOAD  */
-    BASTORE = 329,                 /* BASTORE  */
-    BIPUSH = 330,                  /* BIPUSH  */
-    CALOAD = 331,                  /* CALOAD  */
-    CASTORE = 332,                 /* CASTORE  */
-    CHECKCAST = 333,               /* CHECKCAST  */
-    D2F = 334,                     /* D2F  */
-    D2I = 335,                     /* D2I  */
-    D2L = 336,                     /* D2L  */
-    DADD = 337,                    /* DADD  */
-    DALOAD = 338,                  /* DALOAD  */
-    DASTORE = 339,                 /* DASTORE  */
-    DCMPG = 340,                   /* DCMPG  */
-    DCMPL = 341,                   /* DCMPL  */
-    DCONST_0 = 342,                /* DCONST_0  */
-    DCONST_1 = 343,                /* DCONST_1  */
-    DDIV = 344,                    /* DDIV  */
-    DLOAD_0 = 345,                 /* DLOAD_0  */
-    DLOAD_1 = 346,                 /* DLOAD_1  */
-    DLOAD_2 = 347,                 /* DLOAD_2  */
-    DLOAD_3 = 348,                 /* DLOAD_3  */
-    DMUL = 349,                    /* DMUL  */
-    DNEG = 350,                    /* DNEG  */
-    DREM = 351,                    /* DREM  */
-    DRETURN = 352,                 /* DRETURN  */
-    DSTORE_0 = 353,                /* DSTORE_0  */
-    DSTORE_1 = 354,                /* DSTORE_1  */
-    DSTORE_2 = 355,                /* DSTORE_2  */
-    DSTORE_3 = 356,                /* DSTORE_3  */
-    DSUB = 357,                    /* DSUB  */
-    DUP = 358,                     /* DUP  */
-    DUP_X1 = 359,                  /* DUP_X1  */
-    DUP_X2 = 360,                  /* DUP_X2  */
-    DUP2 = 361,                    /* DUP2  */
-    DUP2_X1 = 362,                 /* DUP2_X1  */
-    DUP2_X2 = 363,                 /* DUP2_X2  */
-    F2D = 364,                     /* F2D  */
-    F2I = 365,                     /* F2I  */
-    F2L = 366,                     /* F2L  */
-    FADD = 367,                    /* FADD  */
-    FALOAD = 368,                  /* FALOAD  */
-    FASTORE = 369,                 /* FASTORE  */
-    FCMPG = 370,                   /* FCMPG  */
-    FCMPL = 371,                   /* FCMPL  */
-    FCONST_0 = 372,                /* FCONST_0  */
-    FCONST_1 = 373,                /* FCONST_1  */
-    FCONST_2 = 374,                /* FCONST_2  */
-    FDIV = 375,                    /* FDIV  */
-    FLOAD_0 = 376,                 /* FLOAD_0  */
-    FLOAD_1 = 377,                 /* FLOAD_1  */
-    FLOAD_2 = 378,                 /* FLOAD_2  */
-    FLOAD_3 = 379,                 /* FLOAD_3  */
-    FMUL = 380,                    /* FMUL  */
-    FNEG = 381,                    /* FNEG  */
-    FREM = 382,                    /* FREM  */
-    FRETURN = 383,                 /* FRETURN  */
-    FSTORE_0 = 384,                /* FSTORE_0  */
-    FSTORE_1 = 385,                /* FSTORE_1  */
-    FSTORE_2 = 386,                /* FSTORE_2  */
-    FSTORE_3 = 387,                /* FSTORE_3  */
-    FSUB = 388,                    /* FSUB  */
-    GETFIELD = 389,                /* GETFIELD  */
-    GETSTATIC = 390,               /* GETSTATIC  */
-    GOTO = 391,                    /* GOTO  */
-    GOTO_W = 392,                  /* GOTO_W  */
-    I2B = 393,                     /* I2B  */
-    I2C = 394,                     /* I2C  */
-    I2D = 395,                     /* I2D  */
-    I2F = 396,                     /* I2F  */
-    I2L = 397,                     /* I2L  */
-    I2S = 398,                     /* I2S  */
-    IADD = 399,                    /* IADD  */
-    IALOAD = 400,                  /* IALOAD  */
-    IAND = 401,                    /* IAND  */
-    IASTORE = 402,                 /* IASTORE  */
-    ICONST_0 = 403,                /* ICONST_0  */
-    ICONST_1 = 404,                /* ICONST_1  */
-    ICONST_2 = 405,                /* ICONST_2  */
-    ICONST_3 = 406,                /* ICONST_3  */
-    ICONST_4 = 407,                /* ICONST_4  */
-    ICONST_5 = 408,                /* ICONST_5  */
-    ICONST_M1 = 409,               /* ICONST_M1  */
-    IDIV = 410,                    /* IDIV  */
-    IF_ACMPEQ = 411,               /* IF_ACMPEQ  */
-    IF_ACMPNE = 412,               /* IF_ACMPNE  */
-    IF_ICMPEQ = 413,               /* IF_ICMPEQ  */
-    IF_ICMPNE = 414,               /* IF_ICMPNE  */
-    IF_ICMPLT = 415,               /* IF_ICMPLT  */
-    IF_ICMPGE = 416,               /* IF_ICMPGE  */
-    IF_ICMPGT = 417,               /* IF_ICMPGT  */
-    IF_ICMPLE = 418,               /* IF_ICMPLE  */
-    IFEQ = 419,                    /* IFEQ  */
-    IFNE = 420,                    /* IFNE  */
-    IFLT = 421,                    /* IFLT  */
-    IFGE = 422,                    /* IFGE  */
-    IFGT = 423,                    /* IFGT  */
-    IFLE = 424,                    /* IFLE  */
-    IFNONNULL = 425,               /* IFNONNULL  */
-    IFNULL = 426,                  /* IFNULL  */
-    ILOAD_0 = 427,                 /* ILOAD_0  */
-    ILOAD_1 = 428,                 /* ILOAD_1  */
-    ILOAD_2 = 429,                 /* ILOAD_2  */
-    ILOAD_3 = 430,                 /* ILOAD_3  */
-    IMUL = 431,                    /* IMUL  */
-    INEG = 432,                    /* INEG  */
-    IOR = 433,                     /* IOR  */
-    IREM = 434,                    /* IREM  */
-    IRETURN = 435,                 /* IRETURN  */
-    ISHL = 436,                    /* ISHL  */
-    ISHR = 437,                    /* ISHR  */
-    ISTORE_0 = 438,                /* ISTORE_0  */
-    ISTORE_1 = 439,                /* ISTORE_1  */
-    ISTORE_2 = 440,                /* ISTORE_2  */
-    ISTORE_3 = 441,                /* ISTORE_3  */
-    ISUB = 442,                    /* ISUB  */
-    IUSHR = 443,                   /* IUSHR  */
-    IXOR = 444,                    /* IXOR  */
-    JSR = 445,                     /* JSR  */
-    JSR_W = 446,                   /* JSR_W  */
-    L2D = 447,                     /* L2D  */
-    L2F = 448,                     /* L2F  */
-    L2I = 449,                     /* L2I  */
-    LADD = 450,                    /* LADD  */
-    LALOAD = 451,                  /* LALOAD  */
-    LAND = 452,                    /* LAND  */
-    LASTORE = 453,                 /* LASTORE  */
-    LCMP = 454,                    /* LCMP  */
-    LCONST_0 = 455,                /* LCONST_0  */
-    LCONST_1 = 456,                /* LCONST_1  */
-    LDIV = 457,                    /* LDIV  */
-    LLOAD_0 = 458,                 /* LLOAD_0  */
-    LLOAD_1 = 459,                 /* LLOAD_1  */
-    LLOAD_2 = 460,                 /* LLOAD_2  */
-    LLOAD_3 = 461,                 /* LLOAD_3  */
-    LMUL = 462,                    /* LMUL  */
-    LNEG = 463,                    /* LNEG  */
-    LOR = 464,                     /* LOR  */
-    LREM = 465,                    /* LREM  */
-    LRETURN = 466,                 /* LRETURN  */
-    LSHL = 467,                    /* LSHL  */
-    LSHR = 468,                    /* LSHR  */
-    LSTORE_0 = 469,                /* LSTORE_0  */
-    LSTORE_1 = 470,                /* LSTORE_1  */
-    LSTORE_2 = 471,                /* LSTORE_2  */
-    LSTORE_3 = 472,                /* LSTORE_3  */
-    LSUB = 473,                    /* LSUB  */
-    LUSHR = 474,                   /* LUSHR  */
-    LXOR = 475,                    /* LXOR  */
-    MONITORENTER = 476,            /* MONITORENTER  */
-    MONITOREXIT = 477,             /* MONITOREXIT  */
-    NOP = 478,                     /* NOP  */
-    POP = 479,                     /* POP  */
-    POP2 = 480,                    /* POP2  */
-    RETURN = 481,                  /* RETURN  */
-    SALOAD = 482,                  /* SALOAD  */
-    SASTORE = 483,                 /* SASTORE  */
-    SWAP = 484,                    /* SWAP  */
-    IINC = 485,                    /* IINC  */
-    INSTANCEOF = 486,              /* INSTANCEOF  */
-    INVOKEINTERFACE = 487,         /* INVOKEINTERFACE  */
-    INVOKENONVIRTUAL = 488,        /* INVOKENONVIRTUAL  */
-    INVOKESTATIC = 489,            /* INVOKESTATIC  */
-    INVOKEVIRTUAL = 490,           /* INVOKEVIRTUAL  */
-    LDC = 491,                     /* LDC  */
-    LDC_W = 492,                   /* LDC_W  */
-    LDC2_W = 493,                  /* LDC2_W  */
-    MULTIANEWARRAY = 494,          /* MULTIANEWARRAY  */
-    NEW = 495,                     /* NEW  */
-    NEWARRAY = 496,                /* NEWARRAY  */
-    PUTFIELD = 497,                /* PUTFIELD  */
-    PUTSTATIC = 498,               /* PUTSTATIC  */
-    SIPUSH = 499,                  /* SIPUSH  */
-    ILOAD = 500,                   /* ILOAD  */
-    FLOAD = 501,                   /* FLOAD  */
-    ALOAD = 502,                   /* ALOAD  */
-    LLOAD = 503,                   /* LLOAD  */
-    DLOAD = 504,                   /* DLOAD  */
-    ISTORE = 505,                  /* ISTORE  */
-    FSTORE = 506,                  /* FSTORE  */
-    ASTORE = 507,                  /* ASTORE  */
-    LSTORE = 508,                  /* LSTORE  */
-    DSTORE = 509,                  /* DSTORE  */
-    RET = 510,                     /* RET  */
-    WIDE = 511,                    /* WIDE  */
-    LOAD = 512,                    /* LOAD  */
-    STORE = 513,                   /* STORE  */
-    LOOKUPSWITCH = 514,            /* LOOKUPSWITCH  */
-    TABLESWITCH = 515              /* TABLESWITCH  */
-  };
-  typedef enum yytokentype yytoken_kind_t;
+   /* Put the tokens into the symbol table, so that GDB and other debuggers
+      know about them.  */
+   enum yytokentype {
+     LABEL = 258,
+     IDENTIFIER = 259,
+     INTCONSTANT = 260,
+     LONGCONSTANT = 261,
+     FLOATCONSTANT = 262,
+     DOUBLECONSTANT = 263,
+     CHARCONSTANT = 264,
+     STRING_LITERAL = 265,
+     CLASS = 266,
+     EXTENDS = 267,
+     ACCESS = 268,
+     IMPLEMENTS = 269,
+     FIELD = 270,
+     METHOD = 271,
+     MAX_STACK = 272,
+     MAX_LOCALS = 273,
+     CODE = 274,
+     PUBLIC = 275,
+     PRIVATE = 276,
+     PROTECTED = 277,
+     ABSTRACT = 278,
+     FINAL = 279,
+     INTERFACE = 280,
+     STATIC = 281,
+     NATIVE = 282,
+     SYNCHRONIZED = 283,
+     TRANSIENT = 284,
+     VOLATILE = 285,
+     BYTE = 286,
+     CHAR = 287,
+     DOUBLE = 288,
+     FLOAT = 289,
+     INT = 290,
+     LONG = 291,
+     SHORT = 292,
+     BOOLEAN = 293,
+     VOID = 294,
+     DEFAULT = 295,
+     TO = 296,
+     EXCEPTIONS = 297,
+     SOURCEFILE = 298,
+     THROWS = 299,
+     LINENUMBERTABLE = 300,
+     LOCALVARIABLETABLE = 301,
+     ACC_PUBLIC = 302,
+     ACC_PRIVATE = 303,
+     ACC_PROTECTED = 304,
+     ACC_STATIC = 305,
+     ACC_FINAL = 306,
+     ACC_SYNCHRONIZED = 307,
+     ACC_VOLATILE = 308,
+     ACC_TRANSIENT = 309,
+     ACC_NATIVE = 310,
+     ACC_INTERFACE = 311,
+     ACC_ABSTRACT = 312,
+     AALOAD = 313,
+     AASTORE = 314,
+     ACONST_NULL = 315,
+     ALOAD_0 = 316,
+     ALOAD_1 = 317,
+     ALOAD_2 = 318,
+     ALOAD_3 = 319,
+     ANEWARRAY = 320,
+     ARETURN = 321,
+     ARRAYLENGTH = 322,
+     ASTORE_0 = 323,
+     ASTORE_1 = 324,
+     ASTORE_2 = 325,
+     ASTORE_3 = 326,
+     ATHROW = 327,
+     BALOAD = 328,
+     BASTORE = 329,
+     BIPUSH = 330,
+     CALOAD = 331,
+     CASTORE = 332,
+     CHECKCAST = 333,
+     D2F = 334,
+     D2I = 335,
+     D2L = 336,
+     DADD = 337,
+     DALOAD = 338,
+     DASTORE = 339,
+     DCMPG = 340,
+     DCMPL = 341,
+     DCONST_0 = 342,
+     DCONST_1 = 343,
+     DDIV = 344,
+     DLOAD_0 = 345,
+     DLOAD_1 = 346,
+     DLOAD_2 = 347,
+     DLOAD_3 = 348,
+     DMUL = 349,
+     DNEG = 350,
+     DREM = 351,
+     DRETURN = 352,
+     DSTORE_0 = 353,
+     DSTORE_1 = 354,
+     DSTORE_2 = 355,
+     DSTORE_3 = 356,
+     DSUB = 357,
+     DUP = 358,
+     DUP_X1 = 359,
+     DUP_X2 = 360,
+     DUP2 = 361,
+     DUP2_X1 = 362,
+     DUP2_X2 = 363,
+     F2D = 364,
+     F2I = 365,
+     F2L = 366,
+     FADD = 367,
+     FALOAD = 368,
+     FASTORE = 369,
+     FCMPG = 370,
+     FCMPL = 371,
+     FCONST_0 = 372,
+     FCONST_1 = 373,
+     FCONST_2 = 374,
+     FDIV = 375,
+     FLOAD_0 = 376,
+     FLOAD_1 = 377,
+     FLOAD_2 = 378,
+     FLOAD_3 = 379,
+     FMUL = 380,
+     FNEG = 381,
+     FREM = 382,
+     FRETURN = 383,
+     FSTORE_0 = 384,
+     FSTORE_1 = 385,
+     FSTORE_2 = 386,
+     FSTORE_3 = 387,
+     FSUB = 388,
+     GETFIELD = 389,
+     GETSTATIC = 390,
+     GOTO = 391,
+     GOTO_W = 392,
+     I2B = 393,
+     I2C = 394,
+     I2D = 395,
+     I2F = 396,
+     I2L = 397,
+     I2S = 398,
+     IADD = 399,
+     IALOAD = 400,
+     IAND = 401,
+     IASTORE = 402,
+     ICONST_0 = 403,
+     ICONST_1 = 404,
+     ICONST_2 = 405,
+     ICONST_3 = 406,
+     ICONST_4 = 407,
+     ICONST_5 = 408,
+     ICONST_M1 = 409,
+     IDIV = 410,
+     IF_ACMPEQ = 411,
+     IF_ACMPNE = 412,
+     IF_ICMPEQ = 413,
+     IF_ICMPNE = 414,
+     IF_ICMPLT = 415,
+     IF_ICMPGE = 416,
+     IF_ICMPGT = 417,
+     IF_ICMPLE = 418,
+     IFEQ = 419,
+     IFNE = 420,
+     IFLT = 421,
+     IFGE = 422,
+     IFGT = 423,
+     IFLE = 424,
+     IFNONNULL = 425,
+     IFNULL = 426,
+     ILOAD_0 = 427,
+     ILOAD_1 = 428,
+     ILOAD_2 = 429,
+     ILOAD_3 = 430,
+     IMUL = 431,
+     INEG = 432,
+     IOR = 433,
+     IREM = 434,
+     IRETURN = 435,
+     ISHL = 436,
+     ISHR = 437,
+     ISTORE_0 = 438,
+     ISTORE_1 = 439,
+     ISTORE_2 = 440,
+     ISTORE_3 = 441,
+     ISUB = 442,
+     IUSHR = 443,
+     IXOR = 444,
+     JSR = 445,
+     JSR_W = 446,
+     L2D = 447,
+     L2F = 448,
+     L2I = 449,
+     LADD = 450,
+     LALOAD = 451,
+     LAND = 452,
+     LASTORE = 453,
+     LCMP = 454,
+     LCONST_0 = 455,
+     LCONST_1 = 456,
+     LDIV = 457,
+     LLOAD_0 = 458,
+     LLOAD_1 = 459,
+     LLOAD_2 = 460,
+     LLOAD_3 = 461,
+     LMUL = 462,
+     LNEG = 463,
+     LOR = 464,
+     LREM = 465,
+     LRETURN = 466,
+     LSHL = 467,
+     LSHR = 468,
+     LSTORE_0 = 469,
+     LSTORE_1 = 470,
+     LSTORE_2 = 471,
+     LSTORE_3 = 472,
+     LSUB = 473,
+     LUSHR = 474,
+     LXOR = 475,
+     MONITORENTER = 476,
+     MONITOREXIT = 477,
+     NOP = 478,
+     POP = 479,
+     POP2 = 480,
+     RETURN = 481,
+     SALOAD = 482,
+     SASTORE = 483,
+     SWAP = 484,
+     IINC = 485,
+     INSTANCEOF = 486,
+     INVOKEINTERFACE = 487,
+     INVOKENONVIRTUAL = 488,
+     INVOKESTATIC = 489,
+     INVOKEVIRTUAL = 490,
+     LDC = 491,
+     LDC_W = 492,
+     LDC2_W = 493,
+     MULTIANEWARRAY = 494,
+     NEW = 495,
+     NEWARRAY = 496,
+     PUTFIELD = 497,
+     PUTSTATIC = 498,
+     SIPUSH = 499,
+     ILOAD = 500,
+     FLOAD = 501,
+     ALOAD = 502,
+     LLOAD = 503,
+     DLOAD = 504,
+     ISTORE = 505,
+     FSTORE = 506,
+     ASTORE = 507,
+     LSTORE = 508,
+     DSTORE = 509,
+     RET = 510,
+     WIDE = 511,
+     LOAD = 512,
+     STORE = 513,
+     LOOKUPSWITCH = 514,
+     TABLESWITCH = 515
+   };
 #endif
+/* Tokens.  */
+#define LABEL 258
+#define IDENTIFIER 259
+#define INTCONSTANT 260
+#define LONGCONSTANT 261
+#define FLOATCONSTANT 262
+#define DOUBLECONSTANT 263
+#define CHARCONSTANT 264
+#define STRING_LITERAL 265
+#define CLASS 266
+#define EXTENDS 267
+#define ACCESS 268
+#define IMPLEMENTS 269
+#define FIELD 270
+#define METHOD 271
+#define MAX_STACK 272
+#define MAX_LOCALS 273
+#define CODE 274
+#define PUBLIC 275
+#define PRIVATE 276
+#define PROTECTED 277
+#define ABSTRACT 278
+#define FINAL 279
+#define INTERFACE 280
+#define STATIC 281
+#define NATIVE 282
+#define SYNCHRONIZED 283
+#define TRANSIENT 284
+#define VOLATILE 285
+#define BYTE 286
+#define CHAR 287
+#define DOUBLE 288
+#define FLOAT 289
+#define INT 290
+#define LONG 291
+#define SHORT 292
+#define BOOLEAN 293
+#define VOID 294
+#define DEFAULT 295
+#define TO 296
+#define EXCEPTIONS 297
+#define SOURCEFILE 298
+#define THROWS 299
+#define LINENUMBERTABLE 300
+#define LOCALVARIABLETABLE 301
+#define ACC_PUBLIC 302
+#define ACC_PRIVATE 303
+#define ACC_PROTECTED 304
+#define ACC_STATIC 305
+#define ACC_FINAL 306
+#define ACC_SYNCHRONIZED 307
+#define ACC_VOLATILE 308
+#define ACC_TRANSIENT 309
+#define ACC_NATIVE 310
+#define ACC_INTERFACE 311
+#define ACC_ABSTRACT 312
+#define AALOAD 313
+#define AASTORE 314
+#define ACONST_NULL 315
+#define ALOAD_0 316
+#define ALOAD_1 317
+#define ALOAD_2 318
+#define ALOAD_3 319
+#define ANEWARRAY 320
+#define ARETURN 321
+#define ARRAYLENGTH 322
+#define ASTORE_0 323
+#define ASTORE_1 324
+#define ASTORE_2 325
+#define ASTORE_3 326
+#define ATHROW 327
+#define BALOAD 328
+#define BASTORE 329
+#define BIPUSH 330
+#define CALOAD 331
+#define CASTORE 332
+#define CHECKCAST 333
+#define D2F 334
+#define D2I 335
+#define D2L 336
+#define DADD 337
+#define DALOAD 338
+#define DASTORE 339
+#define DCMPG 340
+#define DCMPL 341
+#define DCONST_0 342
+#define DCONST_1 343
+#define DDIV 344
+#define DLOAD_0 345
+#define DLOAD_1 346
+#define DLOAD_2 347
+#define DLOAD_3 348
+#define DMUL 349
+#define DNEG 350
+#define DREM 351
+#define DRETURN 352
+#define DSTORE_0 353
+#define DSTORE_1 354
+#define DSTORE_2 355
+#define DSTORE_3 356
+#define DSUB 357
+#define DUP 358
+#define DUP_X1 359
+#define DUP_X2 360
+#define DUP2 361
+#define DUP2_X1 362
+#define DUP2_X2 363
+#define F2D 364
+#define F2I 365
+#define F2L 366
+#define FADD 367
+#define FALOAD 368
+#define FASTORE 369
+#define FCMPG 370
+#define FCMPL 371
+#define FCONST_0 372
+#define FCONST_1 373
+#define FCONST_2 374
+#define FDIV 375
+#define FLOAD_0 376
+#define FLOAD_1 377
+#define FLOAD_2 378
+#define FLOAD_3 379
+#define FMUL 380
+#define FNEG 381
+#define FREM 382
+#define FRETURN 383
+#define FSTORE_0 384
+#define FSTORE_1 385
+#define FSTORE_2 386
+#define FSTORE_3 387
+#define FSUB 388
+#define GETFIELD 389
+#define GETSTATIC 390
+#define GOTO 391
+#define GOTO_W 392
+#define I2B 393
+#define I2C 394
+#define I2D 395
+#define I2F 396
+#define I2L 397
+#define I2S 398
+#define IADD 399
+#define IALOAD 400
+#define IAND 401
+#define IASTORE 402
+#define ICONST_0 403
+#define ICONST_1 404
+#define ICONST_2 405
+#define ICONST_3 406
+#define ICONST_4 407
+#define ICONST_5 408
+#define ICONST_M1 409
+#define IDIV 410
+#define IF_ACMPEQ 411
+#define IF_ACMPNE 412
+#define IF_ICMPEQ 413
+#define IF_ICMPNE 414
+#define IF_ICMPLT 415
+#define IF_ICMPGE 416
+#define IF_ICMPGT 417
+#define IF_ICMPLE 418
+#define IFEQ 419
+#define IFNE 420
+#define IFLT 421
+#define IFGE 422
+#define IFGT 423
+#define IFLE 424
+#define IFNONNULL 425
+#define IFNULL 426
+#define ILOAD_0 427
+#define ILOAD_1 428
+#define ILOAD_2 429
+#define ILOAD_3 430
+#define IMUL 431
+#define INEG 432
+#define IOR 433
+#define IREM 434
+#define IRETURN 435
+#define ISHL 436
+#define ISHR 437
+#define ISTORE_0 438
+#define ISTORE_1 439
+#define ISTORE_2 440
+#define ISTORE_3 441
+#define ISUB 442
+#define IUSHR 443
+#define IXOR 444
+#define JSR 445
+#define JSR_W 446
+#define L2D 447
+#define L2F 448
+#define L2I 449
+#define LADD 450
+#define LALOAD 451
+#define LAND 452
+#define LASTORE 453
+#define LCMP 454
+#define LCONST_0 455
+#define LCONST_1 456
+#define LDIV 457
+#define LLOAD_0 458
+#define LLOAD_1 459
+#define LLOAD_2 460
+#define LLOAD_3 461
+#define LMUL 462
+#define LNEG 463
+#define LOR 464
+#define LREM 465
+#define LRETURN 466
+#define LSHL 467
+#define LSHR 468
+#define LSTORE_0 469
+#define LSTORE_1 470
+#define LSTORE_2 471
+#define LSTORE_3 472
+#define LSUB 473
+#define LUSHR 474
+#define LXOR 475
+#define MONITORENTER 476
+#define MONITOREXIT 477
+#define NOP 478
+#define POP 479
+#define POP2 480
+#define RETURN 481
+#define SALOAD 482
+#define SASTORE 483
+#define SWAP 484
+#define IINC 485
+#define INSTANCEOF 486
+#define INVOKEINTERFACE 487
+#define INVOKENONVIRTUAL 488
+#define INVOKESTATIC 489
+#define INVOKEVIRTUAL 490
+#define LDC 491
+#define LDC_W 492
+#define LDC2_W 493
+#define MULTIANEWARRAY 494
+#define NEW 495
+#define NEWARRAY 496
+#define PUTFIELD 497
+#define PUTSTATIC 498
+#define SIPUSH 499
+#define ILOAD 500
+#define FLOAD 501
+#define ALOAD 502
+#define LLOAD 503
+#define DLOAD 504
+#define ISTORE 505
+#define FSTORE 506
+#define ASTORE 507
+#define LSTORE 508
+#define DSTORE 509
+#define RET 510
+#define WIDE 511
+#define LOAD 512
+#define STORE 513
+#define LOOKUPSWITCH 514
+#define TABLESWITCH 515
 
-/* Value type.  */
+
+
+
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
-{
+typedef union YYSTYPE
 #line 289 "javaa.y"
-
+{
    Terminal        rk;
    Terminal        NT;
    Terminal        RK;
@@ -419,20 +663,14 @@ union YYSTYPE
    } exprslast;
 
    TreeNode       *node;
-
-#line 424 "javaa.tab.h"
-
-};
-typedef union YYSTYPE YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
+}
+/* Line 1489 of yacc.c.  */
+#line 669 "javaa.tab.h"
+	YYSTYPE;
+# define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
+# define YYSTYPE_IS_TRIVIAL 1
 #endif
-
 
 extern YYSTYPE yylval;
 
-
-int yyparse (void);
-
-
-#endif /* !YY_YY_JAVAA_TAB_H_INCLUDED  */
