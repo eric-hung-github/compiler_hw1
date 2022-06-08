@@ -16,9 +16,9 @@
 
         #define LIST     strcat(buf,yytext)
         #define token(t) {LIST;printf("<%s>\n",#t); return t;}
-        #define tokenInteger(t,i) {LIST;printf("<%s:%s>\n",#t,i);return t;}
+        #define tokenInteger(t,i) {LIST;printf("<%s:%d>\n",#t,i);return t;}
         #define tokenString(t,s) {LIST;printf("<%s:%s>\n",#t,s);return t;}
-        #define tokenFloat(t,f) {LIST;printf("<%s:%s>\n",#t,f);return t;}
+        #define tokenFloat(t,f) {LIST;printf("<%s:%f>\n",#t,f);return t;}
 
 %}
 

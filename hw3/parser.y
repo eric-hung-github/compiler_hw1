@@ -60,7 +60,6 @@ SymbolTableStack symbolTableStack =  SymbolTableStack();
 %left BT ST SET BET EQL NEQ
 %left AND OR NOT
 
-%type <bool_value> c_bool
 %type <id_type> type_define  
 %type <value> const_expression int_expression bool_expression expression 
 %type <value> components literal_constant var_refer fun_invoc proc_invoc num
@@ -510,7 +509,7 @@ literal_constant        : C_INT
                                 Value* value=new Value();
                                 value->value_type = VALUE_INT;
                                 value->int_value=$1;
-                                printf("NEW VALUE %d",$1);
+                                printf("NEW VALUE %d\n",$1);
                                 $$=value;
                         }
                         | C_FLOAT 
@@ -527,24 +526,22 @@ literal_constant        : C_INT
                                 value->string_value=*$1;
                                 $$=value;
                         }
-                        | c_bool 
+                        | TRUE 
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_BOOL;
-                                value->bool_value=$1;
+                                value->bool_value=true;
+                                $$=value;
+                        }
+                        | FALSE 
+                        {
+                                Value* value=new Value();
+                                value->value_type = VALUE_BOOL;
+                                value->bool_value=false;
                                 $$=value;
                         }
                         ;
 
-c_bool  : TRUE
-        {
-                $$=true;
-        }
-        | FALSE
-        {
-                $$=true;
-        }
-        ;
 
 var_refer        : ID
                 {
