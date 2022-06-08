@@ -373,7 +373,7 @@ formal_argument_list    : formal_argument COMMA formal_argument_list
 formal_argument         : ID MO type_define
                         {       
                                 Symbol* symbol = new Symbol();
-                                symbol->id_type = ID_ARG;
+                                symbol->id_type = ID_VAR;
                                 symbol->name = *$1;   
                                 symbol->value->value_type= $3;
 

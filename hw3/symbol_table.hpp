@@ -21,7 +21,6 @@ enum IDType
     ID_PROGRAM,
     ID_FUNC,
     ID_PROCEDURE,
-    ID_ARG,
 };
 
 enum ValueType
@@ -175,7 +174,7 @@ public:
         if (lookup(id->name) == nullptr)
         {
             symbols.push_back(id);
-            cout << "SymbolTable<" << name << "> insert " << id->name << " " << ValueTypeToString(id->value->value_type) << endl;
+            // cout << "SymbolTable<" << name << "> insert " << id->name << " " << ValueTypeToString(id->value->value_type) << endl;
             return true;
         }
         else
@@ -291,7 +290,7 @@ public:
             }
             else
             {
-                // cout << id->name + " = " + to_string(top()->size() - 1) + ", next number " + to_string(size()) << endl;
+                cout << id->name + " = " + to_string(top()->size() - 1) + ", next number " + to_string(size()) << endl;
                 if (id->init)
                 {
                     store_value(id);
