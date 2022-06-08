@@ -510,6 +510,7 @@ literal_constant        : C_INT
                                 Value* value=new Value();
                                 value->value_type = VALUE_INT;
                                 value->int_value=$1;
+                                printf("NEW VALUE %d",$1);
                                 $$=value;
                         }
                         | C_FLOAT 
