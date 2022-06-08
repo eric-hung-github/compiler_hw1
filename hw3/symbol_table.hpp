@@ -9,6 +9,7 @@ fstream jasm_file;
 void jasm(string s)
 {
     jasm_file << s << endl;
+    cout << s << endl;
 }
 
 enum IDType
@@ -198,18 +199,20 @@ public:
 
     void dump()
     {
-        cout << "===================================================" << endl;
-        cout << "Table: " << name << endl;
-        cout << setw(20) << "name";
-        cout << setw(20) << "id type" << endl;
+        // cout << "===================================================" << endl;
+        // cout << "Table: " << name << endl;
+        // cout << setw(20) << "name";
+        // cout << setw(20) << "id type" << endl;
 
         for (int i = 0; i < symbols.size(); i++)
         {
-            cout << setw(20) << symbols[i]->name;
+            cout << "<\"" << symbols[i]->name << "\", ";
 
-            cout << setw(20) << IDTypeToString(symbols[i]->id_type);
+            cout << IDTypeToString(symbols[i]->id_type) << ", ";
 
-            cout << "(" << ValueTypeToString(symbols[i]->value->value_type) << ")";
+            cout << ValueTypeToString(symbols[i]->value->value_type) << ", ";
+
+            cout << symbols[i]->counter << ">";
 
             cout << endl;
         }
@@ -245,15 +248,25 @@ public:
     void push(string table_name)
     {
         tableStack.push_back(SymbolTable(table_name));
-        cout << "SymbolTableStack push: " << tableStack.size() - 1 << "->" << tableStack.size() << endl;
+        // if (size() > 1)
+        // {
+        //      cout << "entering block, next number " << top()->size() << endl;
+        // }
+        cout << "entering block, next number " << top()->size() << endl;
     }
 
     void pop()
     {
         SymbolTable table = tableStack[tableStack.size() - 1];
+
+        // if (size() > 1)
+        // {
+        //     cout << "leaving block, symbol table entries:" << endl;
+        // }
+        cout << "leaving block, symbol table entries:" << endl;
+
         table.dump();
         tableStack.pop_back();
-        cout << "SymbolTableStack push: " << tableStack.size() + 1 << "->" << tableStack.size() << endl;
     }
 
     bool insert(Symbol *id)

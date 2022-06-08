@@ -15,10 +15,10 @@
 
 
         #define LIST     strcat(buf,yytext)
-        #define token(t) {LIST;printf("<%s>\n",#t); return t;}
-        #define tokenInteger(t,i) {LIST;printf("<%s:%s>\n",#t,i);return t;}
-        #define tokenString(t,s) {LIST;printf("<%s:%s>\n",#t,s);return t;}
-        #define tokenFloat(t,f) {LIST;printf("<%s:%s>\n",#t,f);return t;}
+        #define token(t) {LIST; return t;}
+        #define tokenInteger(t,i) {LIST;return t;}
+        #define tokenString(t,s) {LIST;return t;}
+        #define tokenFloat(t,f) {LIST;return t;}
 
 %}
 
