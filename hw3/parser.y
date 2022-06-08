@@ -411,10 +411,8 @@ const_expression        : LB const_expression RB
                         }
                         | SUB const_expression
                         {
-                                if($2->value_type!=VALUE_INT){
-                                TypeError($2->value_type,VALUE_INT);
-                                }else if($2->value_type!=VALUE_FLOAT){
-                                        TypeError($2->value_type,VALUE_FLOAT);
+                                if($2->value_type!=VALUE_INT||$2->value_type!=VALUE_FLOAT){
+                                        TypeError($2->value_type,$2->value_type);
                                 }
                                 $$=$2;
                         }
@@ -423,11 +421,9 @@ const_expression        : LB const_expression RB
                                 if($1->value_type!=$3->value_type){
                                         TypeError($1->value_type,$3->value_type);
                                 }
-                                if($1->value_type!=VALUE_INT){
-                                        TypeError($1->value_type,VALUE_INT);
-                                }else if($1->value_type!=VALUE_FLOAT){
-                                        TypeError($1->value_type,VALUE_FLOAT);
-                                }
+                                if($1->value_type!=VALUE_INT||$1->value_type!=VALUE_FLOAT){
+                                TypeError($1->value_type,$3->value_type);
+                        }
                                 $$=$1;
                         }
                         | const_expression logic_operator const_expression
@@ -479,10 +475,8 @@ expression      : LB expression RB
                 }
                 | SUB expression
                 {
-                        if($2->value_type!=VALUE_INT){
-                                TypeError($2->value_type,VALUE_INT);
-                        }else if($2->value_type!=VALUE_FLOAT){
-                                TypeError($2->value_type,VALUE_FLOAT);
+                        if($2->value_type!=VALUE_INT||$2->value_type!=VALUE_FLOAT){
+                                TypeError($2->value_type,$2->value_type);
                         }
                         jasm("ineg");
                         $$=$2;
@@ -492,10 +486,8 @@ expression      : LB expression RB
                         if($1->value_type!=$3->value_type){
                                 TypeError($1->value_type,$3->value_type);
                         }
-                        if($1->value_type!=VALUE_INT){
-                                TypeError($1->value_type,VALUE_INT);
-                        }else if($1->value_type!=VALUE_FLOAT){
-                                TypeError($1->value_type,VALUE_FLOAT);
+                        if($1->value_type!=VALUE_INT||$1->value_type!=VALUE_FLOAT){
+                                TypeError($1->value_type,$3->value_type);
                         }
                         jasm(*$2);
                         $$=$1;
