@@ -616,44 +616,44 @@ logic_operator  : BT
                 }
                 | ST
                 {
-                        string op="ifgt";
+                        string *op=new string("ifgt");
                         $$=&op;
                 }
                 | SET
                 {
-                        string op="ifle";
+                        string *op=new string("ifle");
                         $$=&op;
                 }
                 | BET
                 {
-                        string op="ifge";
+                        string *op=new string("ifge");
                         $$=&op;
                 }
                 | EQL
                 {
-                        string op="ifeq";
+                        string *op=new string("ifeq");
                         $$=&op;
                 }
                 | NEQ
                 {
-                        string op="ifne";
+                        string *op=new string("ifne");
                         $$=&op;
                 }
                 ;
 
 bit_operator    : AND
                 {
-                        string op="iand";
+                        string *op=new string("iand");
                         $$=&op;
                 }
                 | OR
                 {
-                        string op="ior";
+                        string *op=new string("ior");
                         $$=&op;
                 }
                 | NOT
                 {
-                        string op="ixor";
+                        string *op=new string("ixor");
                         $$=&op;
                 }
                 ;
@@ -790,6 +790,7 @@ block_content   : va_declaration
 // Conditional
 condition_statement     : IF LB bool_expression RB 
                         {
+                                jasm("isub");
                                 jasm(symbolTableStack.bool_operator+" Lfalse");
                         } block_or_simple_statement
                         {
@@ -814,6 +815,7 @@ else_statement          : ELSE block_or_simple_statement
 loop_statement  : WHILE LB bool_expression RB 
                 {
                         jasm("Lbegin:");
+                        jasm("isub");
                         jasm(symbolTableStack.bool_operator+" Ltrue");
                         jasm("iconst_0");
                         jasm("goto Lfalse");
