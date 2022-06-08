@@ -290,6 +290,7 @@ public:
                 {
                     store_value(id);
                 }
+                symbol->counter = top()->size() - 1;
             }
         }
         return true;
@@ -314,7 +315,6 @@ public:
     {
 
         int index = top()->size() - 1;
-        symbol->counter = index;
         switch (symbol->value->value_type)
         {
         case VALUE_INT:

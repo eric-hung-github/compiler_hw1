@@ -584,35 +584,35 @@ expression      : LB expression RB
 
 math_operator   : MUL 
                 {
-                        string op="imul";
-                        $$=&op;
+                        string *op=new string("imul");
+                        $$=op;
                 }
                 | DIV
                 {
-                        string op="idiv";
-                        $$=&op;
+                        string *op=new string("idiv");
+                        $$=op;
                 }
                 | ADD
                 {
-                        string op="iadd";
-                        $$=&op;
+                        string *op=new string("iadd");
+                        $$=op;
                 }
                 | SUB
                 {
-                        string op="isub";
-                        $$=&op;
+                        string *op=new string("isub");
+                        $$=op;
                 }
                 | MOD
                 {
-                        string op="irem";
-                        $$=&op;
+                        string *op=new string("irem");
+                        $$=op;
                 }
                 ;
 
 logic_operator  : BT 
                 {
-                        string op="iflt";
-                        $$=&op;
+                        string *op=new string("iflt");
+                        $$=op;
                 }
                 | ST
                 {
