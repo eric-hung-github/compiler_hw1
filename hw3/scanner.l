@@ -16,9 +16,9 @@
 
         #define LIST     strcat(buf,yytext)
         #define token(t) {LIST;printf("<%s>\n",#t); return t;}
-        #define tokenInteger(t,i) {LIST;printf("<%s:%d>\n",#t,i);return t;}
+        #define tokenInteger(t,i) {LIST;printf("<%s:%s>\n",#t,i);return t;}
         #define tokenString(t,s) {LIST;printf("<%s:%s>\n",#t,s);return t;}
-        #define tokenFloat(t,f) {LIST;printf("<%s:%f>\n",#t,f);return t;}
+        #define tokenFloat(t,f) {LIST;printf("<%s:%s>\n",#t,f);return t;}
 
 %}
 
@@ -122,16 +122,18 @@ while           {token(WHILE);}
                                 }
 
 0|([1-9][0-9]*)                 {
-                                float f ;
-                                sscanf(yytext,"%f",&f);
-                                yylval.float_value = f;
+                                int i;
+                                sscanf(yytext,"%d",&i);
+                                yylval.int_value = i;
+                                printf("yylval.int_value = %d\n",i);
                                 tokenInteger(C_INT, yytext);
                                 }
 
 (0|([1-9][0-9]*))"."[0-9]+	{
-                                int i;
-                                sscanf(yytext,"%d",&i);
-                                yylval.int_value = i;
+                                float f;
+                                sscanf(yytext,"%f",&f);
+                                yylval.float_value = f;
+                                printf("yylval.float_value = %f\n",f);
                                 tokenFloat(C_FLOAT, yytext);
                                 }
 
