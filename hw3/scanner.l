@@ -125,7 +125,6 @@ while           {token(WHILE);}
                                 int i;
                                 sscanf(yytext,"%d",&i);
                                 yylval.int_value = i;
-                                printf("yylval.int_value = %d\n",i);
                                 tokenInteger(C_INT, yytext);
                                 }
 
@@ -133,7 +132,6 @@ while           {token(WHILE);}
                                 float f;
                                 sscanf(yytext,"%f",&f);
                                 yylval.float_value = f;
-                                printf("yylval.float_value = %f\n",f);
                                 tokenFloat(C_FLOAT, yytext);
                                 }
 

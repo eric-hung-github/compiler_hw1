@@ -136,24 +136,6 @@ public:
     }
 };
 
-void store_value(int value_type, int index, string value)
-{
-    switch (value_type)
-    {
-    case VALUE_INT:
-        jasm("sipush " + value);
-        jasm("istore " + to_string(index));
-        break;
-    case VALUE_FLOAT:
-        jasm("sipush " + value);
-        jasm("istore " + to_string(index));
-        break;
-        break;
-    default:
-        break;
-    }
-}
-
 struct Symbol
 {
     string name = "";
@@ -162,7 +144,64 @@ struct Symbol
 
     Value *value = new Value();
     vector<Symbol *> arguments;
+    bool is_global = false;
+    int counter = 0;
 };
+
+void store_value(Symbol *symbol, int index)
+{
+    symbol->counter = index;
+    switch (symbol->value->value_type)
+    {
+    case VALUE_INT:
+        jasm("sipush " + symbol->value->display());
+        jasm("istore " + to_string(index));
+        break;
+    case VALUE_FLOAT:
+        jasm("sipush " + symbol->value->display());
+        jasm("istore " + to_string(index));
+        break;
+        break;
+    default:
+        break;
+    }
+}
+
+void load_value(Symbol *symbol)
+{
+    switch (symbol->value->value_type)
+    {
+    case VALUE_INT:
+        jasm("iload " + to_string(symbol->counter));
+        break;
+    case VALUE_FLOAT:
+        jasm("iload " + to_string(symbol->counter));
+        break;
+    default:
+        break;
+    }
+}
+
+void load_const(Symbol *symbol)
+{
+    switch (symbol->value->value_type)
+    {
+    case VALUE_INT:
+        jasm("sipush " + symbol->value->display());
+        break;
+    case VALUE_BOOL:
+        jasm("iconst_" + symbol->value->display());
+        break;
+    case VALUE_FLOAT:
+        jasm("sipush " + symbol->value->display());
+        break;
+    case VALUE_STR:
+        jasm("ldc \"" + symbol->value->display() + "\"");
+        break;
+    default:
+        break;
+    }
+}
 
 class SymbolTable
 {
@@ -184,16 +223,15 @@ public:
         return symbols.size();
     }
 
-    // string counter_display()
-    // {
-    //     return "next number " + size();
-    // }
-
     bool insert(Symbol *id)
     {
 
         if (lookup(id->name) == nullptr)
         {
+            if (is_global)
+            {
+                id->is_global = true;
+            }
             symbols.push_back(id);
             if (id->id_type == ID_VAR)
             {
@@ -206,7 +244,7 @@ public:
                     cout << id->name + " = " + to_string(size() - 1) + ", next number " + to_string(size()) << endl;
                     if (id->init)
                     {
-                        store_value(id->value->value_type, size() - 1, id->value->display());
+                        store_value(id, size() - 1);
                     }
                 }
             }
@@ -215,7 +253,7 @@ public:
                 cout << id->name + " = " + to_string(size() - 1) + ", next number " + to_string(size()) << endl;
                 if (id->init)
                 {
-                    store_value(id->value->value_type, size() - 1, id->value->display());
+                    store_value(id, size() - 1);
                 }
             }
 
@@ -232,7 +270,6 @@ public:
     {
         for (int i = 0; i < symbols.size(); i++)
         {
-            // cout << "lookup " << symbols[i]->name << endl;
             if (symbols[i]->name == name)
             {
                 return symbols[i];
@@ -270,6 +307,7 @@ public:
     vector<Symbol *> argumentStack;
     vector<Value *> parseStack;
     Symbol *fun_ptr = nullptr;
+    string program_name;
 
     SymbolTableStack()
     {

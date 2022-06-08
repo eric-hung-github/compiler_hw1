@@ -40,7 +40,7 @@ SymbolTableStack symbolTableStack =  SymbolTableStack();
     vector<Symbol*>* symbol_vector;
 }
 %token <str_value> ID
-%token <str_value> C_STR
+%token <str_value> C_STR  
 %token <int_value> C_INT
 %token <bool_value> TRUE FALSE
 %token <float_value> C_FLOAT
@@ -64,6 +64,7 @@ SymbolTableStack symbolTableStack =  SymbolTableStack();
 %type <value> const_expression int_expression bool_expression expression 
 %type <value> components literal_constant var_refer fun_invoc proc_invoc num
 %type <symbol> arr_refer
+%type <str_value> math_operator logic_operator bit_operator
 /* %type <value> fun_invoc */
 %start program
 %%
@@ -82,6 +83,7 @@ program_begin : CLASS ID LCB
                 symbol->name = *$2;
                 symbol->id_type = ID_PROGRAM;
                 symbolTableStack.insert(symbol);
+                symbolTableStack.program_name=*$2;
 
                 jasm("class "+*$2+"\n{");
 
@@ -403,7 +405,51 @@ simple_statement: ID ASIGN expression
                 ;
 
 // Expression
-const_expression        : expression
+const_expression        : LB const_expression RB
+                        {
+                                $$=$2;
+                        }
+                        | SUB const_expression
+                        {
+                                if($2->value_type!=VALUE_INT){
+                                TypeError($2->value_type,VALUE_INT);
+                                }else if($2->value_type!=VALUE_FLOAT){
+                                        TypeError($2->value_type,VALUE_FLOAT);
+                                }
+                                $$=$2;
+                        }
+                        | const_expression math_operator const_expression
+                        {
+                                if($1->value_type!=$3->value_type){
+                                        TypeError($1->value_type,$3->value_type);
+                                }
+                                if($1->value_type!=VALUE_INT){
+                                        TypeError($1->value_type,VALUE_INT);
+                                }else if($1->value_type!=VALUE_FLOAT){
+                                        TypeError($1->value_type,VALUE_FLOAT);
+                                }
+                                $$=$1;
+                        }
+                        | const_expression logic_operator const_expression
+                        {
+                                if($1->value_type!=$3->value_type){
+                                        TypeError($1->value_type,$3->value_type);
+                                }
+                                Value *ret=new Value();
+                                ret->value_type=VALUE_BOOL;
+                                $$=ret;
+                        }
+                        | const_expression bit_operator const_expression
+                        {
+                                if($1->value_type!=$3->value_type){
+                                        TypeError($1->value_type,$3->value_type);
+                                }
+                                if($1->value_type!=VALUE_BOOL){
+                                        TypeError($1->value_type,VALUE_BOOL);
+                                }
+                                $$=$1;
+                        }
+                        | literal_constant
                         {
                                 $$=$1;
                         }
@@ -433,6 +479,12 @@ expression      : LB expression RB
                 }
                 | SUB expression
                 {
+                        if($2->value_type!=VALUE_INT){
+                                TypeError($2->value_type,VALUE_INT);
+                        }else if($2->value_type!=VALUE_FLOAT){
+                                TypeError($2->value_type,VALUE_FLOAT);
+                        }
+                        jasm("ineg");
                         $$=$2;
                 }
                 | expression math_operator expression
@@ -440,6 +492,12 @@ expression      : LB expression RB
                         if($1->value_type!=$3->value_type){
                                 TypeError($1->value_type,$3->value_type);
                         }
+                        if($1->value_type!=VALUE_INT){
+                                TypeError($1->value_type,VALUE_INT);
+                        }else if($1->value_type!=VALUE_FLOAT){
+                                TypeError($1->value_type,VALUE_FLOAT);
+                        }
+                        jasm(*$2);
                         $$=$1;
                 }
                 | expression logic_operator expression
@@ -449,14 +507,23 @@ expression      : LB expression RB
                         }
                         Value *ret=new Value();
                         ret->value_type=VALUE_BOOL;
+                        jasm(*$2);
                         $$=ret;
                 }
                 | bool_expression bit_operator bool_expression
                 {
+                        if($1->value_type!=$3->value_type){
+                                TypeError($1->value_type,$3->value_type);
+                        }
+                        if($1->value_type!=VALUE_BOOL){
+                                TypeError($1->value_type,VALUE_BOOL);
+                        }
+                        jasm(*$2);
                         $$=$1;
                 }
                 | NOT bool_expression
                 {
+                        jasm("ixor");
                         $$=$2;
                 }
                 | components
@@ -466,32 +533,105 @@ expression      : LB expression RB
                 ;
 
 math_operator   : MUL 
+                {
+                        string op="imul";
+                        $$=&op;
+                }
                 | DIV
+                {
+                        string op="idiv";
+                        $$=&op;
+                }
                 | ADD
+                {
+                        string op="iadd";
+                        $$=&op;
+                }
                 | SUB
+                {
+                        string op="isub";
+                        $$=&op;
+                }
+                | MOD
+                {
+                        string op="irem";
+                        $$=&op;
+                }
                 ;
 
 logic_operator  : BT 
+                {
+                        string op="iflt";
+                        $$=&op;
+                }
                 | ST
+                {
+                        string op="ifgt";
+                        $$=&op;
+                }
                 | SET
+                {
+                        string op="ifle";
+                        $$=&op;
+                }
                 | BET
+                {
+                        string op="ifge";
+                        $$=&op;
+                }
                 | EQL
+                {
+                        string op="ifeq";
+                        $$=&op;
+                }
                 | NEQ
+                {
+                        string op="ifne";
+                        $$=&op;
+                }
                 ;
 
 bit_operator    : AND
+                {
+                        string op="iand";
+                        $$=&op;
+                }
                 | OR
+                {
+                        string op="ior";
+                        $$=&op;
+                }
                 | NOT
+                {
+                        string op="ixor";
+                        $$=&op;
+                }
                 ;
 
 // Component
 components      : literal_constant
                 {
+                        switch ($1->value_type)
+                        {
+                        case VALUE_INT:
+                                jasm("sipush " + $1->display());
+                                break;
+                        case VALUE_BOOL:
+                                jasm("iconst_" + $1->display());
+                                break;
+                        case VALUE_FLOAT:
+                                jasm("sipush " + $1->display());
+                                break;
+                        case VALUE_STR:
+                                jasm("ldc \"" + $1->display() + "\"");
+                                break;
+                        default:
+                                break;
+                        }
                         $$=$1;
                 }
                 | var_refer
                 {
-                        
                         $$=$1;
                 }
                 | fun_invoc
@@ -549,6 +689,16 @@ var_refer        : ID
                         if (!symbol)
                         {
                                 yyerror("ID not found");
+                        }
+
+                        if(symbol->id_type=ID_CONST){
+                                load_value(symbol);
+                        }else{ 
+                                if(symbol->is_global){
+                                        jasm("getstatic "+ValueTypeToString(symbol->value->value_type)+" "+symbolTableStack.program_name+"."+symbol->name);
+                                }else{
+                                        load_value(symbol);
+                                }
                         }
                         $$ = symbol->value;
                 }
