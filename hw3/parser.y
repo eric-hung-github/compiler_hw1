@@ -533,7 +533,7 @@ bool_expression         : literal_constant_bool
                                 jasm("iconst_0");
                                 jasm("goto L2");
                                 jasm("L1: iconst_1");
-                                jasm("L2");
+                                jasm("L2: ");
                         }
                         | bool_expression bit_operator bool_expression
                         {
