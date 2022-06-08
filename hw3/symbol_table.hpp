@@ -287,7 +287,7 @@ public:
             }
             else
             {
-                cout << id->name + " = " + to_string(top()->size() - 1) + ", next number " + to_string(size()) << endl;
+                cout << id->name + " = " + to_string(top()->size() - 1) + ", next number " + to_string(top()->size()) << endl;
                 if (id->init)
                 {
                     store_value(id);
@@ -314,6 +314,16 @@ public:
     //**************************************************
     void store_value(Symbol *symbol)
     {
+        cout << "store_value<\"" << symbol->name << "\", ";
+
+        cout << IDTypeToString(symbol->id_type) << ", ";
+
+        cout << ValueTypeToString(symbol->value->value_type) << ", ";
+
+        cout << symbol->counter << ">";
+
+        cout << endl;
+
         int index = top()->size() - 1;
         symbol->counter = index;
         switch (symbol->value->value_type)
