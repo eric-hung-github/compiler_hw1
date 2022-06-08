@@ -617,44 +617,44 @@ logic_operator  : BT
                 | ST
                 {
                         string *op=new string("ifgt");
-                        $$=&op;
+                        $$=op;
                 }
                 | SET
                 {
                         string *op=new string("ifle");
-                        $$=&op;
+                        $$=op;
                 }
                 | BET
                 {
                         string *op=new string("ifge");
-                        $$=&op;
+                        $$=op;
                 }
                 | EQL
                 {
                         string *op=new string("ifeq");
-                        $$=&op;
+                        $$=op;
                 }
                 | NEQ
                 {
                         string *op=new string("ifne");
-                        $$=&op;
+                        $$=op;
                 }
                 ;
 
 bit_operator    : AND
                 {
                         string *op=new string("iand");
-                        $$=&op;
+                        $$=op;
                 }
                 | OR
                 {
                         string *op=new string("ior");
-                        $$=&op;
+                        $$=op;
                 }
                 | NOT
                 {
                         string *op=new string("ixor");
-                        $$=&op;
+                        $$=op;
                 }
                 ;
 
