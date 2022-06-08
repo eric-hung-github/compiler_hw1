@@ -87,7 +87,8 @@ program_begin : CLASS ID LCB
                 symbolTableStack.insert(symbol);
                 symbolTableStack.program_name=*$2;
 
-                jasm("class "+*$2+"\n{");
+                jasm("class "+*$2);
+                jasm("{");
 
                 };
 

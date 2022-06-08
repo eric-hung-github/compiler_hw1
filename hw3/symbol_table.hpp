@@ -291,17 +291,12 @@ public:
             }
             else
             {
-                cout << id->name + " = " + to_string(top()->size() - 1) + ", next number " + to_string(size()) << endl;
+                // cout << id->name + " = " + to_string(top()->size() - 1) + ", next number " + to_string(size()) << endl;
                 if (id->init)
                 {
                     store_value(id);
                 }
             }
-        }
-        else if (id->id_type == ID_CONST)
-        {
-            cout << id->name + " = " + to_string(size() - 1) + ", next number " + to_string(size()) << endl;
-            store_value(id);
         }
         return true;
     }
