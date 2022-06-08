@@ -171,7 +171,7 @@ public:
         if (lookup(id->name) == nullptr)
         {
             symbols.push_back(id);
-            cout << "SymbolTable<" << name << "> insert " << id->name << " " << ValueTypeToString(id->value->value_type) << endl;
+            cout << "SymbolTable<" << name << "> insert " << id->name << " <" + IDTypeToString(id->id_type) + "> " << ValueTypeToString(id->value->value_type) << endl;
             return true;
         }
         else
