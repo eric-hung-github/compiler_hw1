@@ -9,7 +9,7 @@ fstream jasm_file;
 void jasm(string s)
 {
     jasm_file << s << endl;
-    cout << s << endl;
+    cout << "JASM$ " << s << " $" << endl;
 }
 
 enum IDType
@@ -123,7 +123,7 @@ public:
             return to_string(float_value);
             break;
         case VALUE_BOOL:
-            return (bool_value) ? "true" : "false";
+            return (bool_value) ? "1" : "0";
             break;
         case VALUE_STR:
             return string_value;
@@ -229,6 +229,8 @@ public:
     Symbol *fun_ptr = nullptr;
     string program_name;
 
+    string bool_operator;
+
     SymbolTableStack()
     {
         tableStack.clear();
@@ -316,7 +318,9 @@ public:
         }
         return nullptr;
     }
-
+    //**************************************************
+    // function for javaa
+    //**************************************************
     void store_value(Symbol *symbol)
     {
         int index = top()->size() - 1;
@@ -401,5 +405,30 @@ public:
                 break;
             }
         }
+    }
+
+    void print(Value *value, bool println)
+    {
+        string type_name;
+        string print_func = (println) ? "println" : "print";
+        switch (value->value_type)
+        {
+        case VALUE_INT:
+            type_name = "int";
+            break;
+        case VALUE_FLOAT:
+            type_name = "float";
+            break;
+        case VALUE_BOOL:
+            type_name = "bool";
+            break;
+        case VALUE_STR:
+            type_name = "java.lang.String";
+            break;
+        default:
+            break;
+        }
+        jasm("getstatic java.io.PrintStream java.lang.System.out");
+        jasm("invokevirtual void java.io.PrintStream." + print_func + "(" + type_name + ")");
     }
 };

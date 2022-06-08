@@ -7,9 +7,11 @@
 using namespace std;
 
 #define Trace(t)        cout<<t<<endl;
-#define MAX_STACK 15
-#define MAX_LOCALS 15
+
 // a=a+b segmentation fault
+
+const string MAX_STACK = "15";
+const string MAX_LOCALS = "15";
 
 int yylex();
 
@@ -234,10 +236,25 @@ fun_declaration : FUN ID LB formal_argument_list RB MO type_define
 
                         symbolTableStack.fun_ptr=symbol;
 
+                        // javaa                        
+                        string arguments="";
+                        for(int i=0;i<symbol->arguments.size();i++){
+                                if(i!=0){
+                                        arguments+=", ";
+                                }
+                                arguments+=ValueTypeToString(symbol->arguments[i]->value->value_type);
+                        }
+                        jasm("method public static "+ValueTypeToString(symbol->value->value_type)+" "+symbol->name+"("+arguments+")");
+                        jasm("max_stack "+MAX_STACK);
+                        jasm("max_locals "+MAX_LOCALS);
+                        jasm("{");
+
                 } block{
                         symbolTableStack.pop();
-
                         symbolTableStack.fun_ptr=nullptr;
+
+                        // javaa
+                        jasm("}");
 
                 }
                 | FUN ID LB RB MO type_define
@@ -252,10 +269,21 @@ fun_declaration : FUN ID LB formal_argument_list RB MO type_define
 
                         symbolTableStack.fun_ptr=symbol;
 
+                        symbolTableStack.fun_ptr=symbol;
+                        
+                        // javaa
+                        jasm("method public static "+ValueTypeToString(symbol->value->value_type)+" "+symbol->name+"()");
+                        jasm("max_stack "+MAX_STACK);
+                        jasm("max_locals "+MAX_LOCALS);
+                        jasm("{");
+
                 } block{
                         symbolTableStack.pop();
 
                         symbolTableStack.fun_ptr=nullptr;
+
+                        // javaa
+                        jasm("}");
 
                 }
                 ;
@@ -281,11 +309,27 @@ proc_declaration: FUN ID LB formal_argument_list RB
 
                         symbolTableStack.fun_ptr=symbol;
 
+                        // javaa                        
+                        string arguments="";
+                        for(int i=0;i<symbol->arguments.size();i++){
+                                if(i!=0){
+                                        arguments+=", ";
+                                }
+                                arguments+=ValueTypeToString(symbol->arguments[i]->value->value_type);
+                        }
+                        jasm("method public static "+ValueTypeToString(symbol->value->value_type)+" "+symbol->name+"("+arguments+")");
+                        jasm("max_stack "+MAX_STACK);
+                        jasm("max_locals "+MAX_LOCALS);
+                        jasm("{");
+
 
                 } block{
                         symbolTableStack.pop();
 
                         symbolTableStack.fun_ptr=nullptr;
+
+                        // javaa
+                        jasm("}");
 
                 }
                 | FUN ID LB RB
@@ -305,11 +349,18 @@ proc_declaration: FUN ID LB formal_argument_list RB
 
                         symbolTableStack.fun_ptr=symbol;
 
+                        jasm("method public static "+ValueTypeToString(symbol->value->value_type)+" "+symbol->name+"()");
+                        jasm("max_stack "+MAX_STACK);
+                        jasm("max_locals "+MAX_LOCALS);
+                        jasm("{");
 
                 } block{
                         symbolTableStack.pop();
 
                         symbolTableStack.fun_ptr=nullptr;
+
+                        // javaa
+                        jasm("}");
 
                 }
                 ;
@@ -349,6 +400,7 @@ simple_statement: ID ASIGN expression
                         {       
                                 TypeError(symbol->value->value_type,$3->value_type);
                         }
+                        symbolTableStack.update_value(symbol);
                 }
                 | arr_refer ASIGN expression
                 {
@@ -365,9 +417,21 @@ simple_statement: ID ASIGN expression
                         }
                 }
                 | PRINT LB expression RB
+                {
+                        symbolTableStack.print($3,false);
+                }
                 | PRINT expression 
+                {
+                        symbolTableStack.print($2,false);
+                }
                 | PRINTLN LB expression RB
+                {
+                        symbolTableStack.print($3,true);
+                }
                 | PRINTLN expression
+                {
+                        symbolTableStack.print($2,true);
+                }
                 | RETURN ID
                 {
                         if(!symbolTableStack.fun_ptr){
@@ -381,16 +445,22 @@ simple_statement: ID ASIGN expression
                                 {       
                                         TypeError(symbol->value->value_type,symbolTableStack.fun_ptr->value->value_type);
                                 }
+                                // javaa
+                                jasm("ireturn");
                         }
+
+                        
                 }
                 | RETURN
                 {
                         if(!symbolTableStack.fun_ptr){
                                 yyerror("Not in function");
-                        }else if (symbolTableStack.fun_ptr->value->value_type!=VALUE_NONE)
+                        }else if (symbolTableStack.fun_ptr->value->value_type!=VALUE_VOID)
                         {       
-                                TypeError(symbolTableStack.fun_ptr->value->value_type,VALUE_NONE);
+                                TypeError(symbolTableStack.fun_ptr->value->value_type,VALUE_VOID);
                         }
+                        // javaa
+                        jasm("return");
                         
                 }
                 | RETURN expression 
@@ -401,6 +471,8 @@ simple_statement: ID ASIGN expression
                         {       
                                 TypeError($2->value_type,symbolTableStack.fun_ptr->value->value_type);
                         }
+                        // javaa
+                        jasm("ireturn");
                 }
                 ;
 
@@ -426,25 +498,6 @@ const_expression        : LB const_expression RB
                         }
                                 $$=$1;
                         }
-                        | const_expression logic_operator const_expression
-                        {
-                                if($1->value_type!=$3->value_type){
-                                        TypeError($1->value_type,$3->value_type);
-                                }
-                                Value *ret=new Value();
-                                ret->value_type=VALUE_BOOL;
-                                $$=ret;
-                        }
-                        | const_expression bit_operator const_expression
-                        {
-                                if($1->value_type!=$3->value_type){
-                                        TypeError($1->value_type,$3->value_type);
-                                }
-                                if($1->value_type!=VALUE_BOOL){
-                                        TypeError($1->value_type,VALUE_BOOL);
-                                }
-                                $$=$1;
-                        }
                         | literal_constant
                         {
                                 $$=$1;
@@ -465,8 +518,19 @@ bool_expression         : expression
                                 if($1->value_type!=VALUE_BOOL){
                                         TypeError($1->value_type,VALUE_BOOL);
                                 }
-                                $$=$1;
+                                symbolTableStack.bool_operator="iflt";
                         }
+                        |  expression logic_operator expression
+                        {
+                                if($1->value_type!=$3->value_type){
+                                        TypeError($1->value_type,$3->value_type);
+                                }
+                                Value *ret=new Value();
+                                ret->value_type=VALUE_BOOL;
+                                symbolTableStack.bool_operator=*$2;
+                                $$=ret;
+                        }
+                        
                         ;
 
 expression      : LB expression RB
@@ -492,17 +556,15 @@ expression      : LB expression RB
                         jasm(*$2);
                         $$=$1;
                 }
-                | expression logic_operator expression
+                | NOT expression
                 {
-                        if($1->value_type!=$3->value_type){
-                                TypeError($1->value_type,$3->value_type);
+                        if($2->value_type!=VALUE_BOOL){
+                                TypeError($2->value_type,VALUE_BOOL);
                         }
-                        Value *ret=new Value();
-                        ret->value_type=VALUE_BOOL;
-                        jasm(*$2);
-                        $$=ret;
+                        jasm("ixor");
+                        $$=$2;
                 }
-                | bool_expression bit_operator bool_expression
+                | expression bit_operator expression
                 {
                         if($1->value_type!=$3->value_type){
                                 TypeError($1->value_type,$3->value_type);
@@ -512,11 +574,6 @@ expression      : LB expression RB
                         }
                         jasm(*$2);
                         $$=$1;
-                }
-                | NOT bool_expression
-                {
-                        jasm("ixor");
-                        $$=$2;
                 }
                 | components
                 {
@@ -730,13 +787,64 @@ block_content   : va_declaration
                 ;
 
 // Conditional
-condition_statement     : IF LB bool_expression RB block_or_simple_statement
-                        | IF LB bool_expression RB block_or_simple_statement ELSE block_or_simple_statement
+condition_statement     : IF LB bool_expression RB 
+                        {
+                                jasm(symbolTableStack.bool_operator+" Lfalse");
+                        } block_or_simple_statement
+                        {
+                                jasm("goto Lexit");
+                                jasm("Lfalse:");
+                        } else_statement
                         ; 
 
+else_statement          : ELSE block_or_simple_statement
+                        {
+                                jasm("Lexit:");
+
+                        }
+                        | 
+                        {
+                                jasm("Lexit:");
+
+                        }
+                        ;
+
 // Loop
-loop_statement  : WHILE LB bool_expression RB block_or_simple_statement
-                | FOR LB ID num DOT DOT num  RB block_or_simple_statement
+loop_statement  : WHILE LB bool_expression RB 
+                {
+                        jasm("Lbegin:");
+                        jasm(symbolTableStack.bool_operator+" Ltrue");
+                        jasm("iconst_0");
+                        jasm("goto Lfalse");
+                        jasm("Ltrue");
+                        jasm("iconst_1");
+                        jasm("Lfalse:");
+                        jasm("Lifeq Lexit");
+                } block_or_simple_statement
+                {
+                        jasm("Lexit:");       
+                }
+                | FOR LB ID num DOT DOT num  RB 
+                {
+                        jasm("sipush "+$4->display());
+                        jasm("istore 1");
+
+                        jasm("Lbegin:");
+                        jasm("iload 1");
+                        jasm("sipush 10");
+                        jasm("isub");
+                        jasm("ifle Ltrue");
+                        jasm("iconst_0");
+                        jasm("goto Lfalse");
+                        jasm("Ltrue");
+                        jasm("iconst_1");
+                        jasm("Lfalse:");
+                        jasm("Lifeq Lexit");
+                } block_or_simple_statement
+                {
+                        jasm("goto Lbegin");
+                        jasm("Lexit:");       
+                }
                 ;
 
 block_or_simple_statement       : 
@@ -772,6 +880,16 @@ fun_invoc       : ID LB comma_separated_expressions RB
 
 
                         $$ = symbol->value;
+
+                        // javaa                        
+                        string arguments="";
+                        for(int i=0;i<symbol->arguments.size();i++){
+                                if(i!=0){
+                                        arguments+=", ";
+                                }
+                                arguments+=ValueTypeToString(symbol->arguments[i]->value->value_type);
+                        }
+                        jasm("invokestatic "+ValueTypeToString(symbol->value->value_type)+" "+symbolTableStack.program_name+"."+symbol->name+"("+arguments+")");
                 }
                 ;
 
@@ -796,6 +914,17 @@ proc_invoc      : ID LB comma_separated_expressions RB
 
 
                         $$ = symbol->value;
+
+                        // javaa                        
+                        string arguments="";
+                        for(int i=0;i<symbol->arguments.size();i++){
+                                if(i!=0){
+                                        arguments+=", ";
+                                }
+                                arguments+=ValueTypeToString(symbol->arguments[i]->value->value_type);
+                        }
+                        jasm("invokestatic "+ValueTypeToString(symbol->value->value_type)+" "+symbolTableStack.program_name+"."+symbol->name+"("+arguments+")");
+
                 }
                 ;
 
@@ -812,9 +941,10 @@ comma_separated_expressions     : expression
 // Num
 num     : C_INT
         {
-                Value *ret=new Value();
-                ret->value_type=VALUE_INT;
-                $$=ret;
+                Value *value=new Value();
+                value->value_type=VALUE_INT;
+                value->int_value=$1;
+                $$=value;
         }
         ;
 
