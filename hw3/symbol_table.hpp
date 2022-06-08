@@ -1,10 +1,15 @@
 #include <vector>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <iomanip>
 using namespace std;
 
-int linenum = 1;
+fstream jasm_file;
+void jasm(string s)
+{
+    jasm_file << s << endl;
+}
 
 enum IDType
 {
@@ -94,6 +99,8 @@ string ValueTypeToString(int type)
     }
 }
 
+// Value *GetValue(int type,)
+
 struct Value
 {
     int value_type = VALUE_NONE;
@@ -115,7 +122,7 @@ public:
             return to_string(float_value);
             break;
         case VALUE_BOOL:
-            return (bool_value) ? "True" : "False";
+            return (bool_value) ? "true" : "false";
             break;
         case VALUE_STR:
             return string_value;
@@ -129,10 +136,29 @@ public:
     }
 };
 
+void store_value(int value_type, int index, string value)
+{
+    switch (value_type)
+    {
+    case VALUE_INT:
+        jasm("sipush " + value);
+        jasm("istore " + to_string(index));
+        break;
+    case VALUE_FLOAT:
+        jasm("sipush " + value);
+        jasm("istore " + to_string(index));
+        break;
+        break;
+    default:
+        break;
+    }
+}
+
 struct Symbol
 {
     string name = "";
     int id_type = ID_ERROR;
+    bool init = false;
 
     Value *value = new Value();
     vector<Symbol *> arguments;
@@ -144,6 +170,8 @@ class SymbolTable
     vector<Symbol *> symbols;
 
 public:
+    bool is_global = false;
+
     SymbolTable(string table_name)
     {
         name = table_name;
@@ -151,18 +179,51 @@ public:
     }
     ~SymbolTable() {}
 
-    bool insert(Symbol *ID)
+    int size()
+    {
+        return symbols.size();
+    }
+
+    // string counter_display()
+    // {
+    //     return "next number " + size();
+    // }
+
+    bool insert(Symbol *id)
     {
 
-        if (lookup(ID->name) == nullptr)
+        if (lookup(id->name) == nullptr)
         {
-            cout << "SymbolTable<" << name << "> insert: " << ID->name << endl;
-            symbols.push_back(ID);
+            symbols.push_back(id);
+            if (id->id_type == ID_VAR)
+            {
+                if (is_global)
+                {
+                    jasm("field static int " + id->name);
+                }
+                else
+                {
+                    cout << id->name + " = " + to_string(size() - 1) + ", next number " + to_string(size()) << endl;
+                    if (id->init)
+                    {
+                        store_value(id->value->value_type, size() - 1, id->value->display());
+                    }
+                }
+            }
+            else if (id->id_type == ID_CONST)
+            {
+                cout << id->name + " = " + to_string(size() - 1) + ", next number " + to_string(size()) << endl;
+                if (id->init)
+                {
+                    store_value(id->value->value_type, size() - 1, id->value->display());
+                }
+            }
+
             return true;
         }
         else
         {
-            cout << "SymbolTable<" << name << "> insert exit: " << ID->name << endl;
+            // cout << "SymbolTable<" << name << "> insert exit: " << ID->name << endl;
             return false;
         }
     }
@@ -228,8 +289,11 @@ public:
 
     void push(string table_name)
     {
-
         tableStack.push_back(SymbolTable(table_name));
+        if (size() == 1)
+        {
+            top()->is_global = true;
+        }
         cout << "SymbolTableStack push: " << tableStack.size() - 1 << "->" << tableStack.size() << endl;
     }
 

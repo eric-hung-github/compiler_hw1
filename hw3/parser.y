@@ -24,10 +24,7 @@ void TypeError(int a,int b){
 }
 
 SymbolTableStack symbolTableStack =  SymbolTableStack();
-fstream jasm_file;
-void jasm(string s){
-        // jasm_file<<s<<endl;
-}
+
 
 %}
 
@@ -63,6 +60,7 @@ void jasm(string s){
 %left BT ST SET BET EQL NEQ
 %left AND OR NOT
 
+%type <bool_value> c_bool
 %type <id_type> type_define  
 %type <value> const_expression int_expression bool_expression expression 
 %type <value> components literal_constant var_refer fun_invoc proc_invoc num
@@ -86,13 +84,13 @@ program_begin : CLASS ID LCB
                 symbol->id_type = ID_PROGRAM;
                 symbolTableStack.insert(symbol);
 
-                // jasm("class "+*$2+"\n{");
+                jasm("class "+*$2+"\n{");
 
                 };
 
 program_end     : RCB
                 {
-                        // jasm("}");
+                        jasm("}");
                 }
                 ;
 
@@ -138,6 +136,7 @@ const_declaration       : VAL ID ASIGN const_expression
                                 symbol->id_type = ID_CONST;
                                 symbol->name = *$2;
                                 symbol->value = $4;
+                                symbol->init=true;
 
                                 symbolTableStack.insert(symbol);
                         }
@@ -147,6 +146,7 @@ const_declaration       : VAL ID ASIGN const_expression
                                 symbol->id_type = ID_CONST;
                                 symbol->name = *$2;    
                                 symbol->value= $6;
+                                symbol->init=true;
 
                                 if(symbol->value->value_type==$4){
                                         
@@ -165,12 +165,6 @@ var_declaration         : VAR ID
                                 symbol->value->value_type=VALUE_INT;
 
                                 symbolTableStack.insert(symbol);
-                                
-                                // if(symbolTableStack.size()==1){
-                                //         jasm("field static int "+*$2);
-                                // }else{
-
-                                // }
                         }
                         | VAR ID MO type_define
                         {       
@@ -180,12 +174,6 @@ var_declaration         : VAR ID
                                 symbol->value->value_type= $4;
  
                                 symbolTableStack.insert(symbol);
-
-                                // if(symbolTableStack.size()==1){
-                                //         jasm("field static "+ValueTypeToString($4)+" "+*$2);
-                                // }else{
-                                        
-                                // }
                         }
                         | VAR ID MO type_define ASIGN const_expression
                         {       
@@ -193,19 +181,13 @@ var_declaration         : VAR ID
                                 symbol->id_type = ID_VAR;
                                 symbol->name = *$2;    
                                 symbol->value= $6;
+                                symbol->init=true;
 
                                 if(symbol->value->value_type==$4){
                                         symbolTableStack.insert(symbol);
                                 }else{
                                         TypeError(symbol->value->value_type,$4);
                                 }
-
-                                // if(symbolTableStack.size()==1){
-                                //         jasm("field static "+ValueTypeToString($6->value_type)+" "+*$2+" = "+$6->display());
-                                // }else{
-                                        
-                                // }
-
                         }
                         | VAR ID ASIGN const_expression
                         {       
@@ -213,6 +195,7 @@ var_declaration         : VAR ID
                                 symbol->id_type = ID_VAR;
                                 symbol->name = *$2;  
                                 symbol->value= $4;
+                                symbol->init=true;
 
                                 symbolTableStack.insert(symbol);
                         }
@@ -261,7 +244,6 @@ fun_declaration : FUN ID LB formal_argument_list RB MO type_define
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_FUNC;
                         symbol->name = *$2;   
-                        symbol->value->value_type= VALUE_VOID;
  
                         symbolTableStack.insert(symbol);
 
@@ -283,6 +265,8 @@ proc_declaration: FUN ID LB formal_argument_list RB
                         symbol->id_type = ID_PROCEDURE;
                         symbol->name = *$2;   
  
+                        symbol->value->value_type= VALUE_VOID;
+
                         symbolTableStack.insert(symbol);
 
                         symbol->arguments=symbolTableStack.argumentStack;
@@ -308,6 +292,8 @@ proc_declaration: FUN ID LB formal_argument_list RB
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_PROCEDURE;
                         symbol->name = *$2;   
+ 
+                        symbol->value->value_type= VALUE_VOID;
  
                         symbolTableStack.insert(symbol);
 
@@ -506,6 +492,7 @@ components      : literal_constant
                 }
                 | var_refer
                 {
+                        
                         $$=$1;
                 }
                 | fun_invoc
@@ -522,30 +509,40 @@ literal_constant        : C_INT
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_INT;
+                                value->int_value=$1;
                                 $$=value;
                         }
                         | C_FLOAT 
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_FLOAT;
+                                value->float_value=$1;
                                 $$=value;
                         }
                         | C_STR 
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_STR;
+                                value->string_value=*$1;
                                 $$=value;
                         }
                         | c_bool 
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_BOOL;
+                                value->bool_value=$1;
                                 $$=value;
                         }
                         ;
 
 c_bool  : TRUE
+        {
+                $$=true;
+        }
         | FALSE
+        {
+                $$=true;
+        }
         ;
 
 var_refer        : ID
@@ -574,7 +571,14 @@ arr_refer       : ID LSB int_expression RSB
                 ;
 
 // Block
-block   : LCB block_contents RCB
+block   : LCB 
+        {
+                
+        } 
+        block_contents
+        {
+                
+        } RCB
         ;
 
 
@@ -691,13 +695,9 @@ int main( int argc, char **argv )
 		exit(-1);
 	}
 
-        /* string jasm_target_path = argv[1];
+        string jasm_target_path = argv[1];
         jasm_target_path += ".jasm";
-        jasm_file.open(jasm_target_path, ios::out | ios::trunc); */
-        /* if(yyparse() == 1){
-        yyerror("parsing error");
-                
-        } */
+        jasm_file.open(jasm_target_path, ios::out | ios::trunc);
 
 	yyin = fp;
 	yyparse();

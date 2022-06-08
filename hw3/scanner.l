@@ -11,12 +11,14 @@
         #define MAX_LINE_LENG 256
 
         char buf[MAX_LINE_LENG];
+        int linenum = 1;
+
 
         #define LIST     strcat(buf,yytext)
         #define token(t) {LIST;printf("<%s>\n",#t); return t;}
-        #define tokenInteger(t,i) {LIST;printf("<%s:%s>\n",#t,i);;return t;}
-        #define tokenString(t,s) {LIST;printf("<%s:%s>\n",#t,s);;return t;}
-        #define tokenFloat(t,f) {LIST;printf("<%s:%s>\n",#t,f);;return t;}
+        #define tokenInteger(t,i) {LIST;printf("<%s:%s>\n",#t,i);return t;}
+        #define tokenString(t,s) {LIST;printf("<%s:%s>\n",#t,s);return t;}
+        #define tokenFloat(t,f) {LIST;printf("<%s:%s>\n",#t,f);return t;}
 
 %}
 
@@ -35,7 +37,7 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
                                 printf("%d: %s", linenum++, buf);
                                 buf[0] = '\0'; }
 <C_COMMENT>[^*\n]*      { LIST;}
-<C_COMMENT>"*"+[^*/\n]* {  LIST;}
+<C_COMMENT>"*"+[^*/\n]* { LIST;}
 
 <INITIAL>"//"           {  LIST;BEGIN(R_COMMENT); }
 <R_COMMENT>"\n"         {  LIST;BEGIN(INITIAL);
@@ -44,18 +46,18 @@ identifier[a-z|A-Z][a-z|A-Z|0-9]*
 <R_COMMENT>[^\n]*	{ LIST;}
 
 <INITIAL>"\""           {  LIST;BEGIN(C_STRING); }
-<C_STRING>"\""            {  LIST;BEGIN(INITIAL); }
-<C_STRING>([^"\n)]|\"\")*      { 
-                              char* temp=(char *)malloc(sizeof(char)*strlen(yytext));
-                              strcpy(temp,yytext);
-                              char* ptr=strstr(temp,"\"\"");
-                              while(ptr!=NULL){
-                                memmove(ptr,ptr+1, strlen(temp) - strlen(ptr+1));
-                                ptr=strstr(temp,"\"\"");
-                              }
+<C_STRING>"\""          {  LIST;BEGIN(INITIAL); }
+<C_STRING>([^"\n)]|\"\")*       { 
+                                char* temp=(char *)malloc(sizeof(char)*strlen(yytext));
+                                strcpy(temp,yytext);
+                                char* ptr=strstr(temp,"\"\"");
+                                while(ptr!=NULL){
+                                        memmove(ptr,ptr+1, strlen(temp) - strlen(ptr+1));
+                                        ptr=strstr(temp,"\"\"");
+                                }
                                 yylval.str_value = new string(temp);
-                              tokenString(C_STR,temp);
-                              }
+                                tokenString(C_STR,temp);
+                                }
                               
 ","     {token(COMMA);}
 ";"     {token(FAN);}
@@ -115,18 +117,22 @@ var             {token(VAR);}
 while           {token(WHILE);}
 
 {identifier}                    {
-                                yylval.str_value = new string(yytext);tokenString(ID,yytext);}
+                                yylval.str_value = new string(yytext);
+                                tokenString(ID,yytext);
+                                }
 
 0|([1-9][0-9]*)                 {
                                 float f ;
                                 sscanf(yytext,"%f",&f);
-                                yylval.float_value = f;tokenInteger(C_INT, yytext);
+                                yylval.float_value = f;
+                                tokenInteger(C_INT, yytext);
                                 }
 
 (0|([1-9][0-9]*))"."[0-9]+	{
                                 int i;
                                 sscanf(yytext,"%d",&i);
-                                yylval.int_value = i;tokenFloat(C_FLOAT, yytext);
+                                yylval.int_value = i;
+                                tokenFloat(C_FLOAT, yytext);
                                 }
 
 
