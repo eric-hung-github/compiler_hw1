@@ -171,7 +171,7 @@ public:
         if (lookup(id->name) == nullptr)
         {
             symbols.push_back(id);
-            // cout << "SymbolTable<" << name << "> insert " << id->name << " " << ValueTypeToString(id->value->value_type) << endl;
+            cout << "SymbolTable<" << name << "> insert " << id->name << " " << ValueTypeToString(id->value->value_type) << endl;
             return true;
         }
         else
@@ -335,16 +335,6 @@ public:
 
     void load_value(Symbol *symbol)
     {
-        cout << "load_value<\"" << symbol->name << "\", ";
-
-        cout << IDTypeToString(symbol->id_type) << ", ";
-
-        cout << ValueTypeToString(symbol->value->value_type) << ", ";
-
-        cout << symbol->counter << ">";
-
-        cout << endl;
-
         if (symbol->id_type == ID_VAR)
         {
             switch (symbol->value->value_type)
