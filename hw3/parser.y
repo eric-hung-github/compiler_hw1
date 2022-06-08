@@ -529,8 +529,8 @@ bool_expression         : literal_constant_bool
 
                                 // javaa
                                 jasm("isub");
-                                jasm(*$2+"L1");
-                                jasm("const_0");
+                                jasm(*$2+" L1");
+                                jasm("iconst_0");
                                 jasm("goto L2");
                                 jasm("L1: iconst_1");
                                 jasm("L2");
