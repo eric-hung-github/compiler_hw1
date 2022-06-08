@@ -64,7 +64,7 @@ SymbolTableStack symbolTableStack =  SymbolTableStack();
 
 %type <id_type> type_define  
 %type <value> const_expression int_expression bool_expression expression 
-%type <value> components literal_constant var_refer fun_invoc proc_invoc num
+%type <value> components literal_constant var_refer fun_invoc proc_invoc num literal_constant_bool
 %type <symbol> arr_refer
 %type <str_value> math_operator logic_operator bit_operator
 /* %type <value> fun_invoc */
@@ -514,12 +514,9 @@ int_expression          : expression
                         }
                         ;
 
-bool_expression         : expression
+bool_expression         : literal_constant_bool
                         {
-                                if($1->value_type!=VALUE_BOOL){
-                                        TypeError($1->value_type,VALUE_BOOL);
-                                }
-                                symbolTableStack.bool_operator="iflt";
+                                $$=$1;
                         }
                         |  expression logic_operator expression
                         {
@@ -528,10 +525,30 @@ bool_expression         : expression
                                 }
                                 Value *ret=new Value();
                                 ret->value_type=VALUE_BOOL;
-                                symbolTableStack.bool_operator=*$2;
                                 $$=ret;
+
+                                // javaa
+                                jasm("isub");
+                                jasm(*$2+"L1");
+                                jasm("const_0");
+                                jasm("goto L2");
+                                jasm("L1: iconst_1");
+                                jasm("L2");
                         }
-                        
+                        | bool_expression bit_operator bool_expression
+                        {
+                                if($1->value_type!=$3->value_type){
+                                        TypeError($1->value_type,$3->value_type);
+                                }
+                                if($1->value_type!=VALUE_BOOL){
+                                        TypeError($1->value_type,VALUE_BOOL);
+                                }
+
+                                $$=$1;
+
+                                // javaa
+                                jasm(*$2);
+                        }
                         ;
 
 expression      : LB expression RB
@@ -564,17 +581,6 @@ expression      : LB expression RB
                         }
                         jasm("ixor");
                         $$=$2;
-                }
-                | expression bit_operator expression
-                {
-                        if($1->value_type!=$3->value_type){
-                                TypeError($1->value_type,$3->value_type);
-                        }
-                        if($1->value_type!=VALUE_BOOL){
-                                TypeError($1->value_type,VALUE_BOOL);
-                        }
-                        jasm(*$2);
-                        $$=$1;
                 }
                 | components
                 {
@@ -609,12 +615,12 @@ math_operator   : MUL
                 }
                 ;
 
-logic_operator  : BT 
+logic_operator  : ST 
                 {
                         string *op=new string("iflt");
                         $$=op;
                 }
-                | ST
+                | BT
                 {
                         string *op=new string("ifgt");
                         $$=op;
@@ -715,7 +721,9 @@ literal_constant        : C_INT
                                 value->string_value=*$1;
                                 $$=value;
                         }
-                        | TRUE 
+                        | literal_constant_bool
+                        ;
+literal_constant_bool   : TRUE 
                         {
                                 Value* value=new Value();
                                 value->value_type = VALUE_BOOL;
@@ -730,7 +738,6 @@ literal_constant        : C_INT
                                 $$=value;
                         }
                         ;
-
 
 var_refer        : ID
                 {
@@ -790,8 +797,8 @@ block_content   : va_declaration
 // Conditional
 condition_statement     : IF LB bool_expression RB 
                         {
-                                jasm("isub");
-                                jasm(symbolTableStack.bool_operator+" Lfalse");
+                                jasm("iconst_0");
+                                jasm("ifeq Lfalse");
                         } block_or_simple_statement
                         {
                                 jasm("goto Lexit");
@@ -802,45 +809,40 @@ condition_statement     : IF LB bool_expression RB
 else_statement          : ELSE block_or_simple_statement
                         {
                                 jasm("Lexit:");
-
                         }
                         | 
                         {
                                 jasm("Lexit:");
-
                         }
                         ;
 
 // Loop
-loop_statement  : WHILE LB bool_expression RB 
+loop_statement  : WHILE
                 {
                         jasm("Lbegin:");
-                        jasm("isub");
-                        jasm(symbolTableStack.bool_operator+" Ltrue");
-                        jasm("iconst_0");
-                        jasm("goto Lfalse");
-                        jasm("Ltrue");
-                        jasm("iconst_1");
-                        jasm("Lfalse:");
+                } LB bool_expression RB 
+                {
                         jasm("Lifeq Lexit");
                 } block_or_simple_statement
                 {
+                        jasm("goto Lbegin");
                         jasm("Lexit:");       
                 }
                 | FOR LB ID num DOT DOT num  RB 
                 {
                         jasm("sipush "+$4->display());
                         jasm("istore 1");
-
                         jasm("Lbegin:");
                         jasm("iload 1");
-                        jasm("sipush 10");
+                        jasm("sipush "+$7->display());
                         jasm("isub");
                         jasm("ifle Ltrue");
                         jasm("iconst_0");
                         jasm("goto Lfalse");
+
                         jasm("Ltrue");
                         jasm("iconst_1");
+
                         jasm("Lfalse:");
                         jasm("Lifeq Lexit");
                 } block_or_simple_statement

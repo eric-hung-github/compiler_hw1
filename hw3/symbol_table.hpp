@@ -223,8 +223,6 @@ public:
     Symbol *fun_ptr = nullptr;
     string program_name;
 
-    string bool_operator;
-
     SymbolTableStack()
     {
         tableStack.clear();
