@@ -692,12 +692,12 @@ var_refer        : ID
                         }
 
                         if(symbol->id_type=ID_CONST){
-                                load_value(symbol);
+                                symbolTableStack.load_value(symbol);
                         }else{ 
                                 if(symbol->is_global){
                                         jasm("getstatic "+ValueTypeToString(symbol->value->value_type)+" "+symbolTableStack.program_name+"."+symbol->name);
                                 }else{
-                                        load_value(symbol);
+                                        symbolTableStack.load_value(symbol);
                                 }
                         }
                         $$ = symbol->value;

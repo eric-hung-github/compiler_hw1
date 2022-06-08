@@ -148,68 +148,13 @@ struct Symbol
     int counter = 0;
 };
 
-void store_value(Symbol *symbol, int index)
-{
-    symbol->counter = index;
-    switch (symbol->value->value_type)
-    {
-    case VALUE_INT:
-        jasm("sipush " + symbol->value->display());
-        jasm("istore " + to_string(index));
-        break;
-    case VALUE_FLOAT:
-        jasm("sipush " + symbol->value->display());
-        jasm("istore " + to_string(index));
-        break;
-        break;
-    default:
-        break;
-    }
-}
-
-void load_value(Symbol *symbol)
-{
-    switch (symbol->value->value_type)
-    {
-    case VALUE_INT:
-        jasm("iload " + to_string(symbol->counter));
-        break;
-    case VALUE_FLOAT:
-        jasm("iload " + to_string(symbol->counter));
-        break;
-    default:
-        break;
-    }
-}
-
-void load_const(Symbol *symbol)
-{
-    switch (symbol->value->value_type)
-    {
-    case VALUE_INT:
-        jasm("sipush " + symbol->value->display());
-        break;
-    case VALUE_BOOL:
-        jasm("iconst_" + symbol->value->display());
-        break;
-    case VALUE_FLOAT:
-        jasm("sipush " + symbol->value->display());
-        break;
-    case VALUE_STR:
-        jasm("ldc \"" + symbol->value->display() + "\"");
-        break;
-    default:
-        break;
-    }
-}
-
 class SymbolTable
 {
     string name = "";
     vector<Symbol *> symbols;
 
 public:
-    bool is_global = false;
+    // bool is_global = false;
 
     SymbolTable(string table_name)
     {
@@ -228,35 +173,7 @@ public:
 
         if (lookup(id->name) == nullptr)
         {
-            if (is_global)
-            {
-                id->is_global = true;
-            }
             symbols.push_back(id);
-            if (id->id_type == ID_VAR)
-            {
-                if (is_global)
-                {
-                    jasm("field static int " + id->name);
-                }
-                else
-                {
-                    cout << id->name + " = " + to_string(size() - 1) + ", next number " + to_string(size()) << endl;
-                    if (id->init)
-                    {
-                        store_value(id, size() - 1);
-                    }
-                }
-            }
-            else if (id->id_type == ID_CONST)
-            {
-                cout << id->name + " = " + to_string(size() - 1) + ", next number " + to_string(size()) << endl;
-                if (id->init)
-                {
-                    store_value(id, size() - 1);
-                }
-            }
-
             return true;
         }
         else
@@ -328,10 +245,6 @@ public:
     void push(string table_name)
     {
         tableStack.push_back(SymbolTable(table_name));
-        if (size() == 1)
-        {
-            top()->is_global = true;
-        }
         cout << "SymbolTableStack push: " << tableStack.size() - 1 << "->" << tableStack.size() << endl;
     }
 
@@ -343,9 +256,42 @@ public:
         cout << "SymbolTableStack push: " << tableStack.size() + 1 << "->" << tableStack.size() << endl;
     }
 
-    bool insert(Symbol *ID)
+    bool insert(Symbol *id)
     {
-        return tableStack[tableStack.size() - 1].insert(ID);
+        if (size() == 1)
+        {
+            id->is_global = true;
+        }
+
+        if (!top()->insert(id))
+        {
+            return false;
+        }
+
+        if (id->id_type == ID_VAR)
+        {
+            if (id->is_global)
+            {
+                jasm("field static int " + id->name);
+            }
+            else
+            {
+                cout << id->name + " = " + to_string(top()->size() - 1) + ", next number " + to_string(size()) << endl;
+                if (id->init)
+                {
+                    store_value(id);
+                }
+            }
+        }
+        else if (id->id_type == ID_CONST)
+        {
+            cout << id->name + " = " + to_string(size() - 1) + ", next number " + to_string(size()) << endl;
+            if (id->init)
+            {
+                store_value(id);
+            }
+        }
+        return true;
     }
 
     Symbol *lookup(string name)
@@ -359,5 +305,91 @@ public:
             }
         }
         return nullptr;
+    }
+
+    void store_value(Symbol *symbol)
+    {
+        int index = top()->size() - 1;
+        symbol->counter = index;
+        switch (symbol->value->value_type)
+        {
+        case VALUE_INT:
+            jasm("sipush " + symbol->value->display());
+            jasm("istore " + to_string(index));
+            break;
+        case VALUE_FLOAT:
+            jasm("sipush " + symbol->value->display());
+            jasm("istore " + to_string(index));
+            break;
+            break;
+        default:
+            break;
+        }
+    }
+
+    void load_value(Symbol *symbol)
+    {
+        if (symbol->id_type == ID_VAR)
+        {
+            switch (symbol->value->value_type)
+            {
+            case VALUE_INT:
+                jasm("iload " + to_string(symbol->counter));
+                break;
+            case VALUE_FLOAT:
+                jasm("iload " + to_string(symbol->counter));
+                break;
+            default:
+                break;
+            }
+        }
+        else if (symbol->id_type == ID_CONST)
+        {
+            switch (symbol->value->value_type)
+            {
+            case VALUE_INT:
+                jasm("sipush " + symbol->value->display());
+                break;
+            case VALUE_BOOL:
+                jasm("iconst_" + symbol->value->display());
+                break;
+            case VALUE_FLOAT:
+                jasm("sipush " + symbol->value->display());
+                break;
+            case VALUE_STR:
+                jasm("ldc \"" + symbol->value->display() + "\"");
+                break;
+            default:
+                break;
+            }
+        }
+        else
+        {
+            printf("load value error\n");
+        }
+    }
+
+    void update_value(Symbol *symbol)
+    {
+        if (symbol->is_global)
+        {
+            jasm("putstatic " + ValueTypeToString(symbol->value->value_type) + " " + program_name + "." + symbol->name);
+        }
+        else
+        {
+            int index = symbol->counter;
+            switch (symbol->value->value_type)
+            {
+            case VALUE_INT:
+                jasm("istore " + to_string(index));
+                break;
+            case VALUE_FLOAT:
+                jasm("istore " + to_string(index));
+                break;
+                break;
+            default:
+                break;
+            }
+        }
     }
 };
