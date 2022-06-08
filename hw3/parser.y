@@ -702,6 +702,8 @@ int main( int argc, char **argv )
 	yyin = fp;
 	yyparse();
 
+        jasm_file.close();
+
 	fprintf( stdout, "\n" );
 	fprintf( stdout, "|--------------------------------|\n" );
 	fprintf( stdout, "|  There is no syntactic error!  |\n" );
