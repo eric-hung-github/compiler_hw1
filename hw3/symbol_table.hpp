@@ -174,11 +174,11 @@ public:
         if (lookup(id->name) == nullptr)
         {
             symbols.push_back(id);
+            cout << "SymbolTable<" << name << "> insert " << id->name << " " << ValueTypeToString(id->value->value_type) << endl;
             return true;
         }
         else
         {
-            // cout << "SymbolTable<" << name << "> insert exit: " << ID->name << endl;
             return false;
         }
     }
@@ -286,10 +286,7 @@ public:
         else if (id->id_type == ID_CONST)
         {
             cout << id->name + " = " + to_string(size() - 1) + ", next number " + to_string(size()) << endl;
-            if (id->init)
-            {
-                store_value(id);
-            }
+            store_value(id);
         }
         return true;
     }
