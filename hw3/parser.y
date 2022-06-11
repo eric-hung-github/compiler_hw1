@@ -425,11 +425,17 @@ simple_statement: ID ASIGN expression
                                 TypeError(symbol->value->value_type,$3->value_type);
                         }
                 }
-                | PRINT expression 
+                | PRINT 
+                {
+                        jasm("getstatic java.io.PrintStream java.lang.System.out");
+                } expression 
                 {
                         symbolTableStack.print($2,false);
                 }
-                | PRINTLN expression
+                | PRINTLN 
+                {
+                        jasm("getstatic java.io.PrintStream java.lang.System.out");
+                } expression
                 {
                         symbolTableStack.print($2,true);
                 }
@@ -838,23 +844,24 @@ loop_statement  : WHILE
                 {
                         jasm("sipush "+$4->display());
                         jasm("istore 1");
-                        jasm("Lbegin:");
+                        jasm("L"+to_string(symbolTableStack.tag)+":");
                         jasm("iload 1");
                         jasm("sipush "+$7->display());
                         jasm("isub");
-                        jasm("ifle Ltrue");
+                        jasm("ifle L"+to_string(symbolTableStack.tag+1));
                         jasm("iconst_0");
-                        jasm("goto Lfalse");
+                        jasm("goto L"+to_string(symbolTableStack.tag+2));
 
-                        jasm("Ltrue");
+                        jasm("L"+to_string(symbolTableStack.tag+1));
                         jasm("iconst_1");
 
-                        jasm("Lfalse:");
-                        jasm("Lifeq Lexit");
+                        jasm("L"+to_string(symbolTableStack.tag+2));
+                        jasm("Lifeq L"+to_string(symbolTableStack.tag+3));
                 } block_or_simple_statement
                 {
-                        jasm("goto Lbegin");
-                        jasm("Lexit:");       
+                        jasm("goto L"+to_string(symbolTableStack.tag));
+                        jasm("L"+to_string(symbolTableStack.tag+3)+":");       
+                        symbolTableStack.tag+=4;
                 }
                 ;
 

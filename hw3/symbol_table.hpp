@@ -283,7 +283,14 @@ public:
         {
             if (id->is_global)
             {
-                jasm("field static int " + id->name);
+                if (id->init)
+                {
+                    jasm("field static int " + id->name + " = " + id->value->display());
+                }
+                else
+                {
+                    jasm("field static int " + id->name);
+                }
             }
             else
             {
