@@ -10,7 +10,7 @@ iload 1
 iadd
 ireturn
 }
-method public static void main()
+method public static void main(java.lang.String[])
 max_stack 15
 max_locals 15
 {
@@ -21,25 +21,23 @@ putstatic int example.c
 getstatic int example.c
 sipush 10
 isub
-ifgt L1
+ifgt L0
 iconst_0
-goto L2
-L1: iconst_1
-L2: 
-iconst_0
-ifeq Lfalse
+goto L1
+L0:
+iconst_1
+L1: 
+ifeq L2
 getstatic int example.c
 ineg
-getstatic java.io.PrintStream java.lang.System.out
 invokevirtual void java.io.PrintStream.print(int)
-goto Lexit
-Lfalse:
+goto L3
+L2:
 getstatic int example.c
-getstatic java.io.PrintStream java.lang.System.out
 invokevirtual void java.io.PrintStream.print(int)
-Lexit:
+L3:
 ldc "Hello World"
-getstatic java.io.PrintStream java.lang.System.out
 invokevirtual void java.io.PrintStream.println(java.lang.String)
+return
 }
 }

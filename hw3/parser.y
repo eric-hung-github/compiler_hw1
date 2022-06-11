@@ -318,6 +318,7 @@ proc_declaration: FUN ID LB formal_argument_list RB
                                 }
                                 arguments+=ValueTypeToString(symbol->arguments[i]->value->value_type);
                         }
+                        
                         jasm("method public static "+ValueTypeToString(symbol->value->value_type)+" "+symbol->name+"("+arguments+")");
                         jasm("max_stack "+MAX_STACK);
                         jasm("max_locals "+MAX_LOCALS);
@@ -330,6 +331,8 @@ proc_declaration: FUN ID LB formal_argument_list RB
                         symbolTableStack.fun_ptr=nullptr;
 
                         // javaa
+                        jasm("return");
+                        
                         jasm("}");
 
                 }
@@ -350,7 +353,11 @@ proc_declaration: FUN ID LB formal_argument_list RB
 
                         symbolTableStack.fun_ptr=symbol;
 
-                        jasm("method public static "+ValueTypeToString(symbol->value->value_type)+" "+symbol->name+"()");
+                        if(symbol->name=="main"){
+                                jasm("method public static void main(java.lang.String[])"); 
+                        }else{
+                                jasm("method public static "+ValueTypeToString(symbol->value->value_type)+" "+symbol->name+"()");
+                        }
                         jasm("max_stack "+MAX_STACK);
                         jasm("max_locals "+MAX_LOCALS);
                         jasm("{");
@@ -361,6 +368,7 @@ proc_declaration: FUN ID LB formal_argument_list RB
                         symbolTableStack.fun_ptr=nullptr;
 
                         // javaa
+                        jasm("return");
                         jasm("}");
 
                 }
@@ -417,17 +425,9 @@ simple_statement: ID ASIGN expression
                                 TypeError(symbol->value->value_type,$3->value_type);
                         }
                 }
-                | PRINT LB expression RB
-                {
-                        symbolTableStack.print($3,false);
-                }
                 | PRINT expression 
                 {
                         symbolTableStack.print($2,false);
-                }
-                | PRINTLN LB expression RB
-                {
-                        symbolTableStack.print($3,true);
                 }
                 | PRINTLN expression
                 {
@@ -529,11 +529,13 @@ bool_expression         : literal_constant_bool
 
                                 // javaa
                                 jasm("isub");
-                                jasm(*$2+" L1");
+                                jasm(*$2+" L"+to_string(symbolTableStack.tag));
                                 jasm("iconst_0");
-                                jasm("goto L2");
-                                jasm("L1: iconst_1");
-                                jasm("L2: ");
+                                jasm("goto L"+to_string(symbolTableStack.tag+1));
+                                jasm("L"+to_string(symbolTableStack.tag)+":");
+                                jasm("iconst_1");
+                                jasm("L"+to_string(symbolTableStack.tag+1)+": ");
+                                symbolTableStack.tag+=2;
                         }
                         | bool_expression bit_operator bool_expression
                         {
@@ -797,36 +799,40 @@ block_content   : va_declaration
 // Conditional
 condition_statement     : IF LB bool_expression RB 
                         {
-                                jasm("iconst_0");
-                                jasm("ifeq Lfalse");
+                                jasm("ifeq L"+to_string(symbolTableStack.tag));
                         } block_or_simple_statement
                         {
-                                jasm("goto Lexit");
-                                jasm("Lfalse:");
+                                jasm("goto L"+to_string(symbolTableStack.tag+1));
+                                jasm("L"+to_string(symbolTableStack.tag)+":");
+                                symbolTableStack.tag+=1;
                         } else_statement
                         ; 
 
 else_statement          : ELSE block_or_simple_statement
                         {
-                                jasm("Lexit:");
+                                jasm("L"+to_string(symbolTableStack.tag)+":");
+                                symbolTableStack.tag+=1;
                         }
                         | 
                         {
-                                jasm("Lexit:");
+                                jasm("L"+to_string(symbolTableStack.tag)+":");
+                                symbolTableStack.tag+=1;
                         }
                         ;
 
 // Loop
 loop_statement  : WHILE
                 {
-                        jasm("Lbegin:");
+                        jasm("L"+to_string(symbolTableStack.tag)+":");
+                        symbolTableStack.temp_tag=symbolTableStack.tag;
+                        symbolTableStack.tag+=1;
                 } LB bool_expression RB 
                 {
-                        jasm("Lifeq Lexit");
+                        jasm("Lifeq L"+to_string(symbolTableStack.tag));
                 } block_or_simple_statement
                 {
-                        jasm("goto Lbegin");
-                        jasm("Lexit:");       
+                        jasm("goto L"+to_string(symbolTableStack.temp_tag));
+                        jasm("L"+to_string(symbolTableStack.tag)+":");       
                 }
                 | FOR LB ID num DOT DOT num  RB 
                 {

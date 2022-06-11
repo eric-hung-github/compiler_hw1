@@ -222,6 +222,10 @@ public:
     vector<Value *> parseStack;
     Symbol *fun_ptr = nullptr;
     string program_name;
+    bool is_returned = false;
+
+    int tag = 0;
+    int temp_tag = 0;
 
     SymbolTableStack()
     {
@@ -416,7 +420,6 @@ public:
         default:
             break;
         }
-        jasm("getstatic java.io.PrintStream java.lang.System.out");
         jasm("invokevirtual void java.io.PrintStream." + print_func + "(" + type_name + ")");
     }
 };
