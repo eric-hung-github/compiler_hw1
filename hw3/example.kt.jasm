@@ -28,16 +28,18 @@ L0:
 iconst_1
 L1: 
 ifeq L2
+getstatic java.io.PrintStream java.lang.System.out
 getstatic int example.c
 ineg
 invokevirtual void java.io.PrintStream.print(int)
 goto L3
 L2:
+getstatic java.io.PrintStream java.lang.System.out
 getstatic int example.c
 invokevirtual void java.io.PrintStream.print(int)
 L3:
+getstatic java.io.PrintStream java.lang.System.out
 ldc "Hello World"
-invokevirtual void java.io.PrintStream.println(java.lang.String)
 return
 }
 }

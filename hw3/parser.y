@@ -425,20 +425,9 @@ simple_statement: ID ASIGN expression
                                 TypeError(symbol->value->value_type,$3->value_type);
                         }
                 }
-                | 
-                {
+                | {
                         jasm("getstatic java.io.PrintStream java.lang.System.out");
-                } PRINT expression 
-                {
-                        // symbolTableStack.print($2,false);
-                }
-                | PRINTLN 
-                {
-                        jasm("getstatic java.io.PrintStream java.lang.System.out");
-                } expression
-                {
-                        // symbolTableStack.print($2,true);
-                }
+                } print_statement
                 | RETURN ID
                 {
                         if(!symbolTableStack.fun_ptr){
@@ -482,6 +471,15 @@ simple_statement: ID ASIGN expression
                         jasm("ireturn");
                 }
                 ;
+
+print_statement : PRINT expression 
+                {
+                        symbolTableStack.print($2,false);
+                }
+                | PRINTLN  expression
+                {
+                        symbolTableStack.print($2,true);
+                }
 
 // Expression
 const_expression        : LB const_expression RB
