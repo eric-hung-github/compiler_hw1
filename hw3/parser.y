@@ -425,19 +425,19 @@ simple_statement: ID ASIGN expression
                                 TypeError(symbol->value->value_type,$3->value_type);
                         }
                 }
-                | PRINT 
+                | 
                 {
                         jasm("getstatic java.io.PrintStream java.lang.System.out");
-                } expression 
+                } PRINT expression 
                 {
-                        symbolTableStack.print($2,false);
+                        // symbolTableStack.print($2,false);
                 }
                 | PRINTLN 
                 {
                         jasm("getstatic java.io.PrintStream java.lang.System.out");
                 } expression
                 {
-                        symbolTableStack.print($2,true);
+                        // symbolTableStack.print($2,true);
                 }
                 | RETURN ID
                 {
