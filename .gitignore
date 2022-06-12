@@ -1,1 +1,7 @@
 
+hw3/lex.yy.cpp
+hw3/compiler.exe
+hw3/y.tab.hpp
+hw3/y.tab.cpp
+*.jasm
+*.class
