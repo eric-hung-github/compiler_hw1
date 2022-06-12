@@ -20,4 +20,4 @@ y.tab.cpp:$(PARSER).y
 	$(YACC) -d $(PARSER).y -o y.tab.cpp
 
 clean:
-	rm -f $(TARGET) lex.yy.* y.tab.*
+	rm -f $(TARGET) lex.yy.* y.tab.* *.class *.jasm
