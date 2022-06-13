@@ -6,15 +6,15 @@ class Test {
         num = num / 2
 
         var i = 2
-
+        var isprime: int
 
         while (i <= num ) {
             print(i)
             print(" ")
 
-            var is_prime = num % i
+            isprime = num % i
 
-            if (is_prime == 0) {
+            if (isprime == 0) {
                 return 0
             }
             i = i + 1
