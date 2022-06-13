@@ -819,7 +819,7 @@ condition_statement     : IF LB bool_expression RB
                                 jasm("ifeq L"+to_string(symbolTableStack.tag));
                         } block_or_simple_statement
                         {
-                                jasm("goto L"+to_string(symbolTableStack.tag+1));
+                                jasm("goto L"+to_string(symbolTableStack.tag));
                                 jasm("L"+to_string(symbolTableStack.tag)+":");
                                 symbolTableStack.tag+=1;
                         } else_statement
