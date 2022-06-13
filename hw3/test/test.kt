@@ -1,19 +1,18 @@
 class Test {
 
-    var low = 20
-    var high = 50
+    val low = 20
+    val high = 50
 
     fun main() {
 
+        var index = low
         var result : bool = true
 
-        while (low < high) {
+        while (index < high) {
 
             result = true
             
-            var num = low
-
-            num = num / 2
+            var num = index / 2
             
             for (i 2..num) {
                 var temp = num % i
@@ -27,7 +26,7 @@ class Test {
                 println(low)
             }
 
-            low = low + 1
+            index = index + 1
         }
     }
 }
