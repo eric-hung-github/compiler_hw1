@@ -3,7 +3,10 @@ class Test {
     fun checkPrimeNumber(num: int): int {
         var flag = true
         num = num / 2
+        for (i 2..num ) {
 
+
+        }
 
         return 0
     }
