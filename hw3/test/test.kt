@@ -11,6 +11,11 @@ class Test {
         range = num / 2
 
         while (i <= range ) {
+            print(num)
+
+            print("%")
+
+
             print(i)
 
             isprime = num % i
