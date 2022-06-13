@@ -10,9 +10,8 @@ class Test {
         var low = 20
         val high = 50
 
-        var result = checkPrimeNumber(low) 
-
         while (low < high) {
+            var result = checkPrimeNumber(low) 
 
 
             low = low + 1
