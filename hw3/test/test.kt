@@ -17,6 +17,7 @@ class Test {
     fun main() {
         var low = 20
         val high = 50
+        var result:int
 
         while (low < high) {
             var result = checkPrimeNumber(low) 
