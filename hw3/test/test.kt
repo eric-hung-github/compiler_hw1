@@ -7,9 +7,8 @@ class Test {
 
         var i = 2
 
-        range = num / 2
 
-        while (i <= range ) {
+        while (i <= (num / 2) ) {
 
             isprime = num % i
 
