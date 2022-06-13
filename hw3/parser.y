@@ -832,7 +832,7 @@ loop_statement  : WHILE
                         symbolTableStack.tag+=1;
                 } LB bool_expression RB 
                 {
-                        jasm("Lifeq L"+to_string(symbolTableStack.tag));
+                        jasm("ifeq L"+to_string(symbolTableStack.tag));
                 } block_or_simple_statement
                 {
                         jasm("goto L"+to_string(symbolTableStack.temp_tag));
