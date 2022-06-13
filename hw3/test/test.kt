@@ -1,7 +1,6 @@
 class Test {
 
     fun checkPrimeNumber(num: int): int {
-        println(num)
 
         var range: int
         var isprime: int
@@ -33,7 +32,6 @@ class Test {
             if (result == 1){
                 println(low)
             }
-            println(result)
 
             low = low + 1
         }
