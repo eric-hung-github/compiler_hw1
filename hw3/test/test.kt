@@ -9,17 +9,10 @@ class Test {
 
 
         while (i <= num ) {
-            print(i)
-            print(" ")
 
-
-            if (num % i == 0) {
-                return 0
-            }
             i = i + 1
         }
 
-        println(" ")
 
         return 1
     }
