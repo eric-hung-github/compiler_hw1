@@ -13,6 +13,7 @@ class Test {
         while (low < high) {
             result = checkPrimeNumber(low) 
 
+            low = low + 1
         }
     }
 
