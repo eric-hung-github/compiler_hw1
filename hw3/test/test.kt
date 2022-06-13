@@ -20,7 +20,7 @@ class Test {
         var result:int
 
         while (low < high) {
-            var result = checkPrimeNumber(low) 
+            result = checkPrimeNumber(low) 
             if (result==1)
                 println(low)
 
