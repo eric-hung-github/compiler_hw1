@@ -10,31 +10,15 @@ class Test {
 
         range = num / 2
 
-        for (i in 2..range ) {
-            print(num)
-
-            print("%")
-
-
-            print(i)
+        while (i <= range ) {
 
             isprime = num % i
 
-            print(":")
-
-            print(isprime)
-
-            print(" ")
-
-
             if (isprime == 0) {
-                println(" false ")
                 return 0
             }
             i = i + 1
         }
-
-        println(" true ")
 
         return 1
     }
@@ -49,8 +33,7 @@ class Test {
             if (result == 1){
                 println(low)
             }
-            println("===========")
-
+            println(result)
 
             low = low + 1
         }
