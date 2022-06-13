@@ -831,10 +831,6 @@ else_statement          : ELSE block_or_simple_statement
                                 symbolTableStack.tag+=1;
                         }
                         | 
-                        {
-                                jasm("L"+to_string(symbolTableStack.tag)+":");
-                                symbolTableStack.tag+=1;
-                        }
                         ;
 
 // Loop
