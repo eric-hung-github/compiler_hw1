@@ -24,7 +24,7 @@ class Test {
 
     fun main() {
         var low = 20
-        val high = 2020
+        val high = 100
         var result:int
 
         while (low < high) {
