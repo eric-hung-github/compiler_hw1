@@ -12,7 +12,8 @@ class Test {
         var result:int
 
         while (low < high) {
-            println(low)
+            result = checkPrimeNumber(low) 
+            println(result)
 
 
 
