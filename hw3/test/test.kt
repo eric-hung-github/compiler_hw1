@@ -10,7 +10,7 @@ class Test {
 
         range = num / 2
 
-        while (i <= range ) {
+        for (i in 2..range ) {
             print(num)
 
             print("%")

@@ -115,6 +115,7 @@ true            {token(TRUE);}
 val             {token(VAL);}
 var             {token(VAR);}
 while           {token(WHILE);}
+in           {token(IN);}
 
 {identifier}                    {
                                 yylval.str_value = new string(yytext);

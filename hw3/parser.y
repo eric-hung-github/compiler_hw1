@@ -55,7 +55,7 @@ SymbolTableStack symbolTableStack =  SymbolTableStack();
 %token BT ST SET BET EQL NEQ
 %token AND OR NOT
 %token ASIGN ADDASIGN SUBASIGN MULASIGN DIVASIGN
-%token BOOL BREAK CHAR CASE CLASS CONTINUE DECLARE DO ELSE EXIT FLOAT FOR FUN IF INT LOOP PRINT PRINTLN RETURN STRING VAL VAR WHILE
+%token BOOL BREAK CHAR CASE CLASS CONTINUE DECLARE DO ELSE EXIT FLOAT FOR FUN IF INT LOOP PRINT PRINTLN RETURN STRING VAL VAR WHILE IN
 
 
 %left ADD SUB MUL DIV MOD
@@ -847,25 +847,25 @@ loop_statement  : WHILE
                         jasm("goto L"+to_string(symbolTableStack.temp_tag));
                         jasm("L"+to_string(symbolTableStack.temp_tag+1)+":");       
                 }
-                | FOR LB ID num DOT DOT num  RB 
+                | FOR LB ID IN num DOT DOT num  RB 
                 {
                         Symbol* symbol = new Symbol();
                         symbol->id_type = ID_VAR;
                         symbol->name = *$3;    
-                        symbol->value= $4;
+                        symbol->value= $5;
                         symbol->init=true;
 
-                        if(symbol->value->value_type==$4->value_type){
+                        if(symbol->value->value_type==$5->value_type){
                                 symbolTableStack.insert(symbol);
                         }else{
-                                TypeError(symbol->value->value_type,$4->value_type);
+                                TypeError(symbol->value->value_type,$5->value_type);
                         }
 
-                        jasm("sipush "+$4->display());
+                        jasm("sipush "+$5->display());
                         jasm("istore 1");
                         jasm("L"+to_string(symbolTableStack.tag)+":");
                         jasm("iload 1");
-                        jasm("sipush "+$7->display());
+                        jasm("sipush "+$8->display());
                         jasm("isub");
                         jasm("ifle L"+to_string(symbolTableStack.tag+1));
                         jasm("iconst_0");
