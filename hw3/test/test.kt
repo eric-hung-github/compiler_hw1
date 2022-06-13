@@ -12,7 +12,9 @@ class Test {
             print(i)
             print(" ")
 
-            if (num % i == 0) {
+            var is_prime = num % i
+
+            if (is_prime == 0) {
                 return 0
             }
             i = i + 1
