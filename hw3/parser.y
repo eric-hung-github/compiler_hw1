@@ -838,14 +838,14 @@ loop_statement  : WHILE
                 {
                         jasm("L"+to_string(symbolTableStack.tag)+":");
                         symbolTableStack.temp_tag=symbolTableStack.tag;
-                        symbolTableStack.tag+=1;
+                        symbolTableStack.tag+=2;
                 } LB bool_expression RB 
                 {
-                        jasm("ifeq L"+to_string(symbolTableStack.tag));
+                        jasm("ifeq L"+to_string(symbolTableStack.temp_tag+1));
                 } block_or_simple_statement
                 {
                         jasm("goto L"+to_string(symbolTableStack.temp_tag));
-                        jasm("L"+to_string(symbolTableStack.tag)+":");       
+                        jasm("L"+to_string(symbolTableStack.temp_tag+1)+":");       
                 }
                 | FOR LB ID num DOT DOT num  RB 
                 {
