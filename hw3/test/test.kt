@@ -14,6 +14,8 @@ class Test {
         while (low < high) {
             result = checkPrimeNumber(low) 
             if (result == 1){
+                print(result)
+                print(" ")
                 println(low)
             }
 
