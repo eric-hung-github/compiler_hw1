@@ -1,14 +1,17 @@
 class Test {
 
     fun checkPrimeNumber(num: int): int {
+        println(num)
+
         num = num / 2
 
         var i = 2
 
-        println(num)
 
         while (i <= num ) {
             print(i)
+            print(" ")
+
 
             if (num % i == 0) {
                 return 0
