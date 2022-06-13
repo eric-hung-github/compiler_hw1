@@ -41,8 +41,9 @@ class Test {
             result = checkPrimeNumber(low) 
             if (result == 1){
                 println(low)
-                println("===========")
             }
+            println("===========")
+
 
             low = low + 1
         }
