@@ -1,7 +1,7 @@
 class Test {
 
     var low = 20
-    val high = 500
+    val high = 200
 
     fun checkPrimeNumber(num: int): int {
 
