@@ -5,9 +5,7 @@ class Test {
 
     fun checkPrimeNumber(num: int): int {
 
-        var i = 2
-
-        while (i <= (num / 2) ) {
+        for (i in 2..(num/2) ) {
 
             if (num % i == 0) {
                 return 0

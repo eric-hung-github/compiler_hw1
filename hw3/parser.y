@@ -978,14 +978,7 @@ comma_separated_expressions     : expression
                                 ;
 
 // Num
-num     : C_INT
-        {
-                Value *value=new Value();
-                value->value_type=VALUE_INT;
-                value->int_value=$1;
-                $$=value;
-        } 
-        | var_refer
+num     : expression
         {
                 if($1->value_type!=VALUE_INT){
                         TypeError($1->value_type,VALUE_INT);
