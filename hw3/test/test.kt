@@ -4,6 +4,7 @@ class Test {
         var flag = true
         num = num / 2
 
+
         return 0
     }
 
@@ -12,6 +13,7 @@ class Test {
         val high = 50
 
         while (low < high) {
+            var result = checkPrimeNumber(low) 
 
 
             low = low + 1
