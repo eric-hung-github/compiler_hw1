@@ -1,14 +1,15 @@
 class Test {
 
     fun checkPrimeNumber(num: int): int {
-        var flag = true
         num = num / 2
-        for (i 2..num ) {
 
+        var i = 2
+
+        while (i <= num ) {
 
         }
 
-        return 0
+        return 1
     }
 
     fun main() {
