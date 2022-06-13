@@ -12,9 +12,7 @@ class Test {
 
             print(i)
 
-            if (num % i == 0) {
-                return 0
-            }
+
             i = i + 1
         }
 
