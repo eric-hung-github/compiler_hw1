@@ -7,6 +7,10 @@ class Test {
     }
 
     fun main() {
+
+        var low = 20
+        val high = 50
+
         var result = checkPrimeNumber(low) 
 
     }
