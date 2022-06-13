@@ -13,9 +13,11 @@ class Test {
 
             isprime = num % i
 
-            print(": ")
+            print(":")
 
             print(isprime)
+
+            print(" ")
 
 
             if (isprime == 0) {
