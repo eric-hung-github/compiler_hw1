@@ -1,6 +1,9 @@
 class Test {
 
     fun checkPrimeNumber(num: int): int {
+        var flag = true
+        num = num / 2
+
 
         return 0
     }
