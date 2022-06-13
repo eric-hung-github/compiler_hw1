@@ -428,19 +428,19 @@ simple_statement: ID ASIGN expression
                 | {
                         jasm("getstatic java.io.PrintStream java.lang.System.out");
                 } print_statement
-                | RETURN ID
+                | RETURN var_refer
                 {
                         if(!symbolTableStack.fun_ptr){
                                 yyerror("Not in function");
                         }else{
-                                Symbol* symbol = symbolTableStack.lookup(*$2);
-                                if (!symbol)
-                                {
-                                        yyerror("ID not found");
-                                }else if (symbol->value->value_type!=symbolTableStack.fun_ptr->value->value_type)
+                                Value* value = $2;
+                                if (value->value_type!=symbolTableStack.fun_ptr->value->value_type)
                                 {       
-                                        TypeError(symbol->value->value_type,symbolTableStack.fun_ptr->value->value_type);
+                                        TypeError(value->value_type,symbolTableStack.fun_ptr->value->value_type);
                                 }
+
+                                symbolTableStack.fun_ptr->value=value;
+
                                 // javaa
                                 jasm("ireturn");
                         }
@@ -467,6 +467,8 @@ simple_statement: ID ASIGN expression
                         {       
                                 TypeError($2->value_type,symbolTableStack.fun_ptr->value->value_type);
                         }
+
+                        symbolTableStack.fun_ptr->value=$2;
                         // javaa
                         jasm("ireturn");
                 }
@@ -878,11 +880,13 @@ loop_statement  : WHILE
 
                         jasm("L"+to_string(symbolTableStack.tag+2)+":");
                         jasm("Lifeq L"+to_string(symbolTableStack.tag+3));
+                        symbolTableStack.temp_tag=symbolTableStack.tag;
+                        symbolTableStack.tag+=4;
+
                 } block_or_simple_statement
                 {
-                        jasm("goto L"+to_string(symbolTableStack.tag));
-                        jasm("L"+to_string(symbolTableStack.tag+3)+":");       
-                        symbolTableStack.tag+=4;
+                        jasm("goto L"+to_string(symbolTableStack.temp_tag));
+                        jasm("L"+to_string(symbolTableStack.temp_tag+3)+":");       
                 }
                 ;
 

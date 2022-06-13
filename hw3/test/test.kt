@@ -1,32 +1,31 @@
 class Test {
 
-    val low = 20
-    val high = 50
+    fun checkPrimeNumber(num: int): bool {
+        var flag = true
+        num = num / 2
+        for (i 2..num ) {
+
+            if (num % i == 0) {
+                flag = false
+                return flag
+            }
+        }
+
+        return flag
+    }
 
     fun main() {
+        var low = 20
+        val high = 50
 
-        var index = low
-        var result : bool = true
-
-        while (index < high) {
-
-            result = true
-            
-            var num = index / 2
-            
-            for (i 2..num) {
-                var temp = num % i
-                if(result){
-                    if(temp != 0)
-                        result = false
-                }
-            }
-            
-            if (result){
+        while (low < high) {
+            var result = checkPrimeNumber(low) 
+            if (result)
                 println(low)
-            }
 
-            index = index + 1
+            low = low + 1
         }
     }
+
+
 }
