@@ -15,6 +15,7 @@ class Test {
             isprime = num % i
 
             if (isprime == 0) {
+                println(" ")
                 return 0
             }
             i = i + 1
