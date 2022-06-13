@@ -179,7 +179,7 @@ var_declaration         : VAR ID
  
                                 symbolTableStack.insert(symbol);
                         }
-                        | VAR ID MO type_define ASIGN expression
+                        | VAR ID MO type_define ASIGN const_expression
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->id_type = ID_VAR;
@@ -193,7 +193,7 @@ var_declaration         : VAR ID
                                         TypeError(symbol->value->value_type,$4);
                                 }
                         }
-                        | VAR ID ASIGN expression
+                        | VAR ID ASIGN const_expression
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->id_type = ID_VAR;
@@ -688,20 +688,20 @@ components      : literal_constant
                 {
                         switch ($1->value_type)
                         {
-                        case VALUE_INT:
-                                jasm("sipush " + $1->display());
-                                break;
-                        case VALUE_BOOL:
-                                jasm("iconst_" + $1->display());
-                                break;
-                        case VALUE_FLOAT:
-                                jasm("sipush " + $1->display());
-                                break;
-                        case VALUE_STR:
-                                jasm("ldc \"" + $1->display() + "\"");
-                                break;
-                        default:
-                                break;
+                                case VALUE_INT:
+                                        jasm("sipush " + $1->display());
+                                        break;
+                                case VALUE_BOOL:
+                                        jasm("iconst_" + $1->display());
+                                        break;
+                                case VALUE_FLOAT:
+                                        jasm("sipush " + $1->display());
+                                        break;
+                                case VALUE_STR:
+                                        jasm("ldc \"" + $1->display() + "\"");
+                                        break;
+                                default:
+                                        break;
                         }
                         $$=$1;
                 }
