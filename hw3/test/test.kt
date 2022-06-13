@@ -3,10 +3,12 @@ class Test {
     fun checkPrimeNumber(num: int): int {
         println(num)
 
-        range = num / 2
+        var range: int
+        var isprime: int
 
         var i = 2
-        var isprime: int
+
+        range = num / 2
 
         while (i <= range ) {
             print(i)
