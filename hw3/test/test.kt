@@ -1,5 +1,9 @@
 class Test {
 
+    fun checkPrimeNumber(num: int): int {
+
+        return 0
+    }
 
     fun main() {
         var low = 20
