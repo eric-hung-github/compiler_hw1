@@ -10,9 +10,13 @@ class Test {
 
         while (i <= num ) {
             print(i)
-            print(" ")
 
             isprime = num % i
+
+            print(": ")
+
+            print(isprime)
+
 
             if (isprime == 0) {
                 println(" false ")
