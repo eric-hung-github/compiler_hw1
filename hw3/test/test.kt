@@ -2,17 +2,11 @@ class Test {
 
     fun checkPrimeNumber(num: int): int {
 
-        var range: int
-        var isprime: int
-
         var i = 2
-
 
         while (i <= (num / 2) ) {
 
-            isprime = num % i
-
-            if (isprime == 0) {
+            if (num % i == 0) {
                 return 0
             }
             i = i + 1
