@@ -1,17 +1,8 @@
 class Test {
 
-    fun checkPrimeNumber(num: int): bool {
-        var flag = true
-        num = num / 2
-        for (i 2..num ) {
+    fun checkPrimeNumber(num: int): int {
 
-            if (num % i == 0) {
-                flag = false
-                return flag
-            }
-        }
-        
-        return flag
+        return 0
     }
 
     fun main() {
@@ -20,7 +11,7 @@ class Test {
 
         while (low < high) {
             var result = checkPrimeNumber(low) 
-            if (result)
+            if (result==1)
                 println(low)
 
             low = low + 1
