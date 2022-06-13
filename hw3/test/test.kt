@@ -1,7 +1,7 @@
 class Test {
 
     var low = 20
-    val high = 50
+    var high = 50
 
     fun main() {
 
