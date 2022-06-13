@@ -222,7 +222,6 @@ public:
     vector<Value *> parseStack;
     Symbol *fun_ptr = nullptr;
     string program_name;
-    bool is_returned = false;
 
     int tag = 0;
     int temp_tag = 0;
@@ -315,6 +314,7 @@ public:
                 return symbol;
             }
         }
+        cout << "miss" << name << endl;
         return nullptr;
     }
     //**************************************************

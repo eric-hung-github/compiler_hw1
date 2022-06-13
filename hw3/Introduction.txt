@@ -1,0 +1,148 @@
+###symbol_table.hpp###
+void jasm(string)
+    Output string to jasm field
+
+enum IDType
+    Type of identifier
+
+enum ValueType
+    Type of value
+
+string IDTypeToString(int)
+    Return name of give IDType
+ 
+string ValueTypeToString(int)
+    Return name of give ValueType
+
+class Value:
+    int value_type: Type of this value
+
+    int int_value: Store exact value
+    float float_value: Store exact value
+    bool bool_value: Store exact value
+    string string_value: Store exact value
+
+    string display():
+        Return this value's value
+
+struct Symbol:
+    string name: Name of this symbol
+    int id_type: Type of this symbol
+    bool init: Decide is this symbol has initial value
+
+    Value *value: Value of this symbol
+    vector<Symbol *> arguments: Store function&procedure arguments
+    bool is_global: Decide is this symbol globalize
+    int counter: Index of this symbol in parseStack
+
+class SymbolTable
+    string name: Name of this symboltable
+    vector<Symbol *> symbols: Symbol in this symboltable
+
+    int size():
+        Return stack'size of symbols
+    bool insert(Symbol *):
+        Pushback given symbol into stack
+    Symbol *lookup(string):
+        Return Symbol's pointer of given name
+    void dump():
+        Print information of this table
+
+class SymbolTableStack
+{
+    vector<SymbolTable> tableStack: Store symboltables 
+    vector<Symbol *> argumentStack: Temporary store arguments
+    vector<Value *> parseStack: Temporary store parameter
+
+    Symbol *fun_ptr = nullptr: Pointer to function which now is in
+    string program_name: Name of this program
+
+    int tag = 0: Counter of branch tag
+    int temp_tag = 0: Temporary store a brach tag number
+
+    SymbolTable *top():
+        Return pointer of symboltable on top
+    void push(string ):
+        Pushback a new symboltable into stack with given name
+    void pop():
+        Popback symboltable on top
+    bool insert(Symbol *):
+        Pushback given symbol into stack on top
+        Jasm command:
+            If not constant:
+                If global:
+                    jasm static variable declaration
+                Else
+                    Call store_value 
+
+    Symbol *lookup(string ):
+        Return Symbol's pointer of given name
+
+    void store_value(Symbol *):
+        Jasm command:
+            Store value of given symbol
+    void load_value(Symbol *):
+        Jasm command:
+            Load value of given symbol
+    void update_value(Symbol *):
+        Jasm command:
+            Load value of given symbol
+    void print(Value *, bool ):
+        Jasm command:
+            Generate print jasm command by given value
+
+###parser.y###
+Summary:
+    1. Finish most functionolf parse (because on project2 I only fullfill the require of Simple Typecheck)
+        a. Function/Procedure arguments and parameter check
+    2. Update symboltable to store value
+Main:
+    Creat .jasm file and Output
+    
+Change:
+    var_declaration:
+        If variable has init value set symbol.init = true
+    
+    fun_declaration/proc_declaration:
+        Store arguments
+        Jasm command:
+            Generate jasm code with given arguments, name, return type
+
+    simple_statement:
+        assignment:
+            Call SymbolTableStack.update_value
+        print_statement:
+            Call SymbolTableStack.print
+        return:
+            Jasm command:
+                Return expression
+
+    bool_expression:
+        logic operation:
+            Jasm command:
+                Branch command with given operator and expressions' value
+        binary operation:
+            Jasm command:
+                Operator 
+
+    components:
+        constant:
+            Jasm command:
+                Push_value command
+        var_refer:
+            Jasm command:
+                Load_value command
+
+    condition_statement:
+        Jasm command:
+            Branch command with given branch index
+
+    loop_statement:
+        While:
+            Jasm command:
+                Branch command with given branch index
+        For:
+            Jasm command:
+                Branch command with given branch index
+        
+

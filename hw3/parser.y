@@ -179,7 +179,7 @@ var_declaration         : VAR ID
  
                                 symbolTableStack.insert(symbol);
                         }
-                        | VAR ID MO type_define ASIGN const_expression
+                        | VAR ID MO type_define ASIGN expression
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->id_type = ID_VAR;
@@ -193,7 +193,7 @@ var_declaration         : VAR ID
                                         TypeError(symbol->value->value_type,$4);
                                 }
                         }
-                        | VAR ID ASIGN const_expression
+                        | VAR ID ASIGN expression
                         {       
                                 Symbol* symbol = new Symbol();
                                 symbol->id_type = ID_VAR;
@@ -518,8 +518,19 @@ int_expression          : expression
                         }
                         ;
 
-bool_expression         : literal_constant_bool
+bool_expression         : LB bool_expression RB
                         {
+                                $$=$2;
+                        }
+                        | literal_constant_bool
+                        {
+                                $$=$1;
+                        }
+                        | var_refer
+                        {
+                                if($1->value_type!=VALUE_BOOL){
+                                        TypeError($1->value_type,VALUE_BOOL);
+                                }
                                 $$=$1;
                         }
                         |  expression logic_operator expression
@@ -538,7 +549,7 @@ bool_expression         : literal_constant_bool
                                 jasm("goto L"+to_string(symbolTableStack.tag+1));
                                 jasm("L"+to_string(symbolTableStack.tag)+":");
                                 jasm("iconst_1");
-                                jasm("L"+to_string(symbolTableStack.tag+1)+": ");
+                                jasm("L"+to_string(symbolTableStack.tag+1)+":");
                                 symbolTableStack.tag+=2;
                         }
                         | bool_expression bit_operator bool_expression
@@ -840,6 +851,18 @@ loop_statement  : WHILE
                 }
                 | FOR LB ID num DOT DOT num  RB 
                 {
+                        Symbol* symbol = new Symbol();
+                        symbol->id_type = ID_VAR;
+                        symbol->name = *$3;    
+                        symbol->value= $4;
+                        symbol->init=true;
+
+                        if(symbol->value->value_type==$4->value_type){
+                                symbolTableStack.insert(symbol);
+                        }else{
+                                TypeError(symbol->value->value_type,$4->value_type);
+                        }
+
                         jasm("sipush "+$4->display());
                         jasm("istore 1");
                         jasm("L"+to_string(symbolTableStack.tag)+":");
@@ -850,10 +873,10 @@ loop_statement  : WHILE
                         jasm("iconst_0");
                         jasm("goto L"+to_string(symbolTableStack.tag+2));
 
-                        jasm("L"+to_string(symbolTableStack.tag+1));
+                        jasm("L"+to_string(symbolTableStack.tag+1)+":");
                         jasm("iconst_1");
 
-                        jasm("L"+to_string(symbolTableStack.tag+2));
+                        jasm("L"+to_string(symbolTableStack.tag+2)+":");
                         jasm("Lifeq L"+to_string(symbolTableStack.tag+3));
                 } block_or_simple_statement
                 {
@@ -961,6 +984,13 @@ num     : C_INT
                 value->value_type=VALUE_INT;
                 value->int_value=$1;
                 $$=value;
+        } 
+        | var_refer
+        {
+                if($1->value_type!=VALUE_INT){
+                        TypeError($1->value_type,VALUE_INT);
+                }
+                $$=$1;
         }
         ;
 
