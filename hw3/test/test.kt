@@ -5,12 +5,18 @@ class Test {
 
         var i = 2
 
+        println(num)
+
         while (i <= num ) {
+            print(i)
+
             if (num % i == 0) {
                 return 0
             }
             i = i + 1
         }
+
+        println(" ")
 
         return 1
     }
